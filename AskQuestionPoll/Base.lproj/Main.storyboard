@@ -910,12 +910,30 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="afterGenderLbl" destination="gSq-O8-uzg" id="laP-Ev-SDp"/>
+                        <outlet property="afterLocationLbl" destination="A60-Mt-1Uy" id="bCb-Sf-mcR"/>
                         <outlet property="charCounter" destination="g5d-ay-osq" id="eEa-Bw-xBL"/>
+                        <outlet property="chooseGenderField" destination="ecc-gj-1EV" id="NvW-Za-O2k"/>
+                        <outlet property="chooseLocationField" destination="VYf-Xc-4Wl" id="WQC-cX-eoG"/>
                         <outlet property="descriptionLabel" destination="BrJ-RX-vCz" id="hgL-aY-8Ek"/>
                         <outlet property="descriptionTextView" destination="MzU-mp-h10" id="jm5-eh-QaZ"/>
+                        <outlet property="optionOneImageBg" destination="tiH-xX-gDh" id="CQx-4m-VnF"/>
+                        <outlet property="optionOneLOne" destination="lUT-ff-dtk" id="N1Y-rx-c9k"/>
+                        <outlet property="optionOneLTwo" destination="LZi-ZD-p4U" id="UnC-iq-eye"/>
+                        <outlet property="optionOneTextview" destination="x2h-XO-eKI" id="p1p-jx-yJ7"/>
+                        <outlet property="optionOneView" destination="aRv-pK-b9q" id="m0v-nC-87G"/>
+                        <outlet property="optionTwoImageBg" destination="ogi-1j-BzB" id="EJM-17-LFe"/>
+                        <outlet property="optionTwoLOne" destination="Sig-H3-dSB" id="ueV-W5-0Gs"/>
+                        <outlet property="optionTwoLTwo" destination="HL4-cn-aB2" id="P47-ks-wHM"/>
+                        <outlet property="optionTwoTextview" destination="4iY-q8-6rQ" id="IhG-kl-jvD"/>
+                        <outlet property="optionTwoView" destination="Tpe-Ul-Ctw" id="8z3-81-sOq"/>
+                        <outlet property="optionsView" destination="8Et-oI-cBg" id="AFU-bu-p2H"/>
+                        <outlet property="prefernceLabel" destination="BdU-oV-ZA3" id="Jmt-u3-evL"/>
+                        <outlet property="previewButton" destination="vEZ-7j-v5e" id="USK-RL-1Yu"/>
                         <outlet property="questionLabel" destination="dqy-Im-ZA2" id="CW4-YB-xYb"/>
                         <outlet property="selectCategoryField" destination="cdv-BO-Mkn" id="6Iw-Ug-jGq"/>
                         <outlet property="selectorImage" destination="wSg-B5-Ohp" id="fur-IO-0Kw"/>
+                        <outlet property="submitButton" destination="bCQ-vz-9PA" id="D8Q-bq-eBQ"/>
                         <outlet property="textViewField" destination="cdv-BO-Mkn" id="YKN-eS-22p"/>
                         <outlet property="underLineTextView" destination="UlJ-Ih-c5C" id="4UD-Dy-gsF"/>
                     </connections>
