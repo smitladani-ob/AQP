@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="iPad13_0rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="1032" height="1376"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="screenBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="zPG-sV-t5V">
+                                <rect key="frame" x="0.0" y="0.0" width="1032" height="1376"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ask Your Friends" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z9O-5N-Suu">
+                                <rect key="frame" x="242.5" y="827.5" width="547" height="61"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="26"/>
+                                <color key="textColor" systemColor="systemYellowColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="51"/>
+                                </variation>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ask_question_logo" translatesAutoresizingMaskIntoConstraints="NO" id="SDl-HD-n5g">
+                                <rect key="frame" x="376.5" y="513.5" width="279" height="279"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="SDl-HD-n5g" secondAttribute="height" id="YFO-Pm-8ET"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0(1)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCe-LE-Bo3" userLabel="APP_VERSION">
+                                <rect key="frame" x="947" y="1303.5" width="65" height="32.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jCe-LE-Bo3" secondAttribute="trailing" constant="20" id="9fH-MP-twk"/>
+                            <constraint firstItem="zPG-sV-t5V" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="F6n-y6-xgz"/>
+                            <constraint firstItem="zPG-sV-t5V" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="INt-35-YxE"/>
+                            <constraint firstItem="z9O-5N-Suu" firstAttribute="width" secondItem="zPG-sV-t5V" secondAttribute="width" multiplier="0.53" id="J3E-aj-m5V"/>
+                            <constraint firstItem="z9O-5N-Suu" firstAttribute="centerX" secondItem="zPG-sV-t5V" secondAttribute="centerX" id="NnT-u2-on9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="jCe-LE-Bo3" secondAttribute="bottom" constant="20" id="RcD-wo-CHM"/>
+                            <constraint firstItem="SDl-HD-n5g" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ZHn-sh-VfA"/>
+                            <constraint firstItem="zPG-sV-t5V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="eBr-Pl-u82"/>
+                            <constraint firstItem="SDl-HD-n5g" firstAttribute="width" secondItem="zPG-sV-t5V" secondAttribute="width" multiplier="0.27" id="hlr-Hu-Mr9"/>
+                            <constraint firstAttribute="bottom" secondItem="zPG-sV-t5V" secondAttribute="bottom" id="kw1-Og-SS8"/>
+                            <constraint firstItem="z9O-5N-Suu" firstAttribute="top" secondItem="SDl-HD-n5g" secondAttribute="bottom" constant="20" id="lnJ-3e-owV">
+                                <variation key="heightClass=regular-widthClass=regular" constant="35"/>
+                            </constraint>
+                            <constraint firstItem="SDl-HD-n5g" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-20" id="sRX-IO-biJ">
+                                <variation key="heightClass=regular-widthClass=regular" constant="-35"/>
+                            </constraint>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ask_question_logo" width="60" height="60"/>
+        <image name="screenBackGround" width="540" height="960"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
