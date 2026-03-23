@@ -68,7 +68,7 @@ class SignUpScreenViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         if isSmallScreen {
-            heightOfField.constant = screenWidth * 0.157
+            heightOfField.constant = screenWidth * 0.240
         }
     }
     
@@ -145,7 +145,7 @@ class SignUpScreenViewController: UIViewController {
         countryTextField.iconImage.isHidden = true
         countryTextField.actualTextField.isUserInteractionEnabled = true
     
-        radioButtonsField.config(categoryName: "GENDER",itemOne: "MALE",itemTwo: "FEMALE")
+        radioButtonsField.config(categoryName: "GENDER",itemOne: "MALE",itemTwo: "FEMALE", textcolor: UIColor.systemYellow)
     }
     
     func setupCountryPicker() {
@@ -182,7 +182,7 @@ class SignUpScreenViewController: UIViewController {
     }
     
     func setupButtonsOfScreen() {
-        signUpbtn.config(text: "SIGN UP")
+        signUpbtn.config(text: "SIGN UP",textColor: UIColor.white)
         signUpbtn.loginButton.addTarget(self, action: #selector(signUpTapped), for: .touchUpInside)
     }
     

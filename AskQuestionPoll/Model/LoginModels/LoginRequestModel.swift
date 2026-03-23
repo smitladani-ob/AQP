@@ -81,3 +81,4 @@ class DeviceInfo: Mappable {
         is_active <- map["is_active"]
     }
 }
+

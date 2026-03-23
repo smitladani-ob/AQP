@@ -33,14 +33,14 @@ class OTPScreenVIewController: UIViewController {
             otpField.configure(labelText: "EMAIL", textFieldPlaceholder: "Enter Email")
             otpField.iconImage.isHidden = true
             otpField.imgForTextField.isHidden = true
-            submitButton.config(text: "NEXT")
+            submitButton.config(text: "NEXT",textColor: UIColor.white)
             submitButton.loginButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
         } else {
             otpField.configure(labelText: "OTP", textFieldPlaceholder: "Enter OTP")
             otpField.iconImage.isHidden = true
             otpField.actualTextField.keyboardType = .numberPad
             otpField.imgForTextField.isHidden = true
-            submitButton.config(text: "OK")
+            submitButton.config(text: "OK",textColor: UIColor.white)
             submitButton.loginButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
         }
         

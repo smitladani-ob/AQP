@@ -47,15 +47,19 @@ class RadioButtonsView: NibView {
         viewOptionTwo.addGestureRecognizer(tap2)
     }
     // For Configure data
-    func config(categoryName: String, itemOne: String, itemTwo: String) {
-        self.textColorAndFont(label: categoryLabel, text: categoryName)
-        self.textColorAndFont(label: lblOptionOne, text: itemOne)
-        self.textColorAndFont(label: lblOptionTwo, text: itemTwo)
+    func config(categoryName: String, itemOne: String, itemTwo: String,textcolor: UIColor) {
+        self.textColorAndFont(label: categoryLabel, text: categoryName,textColor: textcolor)
+        self.textColorAndFont(label: lblOptionOne, text: itemOne, textColor: textcolor)
+        self.textColorAndFont(label: lblOptionTwo, text: itemTwo, textColor: textcolor)
     }
-    func textColorAndFont(label: UILabel,text: String) {
+    func textColorAndFont(label: UILabel,text: String,textColor: UIColor) {
         label.text = text
         let font = UIFont(name: "SFAtarianSystemExtended", size: CGFloat(0.048 * screenWidth))
-        label.textColor = UIColor.systemYellow
+        if label == categoryLabel {
+            label.textColor = UIColor.systemYellow
+        } else {
+            label.textColor = textColor
+        }
         label.font = font
     }
     //For Button Actions

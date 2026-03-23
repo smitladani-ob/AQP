@@ -29,7 +29,7 @@ class SetPasswordViewController: UIViewController {
     func setupUI() {
         newPasswordTextfield.configure(labelText: "NEW PASSWORD", textFieldPlaceholder: "Enter New Password")
         confirmPasswordTextfield.configure(labelText: "CONFIRM PASSWORD", textFieldPlaceholder: "Enter Confirm Password")
-        saveButton.config(text: "SAVE")
+        saveButton.config(text: "SAVE",textColor: UIColor.white)
     }
     
     @objc func saveButtonTapped() {

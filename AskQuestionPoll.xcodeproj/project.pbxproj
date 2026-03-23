@@ -435,7 +435,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n// Source - https://stackoverflow.com/a/40712171\n// Posted by Repose, modified by community. See post 'Timeline' for change history\n// Retrieved 2026-03-18, License - CC BY-SA 4.0\n\n#   ON/OFF Script Toggle (script ON with #, script OFF without #)\n#exit 0\n\n#   App vesion / Build version constants\nsourceFilePath=\"$PROJECT_DIR/$PROJECT_NAME/Base.lproj/LaunchScreen.storyboard\"\nversionNumber=\"$MARKETING_VERSION\"\nbuildNumber=\"$CURRENT_PROJECT_VERSION\"\n\n#   Output version & build numbers into a label on LaunchScreen.storyboard\nsed -i .bak -e \"/userLabel=\\\"APP_VERSION\\\"/s/text=\\\"[^\\\"]*\\\"/text=\\\"$versionNumber($buildNumber)\\\"/\" \"$sourceFilePath\"\n";
+			shellScript = "sourceFilePath=\"$PROJECT_DIR/AskQuestionPoll/Base.lproj/LaunchScreen.storyboard\"\nplistPath=\"$INFOPLIST_FILE\"\n\necho \"Using plist at: $plistPath\"\n\nversionNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$plistPath\")\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$plistPath\")\n\nsed -i .bak -e \"/userLabel=\\\"APP_VERSION\\\"/s/text=\\\"[^\\\"]*\\\"/text=\\\"v$versionNumber\\\"/\" \"$sourceFilePath\"\n";
 		};
 		6AE32642F40B94A7E7D017DE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

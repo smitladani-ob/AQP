@@ -18,7 +18,7 @@ class APIManager {
         let device = DeviceInfo()
         let requestModel = LoginRequest(email: email, password: password, device: device)
         let params = requestModel.toJSON()
-        AF.request(url,method: .post,parameters: params,encoding: JSONEncoding.default).responseJSON { response in
+        AF.request(loginForUser, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { response in
             switch response.result {
             case .success(let value):
                 if let json = value as? [String: Any],

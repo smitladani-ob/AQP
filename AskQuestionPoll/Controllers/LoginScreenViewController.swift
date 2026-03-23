@@ -19,6 +19,7 @@ class LoginScreenViewController: UIViewController {
     @IBOutlet weak var emailTextField: AuthTextFieldView!
     @IBOutlet weak var loginButtonView: yellowButtonView!
     
+    @IBOutlet weak var heightOfField: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
         //        btnSignUp.titleLabel?.text = "Signup"
@@ -31,11 +32,21 @@ class LoginScreenViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if isSmallScreen {
+            heightOfField.priority = UILayoutPriority(rawValue: 1000)
+            heightOfField.constant = screenWidth * 0.240
+        } else {
+            heightOfField.priority = UILayoutPriority(rawValue: 250)
+        }
+    }
+    
     //Function to Set the buttons
     func setupButtonsOfScreens(){
         makeUnderLineLabel(label: lblSignUp,text: "SIGNUP", size: 0.048, color: UIColor.white)
         makeUnderLineLabel(label: lblForgotPassword,text: "FORGOT PASSWORD ?", size: 0.048, color: UIColor.white)
-        loginButtonView.config(text: "LOGIN")
+        loginButtonView.config(text: "LOGIN",textColor: UIColor.white)
         loginButtonView.loginButton.addTarget(self, action: #selector(btnLogin(_ :)), for: .touchUpInside)
         let tappedForgot = UITapGestureRecognizer(target: self, action: #selector(btnForgotPassword(_ :)))
         lblForgotPassword.isUserInteractionEnabled = true

@@ -7,16 +7,30 @@
 
 import UIKit
 
-
 let storyboardOfMain = UIStoryboard(name: "Main", bundle: nil)
 
 var screenWidth: CGFloat {
-    return UIDevice.current.userInterfaceIdiom == .pad ? 475 : UIScreen.main.bounds.size.width
+    return isiPadDevice ? 475 : UIScreen.main.bounds.size.width
+}
+
+var isiPadDevice: Bool {
+    return UIDevice.current.userInterfaceIdiom == .pad
 }
 
 let isSmallScreen = UIScreen.main.bounds.height <= 667
 
-
+//MARK: APIs
+let serverUrl = "ttp://192.168.0.110/ask_question_poll/api/public/api/"
+let loginForUser = serverUrl + "loginForUser"
+let signup = serverUrl + "signup"
+//let signup = serverUrl + "signup"
+//let signup = serverUrl + "signup"
+//let signup = serverUrl + "signup"
+//let signup = serverUrl + "signup"
+//let signup = serverUrl + "signup"
+//let signup = serverUrl + "signup"
+//let signup = serverUrl + "signup"
+//let signup = serverUrl + "signup"
 
 //JSON Parser
 class JSONLoader {

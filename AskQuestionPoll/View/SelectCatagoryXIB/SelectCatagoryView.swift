@@ -13,6 +13,8 @@ class SelectCatagoryView: NibView {
     @IBOutlet weak var imageOfTextFIeld: UIImageView!
     @IBOutlet weak var textFIeld: UITextField!
     
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupUI()
@@ -23,9 +25,21 @@ class SelectCatagoryView: NibView {
     }
     
     func configure(placeHolder: String,imageName: String = ""){
-        textFIeld.font = UIFont(name: "SFAtarianSystemExtended", size: CGFloat(0.048 * screenWidth))
-        textFIeld.placeholder = placeHolder
-        textFIeld.font = UIFont.systemFont(ofSize: 14)
+        let fontSize = CGFloat(0.048 * screenWidth)
+        guard let font = UIFont(name: "SFAtarianSystemExtended", size: fontSize) else {
+            print("❌ Font not found")
+            return
+        }
+        textFIeld.font = font
+        let paragraphStyle = NSMutableParagraphStyle()
+        textFIeld.attributedPlaceholder = NSAttributedString(
+            string: placeHolder,
+            attributes: [
+                .foregroundColor: UIColor.white,
+                .font: font,
+                .paragraphStyle: paragraphStyle
+            ]
+        )
         imageOfTextFIeld.image = UIImage(named: imageName)
         
     }
