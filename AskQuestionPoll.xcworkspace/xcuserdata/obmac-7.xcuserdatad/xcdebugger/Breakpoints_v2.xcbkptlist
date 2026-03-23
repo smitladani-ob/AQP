@@ -94,8 +94,8 @@
             filePath = "AskQuestionPoll/Controllers/SignUpScreenViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
             landmarkName = "signUpValidation()"
             landmarkType = "7">
          </BreakpointContent>
@@ -110,9 +110,9 @@
             filePath = "AskQuestionPoll/Controllers/SignUpScreenViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
-            landmarkName = "signUpValidation()"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
+            landmarkName = "signUpAPI(email:password:gender:country:url:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

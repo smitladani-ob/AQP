@@ -54,6 +54,7 @@ class HomeScreenViewController: UIViewController {
     ]
     let categoryPicker = UIPickerView()
     let picker = UIImagePickerController()
+    var selectedCategoryId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +82,7 @@ class HomeScreenViewController: UIViewController {
         selectorImage.layer.borderColor = UIColor.white.cgColor
         selectorImage.image = UIImage(named: "selector_image")
         charCounter.text = "0/200"
+        charCounter.font = UIFont(name: "SFAtarianSystemExtended", size: CGFloat(0.038 * screenWidth))
         charCounter.textColor = UIColor.white
         
         //Second Container
@@ -137,6 +139,15 @@ class HomeScreenViewController: UIViewController {
         }))
         // Cancel
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        if let popover = alert.popoverPresentationController {
+                popover.sourceView = self.view
+                popover.sourceRect = CGRect(x: self.view.bounds.midX,
+                                            y: self.view.bounds.midY,
+                                            width: 0,
+                                            height: 0)
+                popover.permittedArrowDirections = []
+            }
         present(alert, animated: true)
     }
     
@@ -190,10 +201,12 @@ extension HomeScreenViewController: UIPickerViewDelegate, UIPickerViewDataSource
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return categories[row].name
     }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectCategoryField.textFIeld.text = categories[row].name
+    }
 }
 
 extension HomeScreenViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.editedImage] as? UIImage {

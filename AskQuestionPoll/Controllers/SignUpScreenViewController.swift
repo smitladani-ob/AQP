@@ -95,6 +95,14 @@ class SignUpScreenViewController: UIViewController {
         }))
         // Cancel
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        if let popover = alert.popoverPresentationController {
+            popover.sourceView = self.view
+            popover.sourceRect = CGRect(x: self.view.bounds.midX,
+                                        y: self.view.bounds.midY,
+                                        width: 0,
+                                        height: 0)
+            popover.permittedArrowDirections = []
+        }
         present(alert, animated: true)
     }
     
