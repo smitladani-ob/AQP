@@ -26,6 +26,7 @@ class SignUpScreenViewController: UIViewController {
     var selectedGender: Gender?
     var selectedImage: UIImage?
     let picker = UIImagePickerController()
+    var alertTitle = "Select Image"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,15 +48,13 @@ class SignUpScreenViewController: UIViewController {
             object: nil
         )
         navigationController?.setupGlobalBackButton()
-        setupUI()
-        setupFields()
-        setupButtonsOfScreen()
+        self.setupUI()
+        self.setupFields()
+        self.setupButtonsOfScreen()
         if let response: CountryResponse = JSONLoader.load("countryNames") {
             countries = response.countryJSON
         }
-        setupCountryPicker()
-
-        
+        self.setupCountryPicker()
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
@@ -67,15 +66,16 @@ class SignUpScreenViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        if isSmallScreen {
-            heightOfField.constant = screenWidth * 0.240
-        }
+//        if isSmallScreen {
+//            heightOfField.constant = screenWidth * 0.240
+//        }
     }
     
     func setupUI(){
-        profileImageVIew.layer.cornerRadius = profileImageVIew.frame.height/2
+        profileImageVIew.setCornerRadius(cornerRadius: profileImageVIew.frame.height/2)
         profileImageVIew.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(profileImageTapped))
+        profileImageVIew.image = UIImage.profileAvtar
         profileImageVIew.addGestureRecognizer(tap)
     }
     
@@ -84,7 +84,7 @@ class SignUpScreenViewController: UIViewController {
     }
     
     func openImagePicker() {
-        let alert = UIAlertController(title: "Select Image", message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: self.alertTitle, message: nil, preferredStyle: .actionSheet)
         // Camera
         alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
             self.openCamera()
@@ -135,25 +135,19 @@ class SignUpScreenViewController: UIViewController {
         passwordTextField.actualTextField.delegate = self
         confirmPasswordTextField.actualTextField.delegate = self
         countryTextField.actualTextField.delegate = self
+        
         emailTextField.configure(labelText: "EMAIL",textFieldPlaceholder: "Enter Email")
-        emailTextField.imgForTextField.isHidden = true
-        emailTextField.iconImage.isHidden = true
         
         passwordTextField.configure(labelText: "PASSWORD", textFieldPlaceholder: "Enter Password")
-        passwordTextField.imgForTextField.isHidden = true
-        passwordTextField.iconImage.isHidden = true
         passwordTextField.actualTextField.isSecureTextEntry = true
         
         confirmPasswordTextField.configure(labelText: "CONFIRM PASSWORD", textFieldPlaceholder: "Enter Confirm Password")
-        confirmPasswordTextField.imgForTextField.isHidden = true
-        confirmPasswordTextField.iconImage.isHidden = true
         confirmPasswordTextField.actualTextField.isSecureTextEntry = true
         
         countryTextField.configure(labelText: "COUNTRY",textFieldPlaceholder: "Select Country", textFieldImageName: "dropdown_icon")
-        countryTextField.iconImage.isHidden = true
         countryTextField.actualTextField.isUserInteractionEnabled = true
     
-        radioButtonsField.config(categoryName: "GENDER",itemOne: "MALE",itemTwo: "FEMALE", textcolor: UIColor.systemYellow)
+        radioButtonsField.config(categoryName: "GENDER",itemOne: "MALE",itemTwo: "FEMALE",textcolor: UIColor.systemYellow,mode: .gender)
     }
     
     func setupCountryPicker() {
@@ -195,7 +189,7 @@ class SignUpScreenViewController: UIViewController {
     }
     
     @objc func signUpTapped() {
-        signUpValidation()
+        self.signUpValidation()
     }
     
     func signUpValidation() {
@@ -204,8 +198,6 @@ class SignUpScreenViewController: UIViewController {
         let confirmPassword = confirmPasswordTextField.actualTextField.text ?? ""
         selectedGender = radioButtonsField.selectedGender
         let country = countryTextField.actualTextField.text ?? ""
-        let apiSignUp = "http://192.168.0.108/ask_question_poll/api/public/api/signup"
-        
         
         //check email,password,Confirm PassWord,country
         if email.isEmpty || password.isEmpty || confirmPassword.isEmpty || country.isEmpty {
@@ -225,7 +217,7 @@ class SignUpScreenViewController: UIViewController {
             showError("Please select gender")
             return
         }
-        signUpAPI(email: email, password: password, gender: selectedGender!, country: country, url: apiSignUp)
+        self.signUpAPI(email: email, password: password, gender: selectedGender!, country: country, url: signupUrl)
     }
     
     func signUpAPI(email: String,password: String,gender: Gender,country: String,url: String) {
@@ -256,8 +248,10 @@ class SignUpScreenViewController: UIViewController {
     }
     
     func navigateToOtp(tempId: Int) {
-        let vc = storyboardOfMain.instantiateViewController(withIdentifier: "OTPScreenVIewController") as! OTPScreenVIewController
+        let vc = storyboardOfMain.instantiateViewController(withIdentifier: "OTPScreenVC") as! OTPScreenVC
         vc.userRegTempID = tempId
+        vc.screenState = .otp
+        vc.isForgotPassword = false
         vc.modalTransitionStyle = .crossDissolve
         self.navigationItem.backButtonTitle = ""
         self.navigationController?.pushViewController(vc, animated: true)
@@ -270,6 +264,7 @@ extension SignUpScreenViewController: UIImagePickerControllerDelegate, UINavigat
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
             profileImageVIew.image = image
+            self.alertTitle = "Replace Image"
             selectedImage = image
         }
         dismiss(animated: true)
@@ -299,17 +294,17 @@ extension SignUpScreenViewController {
               let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
         else { return }
         let keyboardHeight = keyboardFrame.height
-        scrollView.contentInset.bottom = keyboardHeight
-        scrollView.verticalScrollIndicatorInsets.bottom = keyboardHeight
+        self.scrollView.contentInset.bottom = keyboardHeight
+        self.scrollView.verticalScrollIndicatorInsets.bottom = keyboardHeight
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        scrollView.contentInset.bottom = 0
-        scrollView.verticalScrollIndicatorInsets.bottom = 0
+        self.scrollView.contentInset.bottom = 0
+        self.scrollView.verticalScrollIndicatorInsets.bottom = 0
     }
     
     @objc func dismissKeyboard() {
-        view.endEditing(true)
+        self.view.endEditing(true)
     }
 }
 
@@ -318,10 +313,10 @@ extension SignUpScreenViewController: UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let fields: [UITextField] = [
-            emailTextField.actualTextField,
-            passwordTextField.actualTextField,
-            confirmPasswordTextField.actualTextField,
-            countryTextField.actualTextField
+            self.emailTextField.actualTextField,
+            self.passwordTextField.actualTextField,
+            self.confirmPasswordTextField.actualTextField,
+            self.countryTextField.actualTextField
         ]
         if let index = fields.firstIndex(of: textField), index < fields.count - 1 {
             fields[index + 1].becomeFirstResponder()

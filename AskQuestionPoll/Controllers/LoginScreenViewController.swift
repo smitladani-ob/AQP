@@ -10,8 +10,6 @@ import SCLAlertView
 
 class LoginScreenViewController: UIViewController {
     
-    @IBOutlet weak var btnGoogle: UIButton!
-    @IBOutlet weak var btnFaceBook: UIButton!
     @IBOutlet weak var lblSignUp: UILabel!
     
     @IBOutlet weak var lblForgotPassword: UILabel!
@@ -19,7 +17,6 @@ class LoginScreenViewController: UIViewController {
     @IBOutlet weak var emailTextField: AuthTextFieldView!
     @IBOutlet weak var loginButtonView: yellowButtonView!
     
-    @IBOutlet weak var heightOfField: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
         //        btnSignUp.titleLabel?.text = "Signup"
@@ -34,12 +31,9 @@ class LoginScreenViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        if isSmallScreen {
-            heightOfField.priority = UILayoutPriority(rawValue: 1000)
-            heightOfField.constant = screenWidth * 0.240
-        } else {
-            heightOfField.priority = UILayoutPriority(rawValue: 250)
-        }
+        emailTextField.widthOfTextFieldImage.constant = 0
+        passWordTextField.widthOfTextFieldImage.constant = 0
+
     }
     
     //Function to Set the buttons
@@ -48,9 +42,6 @@ class LoginScreenViewController: UIViewController {
         makeUnderLineLabel(label: lblForgotPassword,text: "FORGOT PASSWORD ?", size: 0.048, color: UIColor.white)
         loginButtonView.config(text: "LOGIN",textColor: UIColor.white)
         loginButtonView.loginButton.addTarget(self, action: #selector(btnLogin(_ :)), for: .touchUpInside)
-        let tappedForgot = UITapGestureRecognizer(target: self, action: #selector(btnForgotPassword(_ :)))
-        lblForgotPassword.isUserInteractionEnabled = true
-        lblForgotPassword.addGestureRecognizer(tappedForgot)
     }
     
     //Fucntion to give attributed text which give underline to label's text
@@ -81,7 +72,6 @@ class LoginScreenViewController: UIViewController {
     func fieldsValidation () {
         let email = emailTextField.actualTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         let password = passWordTextField.actualTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        let apiLogin = "http://192.168.0.108/ask_question_poll/api/public/api/loginForUser"
         
         //Incase Both Field Empty
         if email.isEmpty && password.isEmpty {
@@ -101,20 +91,25 @@ class LoginScreenViewController: UIViewController {
             return
         }
         
-        loginAPI(email: email, password: password, url: apiLogin)
-        
+        loginAPI(email: email, password: password)
     }
     
     //API Call
-    func loginAPI(email: String, password: String , url: String) {
+    func loginAPI(email: String, password: String) {
         let waitAlert = alert.showWait("Please Wait", subTitle: "",colorStyle: 0xFFEB3B)
-        APIManager.sharedInstance.login(email: email, password: password, url: url) { response in
+        APIManager.sharedInstance.login(email: email, password: password) { response in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 waitAlert.close()
                 switch response {
                 case .success(let response):
                     if response.code == 200 {
+                        if let token = response.data?.token {
+                            UserDefaults.standard.set(token, forKey: "token")
+                            UserDefaults.standard.synchronize()
+                        }
                         showSuccess(response.message ?? "Login Successfully")
+                        let vc = storyboardOfMain.instantiateViewController(withIdentifier: "HomeScreenViewController") as! HomeScreenViewController
+                        self.navigationController?.pushViewController(vc, animated: true)
                     } else {
                         showError(response.message ?? "Something went wrong")
                     }
@@ -123,15 +118,6 @@ class LoginScreenViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    //button action forgotpassword
-    @IBAction func btnForgotPassword(_ sender: Any) {
-//        let vc = storyboardOfMain.instantiateViewController(withIdentifier: "OTPScreenVIewController") as! OTPScreenVIewController
-        let vc = storyboardOfMain.instantiateViewController(withIdentifier: "SetPasswordViewController") as! SetPasswordViewController
-//        vc.isForgotPassword = true
-        self.navigationItem.backButtonTitle = ""
-        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func btnSignUp(_ sender: Any) {
@@ -148,5 +134,12 @@ class LoginScreenViewController: UIViewController {
         fieldsValidation()
     }
     
+    @IBAction func btnForgotPassword(_ sender: Any) {
+        let vc = storyboardOfMain.instantiateViewController(withIdentifier: "OTPScreenVC") as! OTPScreenVC
+        vc.screenState = .email
+        vc.isForgotPassword = true
+        self.navigationItem.backButtonTitle = ""
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
 }

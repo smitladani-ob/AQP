@@ -14,20 +14,34 @@ class SelectCatagoryView: NibView {
     @IBOutlet weak var textFIeld: UITextField!
     
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    var onTap: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setupUI()
     }
     
-    func setupUI(){
-        underLineView.layer.cornerRadius = 2.5
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        heightConstraint.constant = textFIeld.font!.pointSize
+    }
+    
+    func setupUI() {
+        underLineView.setCornerRadius(cornerRadius: 2.5)
+        self.imageOfTextFIeld.isUserInteractionEnabled = true
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        imageOfTextFIeld.addGestureRecognizer(tap)
+    }
+    
+    @objc func handleTap() {
+        onTap?()
     }
     
     func configure(placeHolder: String,imageName: String = ""){
         let fontSize = CGFloat(0.048 * screenWidth)
         guard let font = UIFont(name: "SFAtarianSystemExtended", size: fontSize) else {
-            print("❌ Font not found")
+            print("Font not found")
             return
         }
         textFIeld.font = font

@@ -7,10 +7,22 @@
 
 import UIKit
 
+enum RadioMode {
+    case gender
+    case options
+}
+
+enum OptionType {
+    case text
+    case image
+}
+
 enum Selection {
     case one
     case two
 }
+
+
 
 class RadioButtonsView: NibView {
     
@@ -23,6 +35,7 @@ class RadioButtonsView: NibView {
     @IBOutlet weak var lblOptionTwo: UILabel!
     
     var selectedOption: Selection = .one
+    var mode: RadioMode = .gender
     var selectedGender: Gender {
         switch selectedOption {
         case .one:
@@ -31,6 +44,15 @@ class RadioButtonsView: NibView {
             return .female
         }
     }
+    var selectedOptionType: OptionType {
+        switch selectedOption {
+        case .one:
+            return .text
+        case .two:
+            return .image
+        }
+    }
+    var onSelectionChanged: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -47,11 +69,14 @@ class RadioButtonsView: NibView {
         viewOptionTwo.addGestureRecognizer(tap2)
     }
     // For Configure data
-    func config(categoryName: String, itemOne: String, itemTwo: String,textcolor: UIColor) {
-        self.textColorAndFont(label: categoryLabel, text: categoryName,textColor: textcolor)
+    func config(categoryName: String,itemOne: String,itemTwo: String,textcolor: UIColor,mode: RadioMode) {
+        self.mode = mode
+        self.textColorAndFont(label: categoryLabel, text: categoryName, textColor: textcolor)
         self.textColorAndFont(label: lblOptionOne, text: itemOne, textColor: textcolor)
         self.textColorAndFont(label: lblOptionTwo, text: itemTwo, textColor: textcolor)
+        updateUI()
     }
+    
     func textColorAndFont(label: UILabel,text: String,textColor: UIColor) {
         label.text = text
         let font = UIFont(name: "SFAtarianSystemExtended", size: CGFloat(0.048 * screenWidth))
@@ -62,15 +87,18 @@ class RadioButtonsView: NibView {
         }
         label.font = font
     }
+    
     //For Button Actions
     @objc private func selectOne() {
         selectedOption = .one
         updateUI()
+        onSelectionChanged?()
     }
 
     @objc private func selectTwo() {
         selectedOption = .two
         updateUI()
+        onSelectionChanged?()
     }
     
     // For Update UI (MAIN LOGIC)
@@ -83,7 +111,16 @@ class RadioButtonsView: NibView {
             imgOptionOne.image = UIImage(systemName: "circle")
             imgOptionTwo.image = UIImage(systemName: "largecircle.fill.circle")
         }
-        imgOptionOne.tintColor = .white
-        imgOptionTwo.tintColor = .white
+        
+        //UI based on mode
+        switch mode {
+        case .gender:
+            imgOptionOne.tintColor = .white
+            imgOptionTwo.tintColor = .white
+            
+        case .options:
+            imgOptionOne.tintColor = .systemYellow
+            imgOptionTwo.tintColor = .systemYellow
+        }
     }
 }

@@ -10,14 +10,13 @@
 		079961692F6D3F9C00FA9422 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079961682F6D3F9300FA9422 /* CountryModel.swift */; };
 		0799616B2F6D55FE00FA9422 /* SCLAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0799616A2F6D55FE00FA9422 /* SCLAlertHelper.swift */; };
 		0799616D2F6D714A00FA9422 /* OTPScreenVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0799616C2F6D714A00FA9422 /* OTPScreenVIewController.swift */; };
-		079B5DFC2F6BC5E900DDB99F /* LoginRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079B5DFB2F6BC5E900DDB99F /* LoginRequestModel.swift */; };
-		079B5DFE2F6BC60800DDB99F /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079B5DFD2F6BC60800DDB99F /* LoginResponseModel.swift */; };
 		079B5E002F6BC8ED00DDB99F /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079B5DFF2F6BC8ED00DDB99F /* APIManager.swift */; };
-		079B5E022F6BDAAB00DDB99F /* SignUpRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079B5E012F6BDAAB00DDB99F /* SignUpRequestModel.swift */; };
-		079B5E042F6BDAB900DDB99F /* SignUpResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079B5E032F6BDAB900DDB99F /* SignUpResponseModel.swift */; };
 		079B5E062F6BF14C00DDB99F /* SignUpScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079B5E052F6BF14C00DDB99F /* SignUpScreenViewController.swift */; };
 		079B5E0D2F6C22FA00DDB99F /* RadioButtonsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 079B5E0C2F6C22FA00DDB99F /* RadioButtonsView.xib */; };
 		079B5E0F2F6C231E00DDB99F /* RadioButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079B5E0E2F6C231E00DDB99F /* RadioButtonsView.swift */; };
+		07AA557B2F715D7B0073F906 /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AA557A2F715D7B0073F906 /* NibView.swift */; };
+		07AA557D2F7182360073F906 /* RequestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AA557C2F7182360073F906 /* RequestModels.swift */; };
+		07AA557F2F7183C00073F906 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AA557E2F7183C00073F906 /* ResponseModel.swift */; };
 		07BEA6312F6A6928002D3A82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEA6252F6A6928002D3A82 /* AppDelegate.swift */; };
 		07BEA6322F6A6928002D3A82 /* AskQuestionPoll.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07BEA6262F6A6928002D3A82 /* AskQuestionPoll.xcdatamodeld */; };
 		07BEA6342F6A6928002D3A82 /* LoginScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEA62E2F6A6928002D3A82 /* LoginScreenViewController.swift */; };
@@ -36,18 +35,13 @@
 		07BEA66D2F6ABBC5002D3A82 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEA66C2F6ABBBF002D3A82 /* Extensions.swift */; };
 		07BEA6702F6AE8BE002D3A82 /* yellowButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEA66F2F6AE8BE002D3A82 /* yellowButtonView.swift */; };
 		07BEA6742F6AE8E8002D3A82 /* yellowButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07BEA6732F6AE8E8002D3A82 /* yellowButtonView.xib */; };
-		07CE2B802F6D7648008C381E /* OTPRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CE2B7F2F6D7648008C381E /* OTPRequestModel.swift */; };
-		07CE2B822F6D766D008C381E /* OTPResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CE2B812F6D766D008C381E /* OTPResponseModel.swift */; };
-		07CE2B892F6D848A008C381E /* ForgotPasswordRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CE2B882F6D848A008C381E /* ForgotPasswordRequestModel.swift */; };
-		07CE2B8B2F6D848D008C381E /* ForgotPasswordResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CE2B8A2F6D848D008C381E /* ForgotPasswordResponseModel.swift */; };
-		07CE2B8E2F6D867D008C381E /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CE2B8D2F6D867D008C381E /* BaseResponse.swift */; };
-		07CE2B902F6D9A58008C381E /* VerifyForgotOTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CE2B8F2F6D9A58008C381E /* VerifyForgotOTPRequest.swift */; };
-		07CE2B922F6D9A73008C381E /* VerifyForgotOTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CE2B912F6D9A73008C381E /* VerifyForgotOTPResponse.swift */; };
-		07CE2B942F6D9FF7008C381E /* SetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CE2B932F6D9FF7008C381E /* SetPasswordViewController.swift */; };
 		07E0EAA02F6E5F2800C8B531 /* SelectCatagoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E0EA9F2F6E5F2800C8B531 /* SelectCatagoryView.swift */; };
 		07E0EAA22F6E5F2F00C8B531 /* SelectCatagoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07E0EAA12F6E5F2F00C8B531 /* SelectCatagoryView.xib */; };
 		07E0EAA42F6E688A00C8B531 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E0EAA32F6E688A00C8B531 /* HomeScreenViewController.swift */; };
 		07E0EAAA2F6E6C0200C8B531 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E0EAA92F6E6C0200C8B531 /* MainViewController.swift */; };
+		07E9D58E2F727438002C4428 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E9D58D2F727438002C4428 /* OptionsView.swift */; };
+		07E9D5902F727441002C4428 /* OptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07E9D58F2F727441002C4428 /* OptionsView.xib */; };
+		07E9D5922F72B9C9002C4428 /* CommonPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E9D5912F72B9C2002C4428 /* CommonPicker.swift */; };
 		7DADA016FC4185DEE53C2091 /* Pods_AskQuestionPoll.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2CADCA246DA94F065930816 /* Pods_AskQuestionPoll.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,14 +49,13 @@
 		079961682F6D3F9300FA9422 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		0799616A2F6D55FE00FA9422 /* SCLAlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCLAlertHelper.swift; sourceTree = "<group>"; };
 		0799616C2F6D714A00FA9422 /* OTPScreenVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPScreenVIewController.swift; sourceTree = "<group>"; };
-		079B5DFB2F6BC5E900DDB99F /* LoginRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestModel.swift; sourceTree = "<group>"; };
-		079B5DFD2F6BC60800DDB99F /* LoginResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
 		079B5DFF2F6BC8ED00DDB99F /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
-		079B5E012F6BDAAB00DDB99F /* SignUpRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestModel.swift; sourceTree = "<group>"; };
-		079B5E032F6BDAB900DDB99F /* SignUpResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponseModel.swift; sourceTree = "<group>"; };
 		079B5E052F6BF14C00DDB99F /* SignUpScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreenViewController.swift; sourceTree = "<group>"; };
 		079B5E0C2F6C22FA00DDB99F /* RadioButtonsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RadioButtonsView.xib; sourceTree = "<group>"; };
 		079B5E0E2F6C231E00DDB99F /* RadioButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonsView.swift; sourceTree = "<group>"; };
+		07AA557A2F715D7B0073F906 /* NibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
+		07AA557C2F7182360073F906 /* RequestModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestModels.swift; sourceTree = "<group>"; };
+		07AA557E2F7183C00073F906 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		07BEA60A2F6A658A002D3A82 /* AskQuestionPoll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AskQuestionPoll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BEA6252F6A6928002D3A82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07BEA6272F6A6928002D3A82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -83,18 +76,13 @@
 		07BEA66C2F6ABBBF002D3A82 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		07BEA66F2F6AE8BE002D3A82 /* yellowButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yellowButtonView.swift; sourceTree = "<group>"; };
 		07BEA6732F6AE8E8002D3A82 /* yellowButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = yellowButtonView.xib; sourceTree = "<group>"; };
-		07CE2B7F2F6D7648008C381E /* OTPRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPRequestModel.swift; sourceTree = "<group>"; };
-		07CE2B812F6D766D008C381E /* OTPResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPResponseModel.swift; sourceTree = "<group>"; };
-		07CE2B882F6D848A008C381E /* ForgotPasswordRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordRequestModel.swift; sourceTree = "<group>"; };
-		07CE2B8A2F6D848D008C381E /* ForgotPasswordResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordResponseModel.swift; sourceTree = "<group>"; };
-		07CE2B8D2F6D867D008C381E /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
-		07CE2B8F2F6D9A58008C381E /* VerifyForgotOTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyForgotOTPRequest.swift; sourceTree = "<group>"; };
-		07CE2B912F6D9A73008C381E /* VerifyForgotOTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyForgotOTPResponse.swift; sourceTree = "<group>"; };
-		07CE2B932F6D9FF7008C381E /* SetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordViewController.swift; sourceTree = "<group>"; };
 		07E0EA9F2F6E5F2800C8B531 /* SelectCatagoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCatagoryView.swift; sourceTree = "<group>"; };
 		07E0EAA12F6E5F2F00C8B531 /* SelectCatagoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectCatagoryView.xib; sourceTree = "<group>"; };
 		07E0EAA32F6E688A00C8B531 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		07E0EAA92F6E6C0200C8B531 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		07E9D58D2F727438002C4428 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
+		07E9D58F2F727441002C4428 /* OptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionsView.xib; sourceTree = "<group>"; };
+		07E9D5912F72B9C2002C4428 /* CommonPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonPicker.swift; sourceTree = "<group>"; };
 		134C3412E5BC64137C954DB0 /* Pods-AskQuestionPoll.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AskQuestionPoll.release.xcconfig"; path = "Target Support Files/Pods-AskQuestionPoll/Pods-AskQuestionPoll.release.xcconfig"; sourceTree = "<group>"; };
 		21F084D18D37D41D5C37E3EE /* Pods-AskQuestionPoll.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AskQuestionPoll.debug.xcconfig"; path = "Target Support Files/Pods-AskQuestionPoll/Pods-AskQuestionPoll.debug.xcconfig"; sourceTree = "<group>"; };
 		E2CADCA246DA94F065930816 /* Pods_AskQuestionPoll.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AskQuestionPoll.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +140,7 @@
 				07BEA6262F6A6928002D3A82 /* AskQuestionPoll.xcdatamodeld */,
 				07BEA6282F6A6928002D3A82 /* Info.plist */,
 				07BEA62A2F6A6928002D3A82 /* LaunchScreen.storyboard */,
+				07BEA6272F6A6928002D3A82 /* Assets.xcassets */,
 				07BEA62C2F6A6928002D3A82 /* Main.storyboard */,
 			);
 			path = AskQuestionPoll;
@@ -168,6 +157,7 @@
 		07BEA63A2F6A6951002D3A82 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				07E9D5912F72B9C2002C4428 /* CommonPicker.swift */,
 				07BEA66A2F6ABB69002D3A82 /* Constant.swift */,
 				079B5DFF2F6BC8ED00DDB99F /* APIManager.swift */,
 				0799616A2F6D55FE00FA9422 /* SCLAlertHelper.swift */,
@@ -180,7 +170,6 @@
 			children = (
 				07BEA6432F6A6B02002D3A82 /* Font */,
 				07BEA6462F6A6B02002D3A82 /* Json */,
-				07BEA6272F6A6928002D3A82 /* Assets.xcassets */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -191,7 +180,6 @@
 				07BEA62E2F6A6928002D3A82 /* LoginScreenViewController.swift */,
 				079B5E052F6BF14C00DDB99F /* SignUpScreenViewController.swift */,
 				0799616C2F6D714A00FA9422 /* OTPScreenVIewController.swift */,
-				07CE2B932F6D9FF7008C381E /* SetPasswordViewController.swift */,
 				07E0EAA32F6E688A00C8B531 /* HomeScreenViewController.swift */,
 				07E0EAA92F6E6C0200C8B531 /* MainViewController.swift */,
 			);
@@ -202,9 +190,8 @@
 			isa = PBXGroup;
 			children = (
 				07CE2B862F6D845C008C381E /* CountryModel */,
-				07CE2B852F6D8446008C381E /* OTPModels */,
-				07CE2B842F6D843C008C381E /* SignUpModels */,
-				07CE2B832F6D8432008C381E /* LoginModels */,
+				07AA557C2F7182360073F906 /* RequestModels.swift */,
+				07AA557E2F7183C00073F906 /* ResponseModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -212,6 +199,7 @@
 		07BEA63E2F6A6973002D3A82 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				07E9D58C2F727421002C4428 /* OptionsViewXIB */,
 				07E0EA9E2F6E5EFA00C8B531 /* SelectCatagoryXIB */,
 				079B5E092F6C229500DDB99F /* RadioButtonsXIB */,
 				07BEA66E2F6AE865002D3A82 /* YellowButtonXIB */,
@@ -225,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				07BEA66C2F6ABBBF002D3A82 /* Extensions.swift */,
+				07AA557A2F715D7B0073F906 /* NibView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -274,38 +263,6 @@
 			path = YellowButtonXIB;
 			sourceTree = "<group>";
 		};
-		07CE2B832F6D8432008C381E /* LoginModels */ = {
-			isa = PBXGroup;
-			children = (
-				07CE2B8D2F6D867D008C381E /* BaseResponse.swift */,
-				079B5DFB2F6BC5E900DDB99F /* LoginRequestModel.swift */,
-				079B5DFD2F6BC60800DDB99F /* LoginResponseModel.swift */,
-				07CE2B882F6D848A008C381E /* ForgotPasswordRequestModel.swift */,
-				07CE2B8A2F6D848D008C381E /* ForgotPasswordResponseModel.swift */,
-				07CE2B8F2F6D9A58008C381E /* VerifyForgotOTPRequest.swift */,
-				07CE2B912F6D9A73008C381E /* VerifyForgotOTPResponse.swift */,
-			);
-			path = LoginModels;
-			sourceTree = "<group>";
-		};
-		07CE2B842F6D843C008C381E /* SignUpModels */ = {
-			isa = PBXGroup;
-			children = (
-				079B5E012F6BDAAB00DDB99F /* SignUpRequestModel.swift */,
-				079B5E032F6BDAB900DDB99F /* SignUpResponseModel.swift */,
-			);
-			path = SignUpModels;
-			sourceTree = "<group>";
-		};
-		07CE2B852F6D8446008C381E /* OTPModels */ = {
-			isa = PBXGroup;
-			children = (
-				07CE2B7F2F6D7648008C381E /* OTPRequestModel.swift */,
-				07CE2B812F6D766D008C381E /* OTPResponseModel.swift */,
-			);
-			path = OTPModels;
-			sourceTree = "<group>";
-		};
 		07CE2B862F6D845C008C381E /* CountryModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,6 +278,15 @@
 				07E0EAA12F6E5F2F00C8B531 /* SelectCatagoryView.xib */,
 			);
 			path = SelectCatagoryXIB;
+			sourceTree = "<group>";
+		};
+		07E9D58C2F727421002C4428 /* OptionsViewXIB */ = {
+			isa = PBXGroup;
+			children = (
+				07E9D58D2F727438002C4428 /* OptionsView.swift */,
+				07E9D58F2F727441002C4428 /* OptionsView.xib */,
+			);
+			path = OptionsViewXIB;
 			sourceTree = "<group>";
 		};
 		689CF4963E33EEDE6E420313 /* Frameworks */ = {
@@ -414,6 +380,7 @@
 				07BEA6372F6A6928002D3A82 /* LaunchScreen.storyboard in Resources */,
 				07BEA6382F6A6928002D3A82 /* Main.storyboard in Resources */,
 				07BEA6562F6A789C002D3A82 /* BackGroundView.xib in Resources */,
+				07E9D5902F727441002C4428 /* OptionsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,35 +450,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				079B5DFE2F6BC60800DDB99F /* LoginResponseModel.swift in Sources */,
 				07BEA6312F6A6928002D3A82 /* AppDelegate.swift in Sources */,
 				079961692F6D3F9C00FA9422 /* CountryModel.swift in Sources */,
 				07BEA65B2F6A7CC3002D3A82 /* AuthTextFieldView.swift in Sources */,
-				07CE2B892F6D848A008C381E /* ForgotPasswordRequestModel.swift in Sources */,
+				07E9D58E2F727438002C4428 /* OptionsView.swift in Sources */,
 				07E0EAA02F6E5F2800C8B531 /* SelectCatagoryView.swift in Sources */,
-				07CE2B802F6D7648008C381E /* OTPRequestModel.swift in Sources */,
+				07AA557B2F715D7B0073F906 /* NibView.swift in Sources */,
+				07AA557D2F7182360073F906 /* RequestModels.swift in Sources */,
 				07BEA6322F6A6928002D3A82 /* AskQuestionPoll.xcdatamodeld in Sources */,
+				07E9D5922F72B9C9002C4428 /* CommonPicker.swift in Sources */,
 				079B5E002F6BC8ED00DDB99F /* APIManager.swift in Sources */,
 				07BEA6542F6A7892002D3A82 /* BackGroundView.swift in Sources */,
-				07CE2B902F6D9A58008C381E /* VerifyForgotOTPRequest.swift in Sources */,
 				07BEA6702F6AE8BE002D3A82 /* yellowButtonView.swift in Sources */,
-				079B5E042F6BDAB900DDB99F /* SignUpResponseModel.swift in Sources */,
 				07E0EAAA2F6E6C0200C8B531 /* MainViewController.swift in Sources */,
 				07E0EAA42F6E688A00C8B531 /* HomeScreenViewController.swift in Sources */,
-				07CE2B942F6D9FF7008C381E /* SetPasswordViewController.swift in Sources */,
 				0799616B2F6D55FE00FA9422 /* SCLAlertHelper.swift in Sources */,
-				07CE2B922F6D9A73008C381E /* VerifyForgotOTPResponse.swift in Sources */,
+				07AA557F2F7183C00073F906 /* ResponseModel.swift in Sources */,
 				079B5E062F6BF14C00DDB99F /* SignUpScreenViewController.swift in Sources */,
-				07CE2B822F6D766D008C381E /* OTPResponseModel.swift in Sources */,
 				07BEA6342F6A6928002D3A82 /* LoginScreenViewController.swift in Sources */,
-				079B5DFC2F6BC5E900DDB99F /* LoginRequestModel.swift in Sources */,
 				079B5E0F2F6C231E00DDB99F /* RadioButtonsView.swift in Sources */,
-				07CE2B8B2F6D848D008C381E /* ForgotPasswordResponseModel.swift in Sources */,
 				0799616D2F6D714A00FA9422 /* OTPScreenVIewController.swift in Sources */,
 				07BEA66B2F6ABB6C002D3A82 /* Constant.swift in Sources */,
 				07BEA66D2F6ABBC5002D3A82 /* Extensions.swift in Sources */,
-				079B5E022F6BDAAB00DDB99F /* SignUpRequestModel.swift in Sources */,
-				07CE2B8E2F6D867D008C381E /* BaseResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

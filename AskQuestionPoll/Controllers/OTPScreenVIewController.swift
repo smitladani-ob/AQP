@@ -7,15 +7,24 @@
 
 import UIKit
 
-class OTPScreenVIewController: UIViewController {
+enum ScreenState {
+    case otp
+    case email
+    case setNewPassword
+}
+class OTPScreenVC: UIViewController {
 
+    @IBOutlet weak var setNewPassword: AuthTextFieldView!
     @IBOutlet weak var submitButton: yellowButtonView!
     @IBOutlet weak var otpField: AuthTextFieldView!
     
     var userRegTempID: Int?
-    
     var isForgotPassword: Bool = false
     var isEmailState: Bool = false
+    //ScreenState
+    var screenState: ScreenState = .otp
+    var enteredEmail: String?
+    var resetToken: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,24 +37,39 @@ class OTPScreenVIewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
     }
+    
     func setupUI() {
-        if isForgotPassword && isEmailState {
+        submitButton.loginButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
+        resetFields()
+        switch screenState {
+        case .email:
             otpField.configure(labelText: "EMAIL", textFieldPlaceholder: "Enter Email")
-            otpField.iconImage.isHidden = true
-            otpField.imgForTextField.isHidden = true
-            submitButton.config(text: "NEXT",textColor: UIColor.white)
-            submitButton.loginButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
-        } else {
+            otpField.actualTextField.keyboardType = .emailAddress
+            otpField.actualTextField.isSecureTextEntry = false
+            setNewPassword.isHidden = true
+            submitButton.config(text: "NEXT", textColor: .white)
+        case .otp:
             otpField.configure(labelText: "OTP", textFieldPlaceholder: "Enter OTP")
-            otpField.iconImage.isHidden = true
             otpField.actualTextField.keyboardType = .numberPad
-            otpField.imgForTextField.isHidden = true
-            submitButton.config(text: "OK",textColor: UIColor.white)
-            submitButton.loginButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
+            otpField.actualTextField.isSecureTextEntry = false
+            setNewPassword.isHidden = true
+            submitButton.config(text: "VERIFY", textColor: .white)
+        case .setNewPassword:
+            otpField.configure(labelText: "NEW PASSWORD", textFieldPlaceholder: "Enter New Password")
+            otpField.actualTextField.isSecureTextEntry = true
+            setNewPassword.isHidden = false
+            setNewPassword.configure(labelText: "CONFIRM PASSWORD", textFieldPlaceholder: "Confirm Password")
+            setNewPassword.actualTextField.isSecureTextEntry = true
+            submitButton.config(text: "SUBMIT", textColor: .white)
         }
-        
     }
     
+    func resetFields() {
+        otpField.actualTextField.text = ""
+        setNewPassword.actualTextField.text = ""
+    }
+    
+    //This Calls When User Come from the SignUp
     func verifyUserAPI(tempID: Int, otp: Int) {
         let device = DeviceInfo()
         let request = VerifyUserRequest(
@@ -88,8 +112,8 @@ class OTPScreenVIewController: UIViewController {
                 case .success(let response):
                     if response.code == 200 {
                         showSuccess(response.message ?? "Success")
-                        // Now switch UI to OTP mode
-                        self.isForgotPassword = false
+                        self.isForgotPassword = true
+                        self.screenState = .otp
                         self.setupUI()
                     } else {
                         showError(response.message ?? "Failed")
@@ -101,8 +125,9 @@ class OTPScreenVIewController: UIViewController {
         }
     }
     
+    //This calles when user email is verify for forgot password
     func verifyForgotOTPAPI(otp: String) {
-        guard let email = otpField.actualTextField.text, !email.isEmpty else {
+        guard let email = self.enteredEmail, !email.isEmpty else {
             showError("Email missing")
             return
         }
@@ -118,14 +143,13 @@ class OTPScreenVIewController: UIViewController {
                 switch result {
                 case .success(let response):
                     if response.code == 200 {
-                        showSuccess(response.message ?? "Success")
-                        //  IMPORTANT: Save token for reset password
-                        let resetToken = response.data?.token
-                        // Go to Set Password Screen
-                        let vc = storyboardOfMain.instantiateViewController(withIdentifier: "SetPasswordViewController") as! SetPasswordViewController
-                        vc.resetToken = resetToken   // pass token
-                        vc.navigationItem.backButtonTitle = ""
-                        self.navigationController?.pushViewController(vc, animated: true)
+                        showSuccess("Your OTP is verified successfully")
+                        // Save token if needed
+                        self.resetToken = response.data?.token
+                        print("Reset Token:", self.resetToken ?? "")
+                        self.screenState = .setNewPassword
+                        self.setupUI()
+                        print(response.message)
                     } else {
                         showError(response.message ?? "Verification Failed")
                     }
@@ -137,22 +161,84 @@ class OTPScreenVIewController: UIViewController {
         }
     }
     
+    //API CALL FOR GENERATE PASSWORD
+    func setPasswordAPI(password: String) {
+        guard let email = enteredEmail,   // FIXED
+              let token = resetToken else {
+            showError("Missing data")
+            return
+        }
+        let waitAlert = alert.showWait("Please Wait", subTitle: "", colorStyle: 0xFFEB3B)
+        let request = GenerateNewPasswordRequest(
+            email: email,
+            password: password,
+            token: token
+        )
+        APIManager.sharedInstance.setNewPassword(request: request) { result in
+            DispatchQueue.main.async {
+                waitAlert.close()
+                switch result {
+                case .success(let response):
+                    if response.code == 200 {
+                        showSuccess(response.message ?? "Password Updated")
+                        //  OPTIONAL CLEANUP (recommended)
+                        self.resetToken = nil
+                        self.enteredEmail = nil
+                        self.screenState = .email
+                        self.setupUI()
+                        // Go back to Login
+                        self.navigationController?.popToRootViewController(animated: true)
+                    } else {
+                        showError(response.message ?? "Failed")
+                    }
+                case .failure:
+                    showError("Something went wrong")
+                }
+            }
+        }
+    }
+    
     @objc func submitButtonTapped() {
         let text = otpField.actualTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        if isForgotPassword && isEmailState {
+        switch screenState {
+        case .email:
             if text.isEmpty {
                 showError("Please Enter Email")
                 return
             }
+            enteredEmail = text
             forgotPasswordAPI(email: text)
-        } else if isForgotPassword && !isEmailState {
-            verifyForgotOTPAPI(otp: text)
-        } else {
+
+        case .otp:
             if text.isEmpty {
                 showError("Please Enter OTP")
                 return
             }
-            verifyUserAPI(tempID: userRegTempID!, otp: Int(text)!)
+            if isForgotPassword {
+                verifyForgotOTPAPI(otp: text)
+                // Move to Set Password
+                screenState = .setNewPassword
+            } else {
+                verifyUserAPI(tempID: userRegTempID!, otp: Int(text)!)
+                // Signup flow → go back
+                navigationController?.popToRootViewController(animated: true)
+            }
+            
+        case .setNewPassword:
+            let confirmText = setNewPassword.actualTextField.text ?? ""            
+            if text.isEmpty || confirmText.isEmpty {
+                showError("Please fill all fields")
+                return
+            }
+            if text != confirmText {
+                showError("Passwords do not match")
+                return
+            }
+            // Call Set Password API here
+            self.setPasswordAPI(password: text)
+            
+            navigationController?.popToRootViewController(animated: true)
         }
     }
 }
+

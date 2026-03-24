@@ -7,17 +7,11 @@
 
 import UIKit
 
-class BackGroundView: UIView {
+class BackGroundView: NibView {
     
     @IBOutlet var containerView: UIView!
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
 
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
+    override func awakeFromNib() {
         commonInit()
     }
     
@@ -27,10 +21,9 @@ class BackGroundView: UIView {
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         insertSubview(view, at: 0)
-        
-        containerView.layer.borderColor = UIColor.systemYellow.cgColor
-        containerView.layer.borderWidth = 1
-        containerView.layer.cornerRadius = 6
+//        containerView.backgroundColor = UIColor.systemGray.withAlphaComponent(<#T##alpha: CGFloat##CGFloat#>)
+        containerView.setBorder(color: UIColor.systemYellow.cgColor, width: 1)
+        containerView.setCornerRadius(cornerRadius: 6)
         containerView.clipsToBounds = true
     }
 }

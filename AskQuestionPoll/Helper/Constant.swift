@@ -20,14 +20,14 @@ var isiPadDevice: Bool {
 let isSmallScreen = UIScreen.main.bounds.height <= 667
 
 //MARK: APIs
-let serverUrl = "ttp://192.168.0.110/ask_question_poll/api/public/api/"
-let loginForUser = serverUrl + "loginForUser"
-let signup = serverUrl + "signup"
-//let signup = serverUrl + "signup"
-//let signup = serverUrl + "signup"
-//let signup = serverUrl + "signup"
-//let signup = serverUrl + "signup"
-//let signup = serverUrl + "signup"
+let serverUrl = "http://192.168.0.108/ask_question_poll/api/public/api/"
+let loginForUserUrl = serverUrl + "loginForUser"
+let signupUrl = serverUrl + "signup"
+let verifyUserUrl = serverUrl + "verifyUser"
+let forgotPasswordForUserUrl = serverUrl + "forgotPasswordForUser"
+let verifyOtpForUserUrl = serverUrl + "verifyOtpForUser"
+let generateNewPasswordForUser = serverUrl + "generateNewPasswordForUser"
+let addQuestionUrl = serverUrl + "addQuestion"
 //let signup = serverUrl + "signup"
 //let signup = serverUrl + "signup"
 //let signup = serverUrl + "signup"
@@ -51,51 +51,6 @@ class JSONLoader {
     }
 }
 
-//For Custom Xibs
-class NibView: UIView {
-    var view: UIView!
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        // Setup view from .xib file
-        xibSetup()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        // Setup view from .xib file
-        xibSetup()
-    }
-}
-private extension NibView {
-    
-    func xibSetup() {
-        backgroundColor = UIColor.clear
-        view = loadNib()
-        // use bounds not frame or it'll be offset
-        view.frame = bounds
-        // Adding custom subview on top of our view
-        addSubview(view)
-        
-        view.translatesAutoresizingMaskIntoConstraints = false
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[childView]|",
-                                                      options: [],
-                                                      metrics: nil,
-                                                      views: ["childView": view]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[childView]|",
-                                                      options: [],
-                                                      metrics: nil,
-                                                      views: ["childView": view]))
-    }
-    
-    func loadNib() -> UIView {
-        let bundle = Bundle(for: type(of: self))
-        let nibName = type(of: self).description().components(separatedBy: ".").last!
-        let nib = UINib(nibName: nibName, bundle: bundle)
-        return nib.instantiate(withOwner: self, options: nil).first as! UIView
-    }
-}
 
 
 //For left nav bar button

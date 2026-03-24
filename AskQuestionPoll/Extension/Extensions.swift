@@ -33,3 +33,14 @@ extension UINavigationController {
         navigationBar.backIndicatorTransitionMaskImage = backImage
     }
 }
+
+extension UIView {
+    func setBorder(color: CGColor, width: CGFloat = 1) {
+        self.layer.borderColor = color
+        self.layer.borderWidth = width
+    }
+    
+    func setCornerRadius(cornerRadius: CGFloat) {
+        self.layer.cornerRadius = cornerRadius
+    }
+}

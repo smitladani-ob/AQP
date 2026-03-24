@@ -9,6 +9,8 @@ import UIKit
 
 class AuthTextFieldView: NibView {
 
+    @IBOutlet weak var widthOfTextFieldImage: NSLayoutConstraint!
+    @IBOutlet weak var heightOfIconImage: NSLayoutConstraint!
     @IBOutlet weak var textfieldContainer: UIView!
     @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var imgForTextField: UIImageView!
@@ -20,28 +22,31 @@ class AuthTextFieldView: NibView {
         setupUI()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        heightOfIconImage.constant = labelofView.font.pointSize
+        widthOfTextFieldImage.constant = actualTextField.font!.pointSize
+    }
+
     func setupUI(){
         textfieldContainer.backgroundColor = .systemGray3
-        textfieldContainer.layer.cornerRadius = 4
-        textfieldContainer.layer.borderWidth = 2
+        textfieldContainer.setCornerRadius(cornerRadius: 4)
+        textfieldContainer.setBorder(color: UIColor.white.cgColor, width: 2)
         textfieldContainer.clipsToBounds = true
-        textfieldContainer.layer.borderColor = UIColor.white.cgColor
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: actualTextField.frame.height))
         actualTextField.leftView = paddingView
         actualTextField.leftViewMode = .always
         actualTextField.font = UIFont.systemFont(ofSize: CGFloat(0.048 * screenWidth),weight: .light)
-        
     }
     
-    func configure(labelText: String,
-                   iconImageName: String = "",
-                   textFieldPlaceholder: String,
-                   textFieldImageName: String = ""){
+    func configure(labelText: String,iconImageName: String = "",textFieldPlaceholder: String,textFieldImageName: String = ""){
         if iconImageName == ""{
             iconImage.isHidden = true
+            heightOfIconImage.constant = 0
         }
         if textFieldImageName == ""{
             imgForTextField.isHidden = true
+            widthOfTextFieldImage.constant = 0
         }
         labelofView.text = labelText
         labelofView.textColor = UIColor.systemYellow

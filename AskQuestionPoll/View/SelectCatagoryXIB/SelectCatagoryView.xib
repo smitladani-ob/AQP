@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectCatagoryView" customModule="AskQuestionPoll" customModuleProvider="target">
             <connections>
+                <outlet property="heightConstraint" destination="ME8-Qo-THv" id="ih3-k0-p2N"/>
                 <outlet property="imageOfTextFIeld" destination="YIe-RQ-BF2" id="t1m-Qe-zVk"/>
                 <outlet property="textFIeld" destination="2j0-hV-J3h" id="7rA-5l-GMt"/>
                 <outlet property="underLineView" destination="WHu-wf-fzx" id="e6u-aL-H7V"/>
@@ -26,6 +27,7 @@
                             <rect key="frame" x="404" y="15" width="20" height="20"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstAttribute="height" constant="20" id="ME8-Qo-THv"/>
                                 <constraint firstAttribute="width" secondItem="YIe-RQ-BF2" secondAttribute="height" id="NUW-Wj-u7r"/>
                             </constraints>
                         </imageView>
@@ -36,7 +38,7 @@
                                 <constraint firstAttribute="height" constant="50" id="Xcu-dI-YeY"/>
                             </constraints>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="19"/>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                     </subviews>
@@ -48,7 +50,6 @@
                         <constraint firstAttribute="bottom" secondItem="2j0-hV-J3h" secondAttribute="bottom" id="G5T-5p-t7X"/>
                         <constraint firstItem="2j0-hV-J3h" firstAttribute="leading" secondItem="AZW-id-MRo" secondAttribute="leading" id="J9f-tw-tO2"/>
                         <constraint firstAttribute="trailing" secondItem="YIe-RQ-BF2" secondAttribute="trailing" id="cSv-Rs-Maj"/>
-                        <constraint firstItem="YIe-RQ-BF2" firstAttribute="height" secondItem="2j0-hV-J3h" secondAttribute="height" multiplier="0.4" id="vAE-9V-i7i"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WHu-wf-fzx">
