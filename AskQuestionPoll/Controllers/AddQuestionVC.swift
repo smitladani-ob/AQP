@@ -1,5 +1,5 @@
 //
-//  HomeScreenViewController.swift
+//  AddQuestionVC.swift
 //  AskQuestionPoll
 //
 //  Created by OBMac-7 on 21/03/26.
@@ -18,7 +18,7 @@ enum PickerType {
     case gender
 }
 
-class HomeScreenViewController: UIViewController {
+class AddQuestionVC: UIViewController {
     
     //first container
     @IBOutlet weak var underLineTextView: UIView!
@@ -147,7 +147,7 @@ class HomeScreenViewController: UIViewController {
         submitButton.config(text: "SUBMIT",textColor: UIColor.black)
         submitButton.loginButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
         previewButton.config(text: "PREVIEW",textColor: UIColor.black)
-        
+        previewButton.loginButton.addTarget(self, action: #selector(previewButtonTapped), for: .touchUpInside)
         selectCategoryField.onTap = { [weak self] in
             self?.selectCategoryField.textFIeld.becomeFirstResponder()
         }
@@ -339,9 +339,21 @@ class HomeScreenViewController: UIViewController {
         }
     }
     
+    @objc func previewButtonTapped() {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "PreviewScreenVC") as! PreviewScreenVC
+        vc.descriptionText = descriptionTextView.text
+        vc.optionType = chooseOption.selectedOptionType
+        vc.option1Text = optionOneText
+        vc.option2Text = optionTwoText
+        vc.option1Image = optionOneSelectedImage
+        vc.option2Image = optionTwoSelectedImage
+        vc.questionImage = selectorImage.image
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 
-extension HomeScreenViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+extension AddQuestionVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -393,7 +405,7 @@ extension HomeScreenViewController: UIPickerViewDelegate, UIPickerViewDataSource
     }
 }
 
-extension HomeScreenViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension AddQuestionVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
@@ -424,7 +436,7 @@ extension HomeScreenViewController: UIImagePickerControllerDelegate, UINavigatio
     }
 }
 
-extension HomeScreenViewController: UITextFieldDelegate {
+extension AddQuestionVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == selectCategoryField.textFIeld {
             currentPickerType = .category
@@ -437,7 +449,7 @@ extension HomeScreenViewController: UITextFieldDelegate {
     }
 }
 
-extension HomeScreenViewController: UITextViewDelegate {
+extension AddQuestionVC: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         let count = textView.text.count
@@ -454,15 +466,23 @@ extension HomeScreenViewController: UITextViewDelegate {
     }
     
     func textView(_ textView: UITextView,shouldChangeTextIn range: NSRange,replacementText text: String) -> Bool {
-        if text == "\n" {
-            textView.resignFirstResponder()
-            return false
-        }
+//        if text == "\n" {
+//            textView.resignFirstResponder()
+//            return false
+//        }
         let currentText = textView.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
         let updatedText = currentText.replacingCharacters(in: stringRange, with: text)
         if textView == optionsView.optionOneTextview || textView == optionsView.optionTwoTextview {
+            if textView.text.count == 30 {
+                showError("You are reach the maximum limit of 30 characters")
+            }
             return updatedText.count <= 30
+        }
+        if textView == descriptionTextView {
+            if textView.text.count == 200 {
+                showError("You are reach the maximum limit of 200 characters")
+            }
         }
         return updatedText.count <= 200
     }
@@ -490,7 +510,7 @@ extension HomeScreenViewController: UITextViewDelegate {
     }
 }
 
-extension HomeScreenViewController {
+extension AddQuestionVC {
     //KeyBoard Handling
     @objc func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo,
@@ -512,7 +532,7 @@ extension HomeScreenViewController {
 }
 
 
-extension HomeScreenViewController {
+extension AddQuestionVC {
     
     func validateHomeScreen() -> String? {
         let descriptionText = descriptionTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -522,51 +542,35 @@ extension HomeScreenViewController {
         let locationText = chooseLocationField.textFIeld.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         let genderText = chooseGenderField.textFIeld.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         // All fields empty
-        if (categoryText?.isEmpty ?? true) &&
-           (descriptionText?.isEmpty ?? true) &&
-           (option1Text?.isEmpty ?? true) &&
-           (option2Text?.isEmpty ?? true) &&
-           optionOneSelectedImage == nil &&
-           optionTwoSelectedImage == nil &&
-           (locationText?.isEmpty ?? true) &&
-           (genderText?.isEmpty ?? true) {
+        if (categoryText?.isEmpty ?? true) && (descriptionText?.isEmpty ?? true) && (option1Text?.isEmpty ?? true) && (option2Text?.isEmpty ?? true) &&
+            optionOneSelectedImage == nil && optionTwoSelectedImage == nil && (locationText?.isEmpty ?? true) && (genderText?.isEmpty ?? true) {
             return "Please enter all details"
         }
-        
-        // 2️⃣ Individual field validations
+        // Individual field validations
         if categoryText?.isEmpty ?? true {
             return "Choose Category"
         }
-        
         if descriptionText?.isEmpty ?? true {
             return "Fill Description"
         }
-        
         if optionsView.optionOneTextview.isHidden == false && (option1Text?.isEmpty ?? true) {
             return "Fill Option 1 data"
         }
-        
         if optionsView.optionTwoTextview.isHidden == false && (option2Text?.isEmpty ?? true) {
             return "Fill Option 2 data"
         }
-        
         if optionsView.optionOneBtn.isHidden == false && optionOneSelectedImage == nil {
             return "Select Option 1 Image"
         }
-        
         if optionsView.optionTwoBtn.isHidden == false && optionTwoSelectedImage == nil {
             return "Select Option 2 Image"
         }
-        
         if locationText?.isEmpty ?? true {
             return "Select Country"
         }
-        
         if genderText?.isEmpty ?? true {
             return "Select Gender"
         }
-        
-        // ✅ All good
         return nil
     }
     

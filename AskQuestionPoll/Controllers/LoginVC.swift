@@ -8,7 +8,7 @@
 import UIKit
 import SCLAlertView
 
-class LoginScreenViewController: UIViewController {
+class LoginVC: UIViewController {
     
     @IBOutlet weak var lblSignUp: UILabel!
     
@@ -108,7 +108,7 @@ class LoginScreenViewController: UIViewController {
                             UserDefaults.standard.synchronize()
                         }
                         showSuccess(response.message ?? "Login Successfully")
-                        let vc = storyboardOfMain.instantiateViewController(withIdentifier: "HomeScreenViewController") as! HomeScreenViewController
+                        let vc = storyboardOfMain.instantiateViewController(withIdentifier: "AddQuestionVC") as! AddQuestionVC
                         self.navigationController?.pushViewController(vc, animated: true)
                     } else {
                         showError(response.message ?? "Something went wrong")
@@ -121,7 +121,7 @@ class LoginScreenViewController: UIViewController {
     }
     
     @IBAction func btnSignUp(_ sender: Any) {
-        let vc = storyboardOfMain.instantiateViewController(withIdentifier: "SignUpScreenViewController") as! SignUpScreenViewController
+        let vc = storyboardOfMain.instantiateViewController(withIdentifier: "SignUpVC") as! SignUpVC
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .crossDissolve
         vc.navigationController?.setupGlobalBackButton()

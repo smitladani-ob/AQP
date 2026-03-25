@@ -1,5 +1,5 @@
 //
-//  SignUpScreenViewController.swift
+//  SignUpVC.swift
 //  AskQuestionPoll
 //
 //  Created by OBMac-7 on 19/03/26.
@@ -8,7 +8,7 @@
 import UIKit
 import SCLAlertView
 
-class SignUpScreenViewController: UIViewController {
+class SignUpVC: UIViewController {
     
     @IBOutlet weak var profileImageVIew: UIImageView!
     
@@ -258,7 +258,7 @@ class SignUpScreenViewController: UIViewController {
     }
 }
 
-extension SignUpScreenViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension SignUpVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -271,7 +271,7 @@ extension SignUpScreenViewController: UIImagePickerControllerDelegate, UINavigat
     }
 }
 
-extension SignUpScreenViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+extension SignUpVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1
     }
@@ -287,7 +287,7 @@ extension SignUpScreenViewController: UIPickerViewDelegate, UIPickerViewDataSour
     }
 }
 
-extension SignUpScreenViewController {
+extension SignUpVC {
     //KeyBoard Handling
     @objc func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo,
@@ -309,7 +309,7 @@ extension SignUpScreenViewController {
 }
 
 
-extension SignUpScreenViewController: UITextFieldDelegate{
+extension SignUpVC: UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let fields: [UITextField] = [

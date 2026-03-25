@@ -1,5 +1,5 @@
 //
-//  OTPScreenVIewController.swift
+//  OTPScreenVC.swift
 //  AskQuestionPoll
 //
 //  Created by OBMac-7 on 20/03/26.
@@ -149,7 +149,6 @@ class OTPScreenVC: UIViewController {
                         print("Reset Token:", self.resetToken ?? "")
                         self.screenState = .setNewPassword
                         self.setupUI()
-                        print(response.message)
                     } else {
                         showError(response.message ?? "Verification Failed")
                     }
