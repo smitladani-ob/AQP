@@ -10,6 +10,7 @@ import SCLAlertView
 
 func showError(_ message: String,subtitileMsg: String? = nil) {
     SCLAlertView().showError(message, subTitle: "")
+    
 }
 
 func showSuccess(_ message: String,subtitileMsg: String? = nil) {

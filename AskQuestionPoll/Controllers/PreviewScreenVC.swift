@@ -26,10 +26,15 @@ class PreviewScreenVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        descriptionLabel.text = descriptionText
         descriptionLabel.lineBreakMode = .byTruncatingTail
+        //Feed Data to UI
+        descriptionLabel.text = descriptionText
         selectorImage.image = questionImage
-        optionsView.configureForPreview(optionType: optionType ?? .text,option1Text: option1Text,option2Text: option2Text,option1Image:option1Image,option2Image: option2Image)
+        optionsView.configureForPreview(optionType: optionType ?? .text,
+                                        option1Text: option1Text,
+                                        option2Text: option2Text,
+                                        option1Image:option1Image,
+                                        option2Image: option2Image)
         self.setupUI()
     }
 

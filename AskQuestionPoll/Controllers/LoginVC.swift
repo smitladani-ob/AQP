@@ -107,8 +107,9 @@ class LoginVC: UIViewController {
                             UserDefaults.standard.set(token, forKey: "token")
                             UserDefaults.standard.synchronize()
                         }
+                        SessionManager.shared.isLoggedIn = true
                         showSuccess(response.message ?? "Login Successfully")
-                        let vc = storyboardOfMain.instantiateViewController(withIdentifier: "AddQuestionVC") as! AddQuestionVC
+                        let vc = storyboardOfMain.instantiateViewController(withIdentifier: "HomeScreenVC") as! HomeScreenVC
                         self.navigationController?.pushViewController(vc, animated: true)
                     } else {
                         showError(response.message ?? "Something went wrong")

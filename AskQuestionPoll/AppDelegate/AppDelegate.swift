@@ -14,10 +14,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         sleep(1)
-        let vc = storyboardOfMain.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
-        let nav = UINavigationController(rootViewController: vc)
+        let isLoggedIn = SessionManager.shared.isLoggedIn
+        let rootVC: UIViewController
+        if isLoggedIn {
+            // User already logged in → Home Screen
+            rootVC = storyboardOfMain.instantiateViewController(withIdentifier: "HomeScreenVC") as! HomeScreenVC
+        } else {
+            // Not logged in → Login Screen
+            rootVC = storyboardOfMain.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+        }
+        let nav = UINavigationController(rootViewController: rootVC)
+        window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
         return true

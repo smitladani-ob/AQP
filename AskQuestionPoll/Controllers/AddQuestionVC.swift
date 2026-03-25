@@ -345,8 +345,8 @@ class AddQuestionVC: UIViewController {
         vc.optionType = chooseOption.selectedOptionType
         vc.option1Text = optionOneText
         vc.option2Text = optionTwoText
-        vc.option1Image = optionOneSelectedImage
-        vc.option2Image = optionTwoSelectedImage
+        vc.option1Image = optionOneSelectedImage ?? UIImage.image1
+        vc.option2Image = optionTwoSelectedImage ?? UIImage.image2
         vc.questionImage = selectorImage.image
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -455,10 +455,10 @@ extension AddQuestionVC: UITextViewDelegate {
         let count = textView.text.count
         if textView == descriptionTextView {
             charCounter.text = "\(count)/200"
-            updateTextViewHeight(textView, heightConstraint: descriptionHeight, maxHeight: 150)
+            updateTextViewHeight(textView, heightConstraint: descriptionHeight, maxHeight: .infinity)
         } else if textView == optionsView.optionOneTextview {
             optionOneText = textView.text
-            updateTextViewHeight(textView, heightConstraint: optionsView.optionOneHeight, maxHeight: 100)
+            updateTextViewHeight(textView, heightConstraint: optionsView.optionOneHeight, maxHeight: CGFloat((textView.superview?.frame.height)!))
         } else if textView == optionsView.optionTwoTextview {
             optionTwoText = textView.text
             updateTextViewHeight(textView, heightConstraint: optionsView.optionTwoHeight, maxHeight: 100)
@@ -476,12 +476,14 @@ extension AddQuestionVC: UITextViewDelegate {
         if textView == optionsView.optionOneTextview || textView == optionsView.optionTwoTextview {
             if textView.text.count == 30 {
                 showError("You are reach the maximum limit of 30 characters")
+                textView.resignFirstResponder()
             }
             return updatedText.count <= 30
         }
         if textView == descriptionTextView {
             if textView.text.count == 200 {
                 showError("You are reach the maximum limit of 200 characters")
+                textView.resignFirstResponder()
             }
         }
         return updatedText.count <= 200

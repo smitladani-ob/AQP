@@ -31,7 +31,7 @@ class OptionsView: NibView {
     @IBOutlet weak var optionOneHeight: NSLayoutConstraint!
     @IBOutlet weak var optionTwoHeight: NSLayoutConstraint!
     
-    var displayMode: OptionsDisplayMode = .edit
+//    var displayMode: OptionsDisplayMode = .edit
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,7 +43,7 @@ class OptionsView: NibView {
                              option1Image: UIImage?,
                              option2Image: UIImage?) {
         
-        displayMode = .preview
+//        displayMode = .preview
         // Disable editing
         optionOneTextview.isEditable = false
         optionTwoTextview.isEditable = false
