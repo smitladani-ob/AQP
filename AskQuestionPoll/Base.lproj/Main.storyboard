@@ -645,13 +645,13 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T3L-9e-Fh3" userLabel="contentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="812"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="816"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PU4-ax-PYV">
-                                                <rect key="frame" x="8" y="8" width="377" height="796"/>
+                                                <rect key="frame" x="8" y="8" width="377" height="800"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rb5-f9-IfR" customClass="BackGroundView" customModule="AskQuestionPoll" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="377" height="280"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="377" height="284"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdv-BO-Mkn" customClass="SelectCatagoryView" customModule="AskQuestionPoll" customModuleProvider="target">
                                                                 <rect key="frame" x="10" y="5" width="357" height="50"/>
@@ -660,8 +660,11 @@
                                                                     <constraint firstAttribute="height" constant="50" id="139-iA-oHw"/>
                                                                 </constraints>
                                                             </view>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ask_question_logo" translatesAutoresizingMaskIntoConstraints="NO" id="wSg-B5-Ohp">
-                                                                <rect key="frame" x="138.66666666666666" y="65" width="100" height="100"/>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="selector_image" translatesAutoresizingMaskIntoConstraints="NO" id="8B2-ge-4Lt">
+                                                                <rect key="frame" x="138.66666666666666" y="69" width="100" height="100"/>
+                                                            </imageView>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wSg-B5-Ohp">
+                                                                <rect key="frame" x="138.66666666666666" y="69" width="100" height="100"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="100" id="XyG-w8-LKT"/>
@@ -669,7 +672,7 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqy-Im-ZA2">
-                                                                <rect key="frame" x="10" y="65" width="128.66666666666666" height="25"/>
+                                                                <rect key="frame" x="10" y="69" width="128.66666666666666" height="25"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="25" id="yuG-Om-2m2"/>
@@ -679,7 +682,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="keX-kl-bcE">
-                                                                <rect key="frame" x="10" y="170" width="357" height="102"/>
+                                                                <rect key="frame" x="10" y="174" width="357" height="102"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BrJ-RX-vCz">
                                                                         <rect key="frame" x="0.0" y="0.0" width="357" height="30"/>
@@ -734,7 +737,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera_icon" translatesAutoresizingMaskIntoConstraints="NO" id="EaX-6C-gng">
-                                                                <rect key="frame" x="163.66666666666666" y="90" width="50" height="50"/>
+                                                                <rect key="frame" x="166" y="96.666666666666657" width="45" height="45"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="EaX-6C-gng" secondAttribute="height" id="MHc-jQ-X4M"/>
@@ -746,13 +749,17 @@
                                                             <constraint firstItem="keX-kl-bcE" firstAttribute="top" secondItem="wSg-B5-Ohp" secondAttribute="bottom" constant="5" id="3QP-dK-k9p"/>
                                                             <constraint firstItem="wSg-B5-Ohp" firstAttribute="centerX" secondItem="rb5-f9-IfR" secondAttribute="centerX" id="5MG-rg-Hd8"/>
                                                             <constraint firstAttribute="trailing" secondItem="cdv-BO-Mkn" secondAttribute="trailing" constant="10" id="5Nb-yn-BTN"/>
-                                                            <constraint firstItem="wSg-B5-Ohp" firstAttribute="top" secondItem="cdv-BO-Mkn" secondAttribute="bottom" constant="10" id="9AO-jh-Z3Q"/>
+                                                            <constraint firstItem="wSg-B5-Ohp" firstAttribute="top" secondItem="cdv-BO-Mkn" secondAttribute="bottom" constant="14" id="9AO-jh-Z3Q"/>
                                                             <constraint firstAttribute="bottom" secondItem="keX-kl-bcE" secondAttribute="bottom" constant="8" id="9zk-lS-Sui"/>
                                                             <constraint firstItem="cdv-BO-Mkn" firstAttribute="top" secondItem="rb5-f9-IfR" secondAttribute="top" constant="5" id="APQ-lo-rhy"/>
                                                             <constraint firstItem="EaX-6C-gng" firstAttribute="centerY" secondItem="wSg-B5-Ohp" secondAttribute="centerY" id="CdX-YB-lF5"/>
                                                             <constraint firstItem="dqy-Im-ZA2" firstAttribute="top" secondItem="wSg-B5-Ohp" secondAttribute="top" id="Dch-05-7UM"/>
+                                                            <constraint firstItem="8B2-ge-4Lt" firstAttribute="top" secondItem="wSg-B5-Ohp" secondAttribute="top" id="Elm-OY-Y9W"/>
+                                                            <constraint firstItem="8B2-ge-4Lt" firstAttribute="height" secondItem="wSg-B5-Ohp" secondAttribute="height" id="JjL-kh-rJl"/>
                                                             <constraint firstItem="keX-kl-bcE" firstAttribute="leading" secondItem="cdv-BO-Mkn" secondAttribute="leading" id="KkO-WE-EVK"/>
-                                                            <constraint firstItem="EaX-6C-gng" firstAttribute="width" secondItem="wSg-B5-Ohp" secondAttribute="width" multiplier="0.5" id="V85-sG-Geq"/>
+                                                            <constraint firstItem="8B2-ge-4Lt" firstAttribute="leading" secondItem="wSg-B5-Ohp" secondAttribute="leading" id="Uk4-VW-vq3"/>
+                                                            <constraint firstItem="EaX-6C-gng" firstAttribute="width" secondItem="wSg-B5-Ohp" secondAttribute="width" multiplier="0.45" id="V85-sG-Geq"/>
+                                                            <constraint firstItem="8B2-ge-4Lt" firstAttribute="width" secondItem="wSg-B5-Ohp" secondAttribute="width" id="ZTq-Ze-lEI"/>
                                                             <constraint firstItem="wSg-B5-Ohp" firstAttribute="leading" secondItem="dqy-Im-ZA2" secondAttribute="trailing" id="bGD-bx-XbB"/>
                                                             <constraint firstItem="cdv-BO-Mkn" firstAttribute="leading" secondItem="rb5-f9-IfR" secondAttribute="leading" constant="10" id="ejW-TH-xbA"/>
                                                             <constraint firstItem="keX-kl-bcE" firstAttribute="trailing" secondItem="cdv-BO-Mkn" secondAttribute="trailing" id="llP-Ib-to3"/>
@@ -761,7 +768,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAa-Fh-rWV" customClass="BackGroundView" customModule="AskQuestionPoll" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="290" width="377" height="179"/>
+                                                        <rect key="frame" x="0.0" y="294" width="377" height="179"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Et-oI-cBg" customClass="RadioButtonsView" customModule="AskQuestionPoll" customModuleProvider="target">
                                                                 <rect key="frame" x="10" y="10" width="357" height="50"/>
@@ -790,7 +797,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ktg-0F-wz2" customClass="BackGroundView" customModule="AskQuestionPoll" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="479" width="377" height="212"/>
+                                                        <rect key="frame" x="0.0" y="483" width="377" height="212"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdU-oV-ZA3">
                                                                 <rect key="frame" x="10" y="8" width="41.333333333333336" height="30"/>
@@ -912,7 +919,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CsH-BD-ShI">
-                                                        <rect key="frame" x="0.0" y="701" width="377" height="95"/>
+                                                        <rect key="frame" x="0.0" y="705" width="377" height="95"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vEZ-7j-v5e" customClass="yellowButtonView" customModule="AskQuestionPoll" customModuleProvider="target">
                                                                 <rect key="frame" x="35" y="5" width="141" height="50"/>
@@ -1145,7 +1152,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ask_question_logo" width="60" height="60"/>
         <image name="camera_icon" width="1024" height="1024"/>
         <image name="coins" width="63" height="42"/>
         <image name="facebook_btn" width="221.5" height="41"/>
@@ -16004,6 +16010,7 @@ AA2WIQANliQADZYpAA2WMQAAAAAAAAQBAAAAAAAAAGgAAAAAAAAAAAAAAAAADZY0A
         </image>
         <image name="report_icon" width="45.5" height="45.5"/>
         <image name="screenBackGround" width="540" height="960"/>
+        <image name="selector_image" width="120" height="120"/>
         <image name="tabFirst" width="40" height="40"/>
         <image name="tabFourth" width="40" height="40"/>
         <image name="tabSecond" width="40" height="40"/>

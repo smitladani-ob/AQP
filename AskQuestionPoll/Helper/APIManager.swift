@@ -12,12 +12,20 @@ import ObjectMapper
 class APIManager {
     
     static let sharedInstance = APIManager()
+    let session: Session
+    
+    private init() {
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 20
+        configuration.timeoutIntervalForResource = 20
+        self.session = Session(configuration: configuration)
+    }
     
     func login(email: String,password: String,completion: @escaping (Result<LoginResponse, Error>) -> Void) {
         let device = DeviceInfo()
         let requestModel = LoginRequest(email: email, password: password, device: device)
         let params = requestModel.toJSON()//for convert data to dictionary
-        AF.request(loginForUserUrl, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { response in
+        session.request(loginForUserUrl, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { response in
             switch response.result {
             case .success(let value):
                 if let json = value as? [String: Any],
@@ -35,7 +43,7 @@ class APIManager {
     func signUp(request: SignUpRequestModel,image: UIImage?,urlString: String,completion: @escaping (Result<SignUpResponseModel, Error>) -> Void) {
         let url = urlString
         
-        AF.upload(multipartFormData : { multipart in
+        session.upload(multipartFormData : { multipart in
             if let requestData = request.request_data?.toJSON(),
                let jsonData = try? JSONSerialization.data(withJSONObject: requestData),
                let jsonString = String(data: jsonData, encoding: .utf8) {
@@ -64,7 +72,7 @@ class APIManager {
     
     func verifyUser(request: VerifyUserRequest,completion: @escaping (Result<VerifyUserResponse, Error>) -> Void) {
          let params = request.toJSON()
-         AF.request(verifyUserUrl,
+         session.request(verifyUserUrl,
                     method: .post,
                     parameters: params,
                     encoding: JSONEncoding.default)
@@ -86,7 +94,7 @@ class APIManager {
     
     func forgotPassword(request: ForgotPasswordRequestModel,completion: @escaping (Result<ForgotPasswordResponse, Error>) -> Void) {
         let params = request.toJSON()
-        AF.request(forgotPasswordForUserUrl,
+        session.request(forgotPasswordForUserUrl,
                    method: .post,
                    parameters: params,
                    encoding: JSONEncoding.default)
@@ -109,7 +117,7 @@ class APIManager {
     func verifyForgotOTP(request: VerifyForgotOTPRequest,
                          completion: @escaping (Result<VerifyForgotOTPResponse, Error>) -> Void) {
         let params = request.toJSON()
-        AF.request(verifyOtpForUserUrl,
+        session.request(verifyOtpForUserUrl,
                    method: .post,
                    parameters: params,
                    encoding: JSONEncoding.default)
@@ -133,7 +141,7 @@ class APIManager {
     func setNewPassword(request: GenerateNewPasswordRequest,
                         completion: @escaping (Result<GenerateNewPasswordResponse, Error>) -> Void) {
         let params = request.toJSON()
-        AF.request(generateNewPasswordForUser,
+        session.request(generateNewPasswordForUser,
                    method: .post,
                    parameters: params,
                    encoding: JSONEncoding.default)
@@ -157,7 +165,7 @@ class APIManager {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(UserDefaults.standard.string(forKey: "token") ?? "")"
         ]
-        AF.upload(multipartFormData: { multipart in
+        session.upload(multipartFormData: { multipart in
             // Request data JSON
             let requestData = requestModel.toJSON()
             guard let jsonData = try? JSONSerialization.data(withJSONObject: requestData),
@@ -178,14 +186,23 @@ class APIManager {
                 multipart.append(imgData, withName: "option2", fileName: "option_2.jpg", mimeType: "image/jpeg")
             }
         }, to: addQuestionUrl, headers: headers)
-        .responseJSON { response in
+        .responseData { response in
+            // Try to extract raw string for debugging
+            if let data = response.data, let rawString = String(data: data, encoding: .utf8) {
+                print("🚨 ADD QUESTION RAW RESPONSE: \(rawString)")
+            }
+            
             switch response.result {
-            case .success(let value):
-                if let json = value as? [String: Any],
-                   let mapped = Mapper<AddQuestionResponse>().map(JSON: json) {
-                    completion(.success(mapped))
-                } else {
-                    completion(.failure(NSError(domain: "Parsing Error", code: 0)))
+            case .success(let data):
+                do {
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                       let mapped = Mapper<AddQuestionResponse>().map(JSON: json) {
+                        completion(.success(mapped))
+                    } else {
+                        completion(.failure(NSError(domain: "AskQuestionPoll", code: 0, userInfo: [NSLocalizedDescriptionKey: "Mapping failed"])))
+                    }
+                } catch {
+                    completion(.failure(error))
                 }
             case .failure(let error):
                 completion(.failure(error))
@@ -201,7 +218,7 @@ class APIManager {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(token)","Content-Type": "application/json"
         ]
-        AF.request(getAllQuestionByUserUrl,
+        session.request(getAllQuestionByUserUrl,
                    method: .post,
                    parameters: [:],
                    encoding: JSONEncoding.default,
@@ -225,13 +242,12 @@ class APIManager {
             "Authorization": "Bearer \(token)",
             "Accept": "application/json"
         ]
-        AF.request(viewQuestionsUrl, method: .post, headers: headers)
+        session.request(viewQuestionsUrl, method: .post, headers: headers)
         .validate(statusCode: 200..<500)
         .responseData { response in
             switch response.result {
             case .success(let data):
                 let rawString = String(data: data, encoding: .utf8) ?? "nil"
-                print("🚨 Raw response string: \(rawString)")
                 guard !data.isEmpty else {
                     completion(.failure(NSError(domain: "Empty Response", code: 0)))
                     return

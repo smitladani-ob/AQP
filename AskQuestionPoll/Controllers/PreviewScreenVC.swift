@@ -42,42 +42,39 @@ class PreviewScreenVC: UIViewController {
         
         descriptionLabel.lineBreakMode = .byTruncatingTail
         descriptionLabel.text = descriptionText
-        
-        loadImages()
         setupOptionsView()
+        loadServerImages()
         setupUIBasedOnMode()
     }
     
-    private func loadImages() {
-        // Question image
-        if let urlStr = questionImageURL, let url = URL(string: urlStr) {
-            selectorImage.sd_setImage(with: url, placeholderImage: questionImage)
-        } else {
-            selectorImage.image = questionImage
-        }
-        
-        // Option images
-        if let urlStr = option1ImageURL, let url = URL(string: urlStr) {
-            optionsView.optionOneImageBg.sd_setImage(with: url, placeholderImage: option1Image)
-        } else {
-            optionsView.optionOneImageBg.image = option1Image
-        }
-        
-        if let urlStr = option2ImageURL, let url = URL(string: urlStr) {
-            optionsView.optionTwoImageBg.sd_setImage(with: url, placeholderImage: option2Image)
-        } else {
-            optionsView.optionTwoImageBg.image = option2Image
-        }
-    }
+    // MARK: - Setup
     
+    /// Configures text/image display mode and sets local/picker images as the baseline.
+    /// - addQuestion flow: option1Image/option2Image come from the image picker → shown immediately.
+    /// - firstTab flow: option1Image/option2Image are nil → loadServerImages() fills via SDWebImage.
     private func setupOptionsView() {
+        selectorImage.image = questionImage
         optionsView.configureForPreview(
             optionType: optionType ?? .text,
             option1Text: option1Text,
             option2Text: option2Text,
-            option1Image: nil,  // SDWebImage loads separately
-            option2Image: nil
+            option1Image: option1Image,
+            option2Image: option2Image
         )
+    }
+    
+    /// Loads server images via SDWebImage (firstTab flow only).
+    /// Only overrides a view when a URL is provided; locally-set images are left untouched.
+    private func loadServerImages() {
+        if let urlStr = questionImageURL, let url = URL(string: urlStr) {
+            selectorImage.sd_setImage(with: url, placeholderImage: questionImage)
+        }
+        if let urlStr = option1ImageURL, let url = URL(string: urlStr) {
+            optionsView.optionOneImageBg.sd_setImage(with: url, placeholderImage: option1Image)
+        }
+        if let urlStr = option2ImageURL, let url = URL(string: urlStr) {
+            optionsView.optionTwoImageBg.sd_setImage(with: url, placeholderImage: option2Image)
+        }
     }
     
     private func setupUIBasedOnMode() {

@@ -16,6 +16,8 @@ class OptionsView: NibView {
         case preview
     }
     
+    @IBOutlet weak var optionTwoBg: UIImageView!
+    @IBOutlet weak var optionOneBg: UIImageView!
     @IBOutlet weak var optionOneImageBg: UIImageView!
     @IBOutlet weak var optionOneTextview: UITextView!
     @IBOutlet weak var optionOneBtn: UIButton!
@@ -60,6 +62,8 @@ class OptionsView: NibView {
             optionTwoTextview.text = option2Text
             optionOneTextview.isHidden = false
             optionTwoTextview.isHidden = false
+            optionOneBg.image = UIImage.optionButton
+            optionTwoBg.image = UIImage.optionButton
             optionOneImageBg.image = UIImage.optionButton
             optionTwoImageBg.image = UIImage.optionButton
         }

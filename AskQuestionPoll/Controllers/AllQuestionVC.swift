@@ -18,18 +18,21 @@ class AllQuestionVC: UIViewController {
         tableView.dataSource = self
         let nib = UINib(nibName: "QuestionCell", bundle: nil)
         tableView.register(nib,forCellReuseIdentifier: "QuestionCell")
-        fetchQuestions()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
+        if SessionManager.shared.fourthTabNeedsRefresh {
+            fetchQuestions()
+        }
     }
     
     func fetchQuestions() {
         APIManager.sharedInstance.getQuestions { result in
             switch result {
             case .success(let response):
+                SessionManager.shared.fourthTabNeedsRefresh = false
                 let nested = response.data?.result ?? []
                 self.questions = nested.flatMap { $0 }
                 DispatchQueue.main.async {

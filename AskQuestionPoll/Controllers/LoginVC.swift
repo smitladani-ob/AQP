@@ -8,7 +8,7 @@
 import UIKit
 import SCLAlertView
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var lblSignUp: UILabel!
     
@@ -66,6 +66,22 @@ class LoginVC: UIViewController {
         passWordTextField.imgForTextField.isHidden = true
         passWordTextField.configure(labelText: "PASSWORD", iconImageName: "password_icon", textFieldPlaceholder: "Enter Password", textFieldImageName: "exya")
         passWordTextField.actualTextField.isSecureTextEntry = true
+
+        // Delegate & return key types
+        emailTextField.actualTextField.delegate = self
+        passWordTextField.actualTextField.delegate = self
+        emailTextField.actualTextField.returnKeyType = .next
+        passWordTextField.actualTextField.returnKeyType = .done
+    }
+
+    // MARK: - UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailTextField.actualTextField {
+            passWordTextField.actualTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return true
     }
     
     //For Fields Validation
@@ -106,6 +122,7 @@ class LoginVC: UIViewController {
                         if let token = response.data?.token {
                             UserDefaults.standard.set(token, forKey: "token")
                             UserDefaults.standard.synchronize()
+                            print(token)
                         }
                         SessionManager.shared.isLoggedIn = true
                         showSuccess(response.message ?? "Login Successfully")

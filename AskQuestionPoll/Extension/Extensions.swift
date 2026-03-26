@@ -60,3 +60,33 @@ extension UIImageView {
         }
     }
 }
+
+// MARK: - Password Validation
+extension String {
+    /// Returns a user-facing error message if the password fails strong-password rules, or nil if valid.
+    /// Rules: 8–16 characters, ≥1 uppercase, ≥1 digit, ≥1 special character.
+    func passwordValidationError() -> String? {
+        let minLength = 8
+        let maxLength = 16
+        guard self.count >= minLength else {
+            return "Password must be at least \(minLength) characters"
+        }
+        guard self.count <= maxLength else {
+            return "Password must be at most \(maxLength) characters"
+        }
+        let hasUppercase = self.contains(where: { $0.isUppercase })
+        guard hasUppercase else {
+            return "Password must contain at least one uppercase letter"
+        }
+        let hasDigit = self.contains(where: { $0.isNumber })
+        guard hasDigit else {
+            return "Password must contain at least one digit"
+        }
+        let specialChars = CharacterSet(charactersIn: "!@#$%^&*()_+-=[]{}|;':\",./<>?`~\\")
+        let hasSpecial = self.unicodeScalars.contains(where: { specialChars.contains($0) })
+        guard hasSpecial else {
+            return "Password must contain at least one special character (!@#$%^&* etc.)"
+        }
+        return nil
+    }
+}

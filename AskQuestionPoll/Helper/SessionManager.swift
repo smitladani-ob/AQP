@@ -19,4 +19,8 @@ class SessionManager {
             UserDefaults.standard.set(newValue, forKey: "isLoggedIn")
         }
     }
+    
+    // Flags to track when to refresh data
+    var firstTabNeedsRefresh: Bool = true
+    var fourthTabNeedsRefresh: Bool = true
 }

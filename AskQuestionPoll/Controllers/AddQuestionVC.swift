@@ -64,6 +64,7 @@ class AddQuestionVC: UIViewController {
     
     var currentImageSelection: ImageSelectionType?
     //To Save Image
+    var selectedQuestionImage: UIImage?
     var optionOneSelectedImage: UIImage?
     var optionTwoSelectedImage: UIImage?
     //To Save Text
@@ -81,7 +82,7 @@ class AddQuestionVC: UIViewController {
         if let response: CountryResponse = JSONLoader.load("countryNames") {
             countries = response.countryJSON
         }
-        let tap = UITapGestureRecognizer(target: self, action: #selector(openImagePicker))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(topImageTapped))
         selectorImage.isUserInteractionEnabled = true
         selectorImage.addGestureRecognizer(tap)
         picker.delegate = self
@@ -118,6 +119,8 @@ class AddQuestionVC: UIViewController {
         chooseOption.config(categoryName: "OPTIONS",itemOne: "TEXT",itemTwo: "IMAGE",textcolor: UIColor.white,mode: .options)
         let bigLabel = UIFont(name: "SFAtarianSystemExtended", size: CGFloat(0.052 * screenWidth))
         let smlLabel = UIFont(name: "SFAtarianSystemExtended", size: CGFloat(0.042 * screenWidth))
+        chooseOption.imgOptionOne.tintColor = UIColor.white
+        chooseOption.imgOptionTwo.tintColor = UIColor.white
         optionsView.optionOneLOne.font = bigLabel
         optionsView.optionOneLTwo.font = smlLabel
         optionsView.optionTwoLOne.font = bigLabel
@@ -256,6 +259,11 @@ class AddQuestionVC: UIViewController {
         openImagePicker()
     }
     
+    @objc func topImageTapped() {
+        currentImageSelection = nil
+        openImagePicker()
+    }
+    
     @objc func openImagePicker() {
         if optionsView.optionOneImageBg.image == UIImage.image1 || optionsView.optionTwoImageBg.image == UIImage.image2 {
             self.alertTitle = "Select Image"
@@ -312,6 +320,37 @@ class AddQuestionVC: UIViewController {
         present(alert, animated: true)
     }
     
+    func clearAllFields() {
+        // 1. Clear text fields
+        descriptionTextView.text = ""
+        chooseLocationField.textFIeld.text = ""
+        chooseGenderField.textFIeld.text = ""
+        selectCategoryField.textFIeld.text = ""
+        
+        // 2. Clear state variables
+        selectedCategoryId = nil
+        optionOneText = nil
+        optionTwoText = nil
+        optionOneSelectedImage = nil
+        optionTwoSelectedImage = nil
+        selectedQuestionImage = nil
+        
+        // 3. Reset main question image
+        selectorImage.image = UIImage(named: "selector_image")
+        hiderImage.isHidden = false
+        charCounter.text = "0/200"
+        
+        // 4. Reset options views using existing helpers (this fixes the image backgrounds!)
+        if chooseOption.selectedOptionType == .text {
+            handleTextOption()
+        } else {
+            handleImageOption()
+        }
+        
+        // Dismiss keyboard
+        view.endEditing(true)
+    }
+    
     @objc func submitButtonTapped(_ sender: UIButton) {
         if let errorMessage = validateHomeScreen() {
             showError(errorMessage)
@@ -327,9 +366,9 @@ class AddQuestionVC: UIViewController {
             option1: optionsView.optionOneTextview.isHidden ? nil : optionsView.optionOneTextview.text,
             option2: optionsView.optionTwoTextview.isHidden ? nil : optionsView.optionTwoTextview.text
         )
-        // Prepare images
+        // Prepare images — send only the user-selected question image, not the placeholder
         let images = AddQuestionImages(
-            questionImage: selectorImage.image,
+            questionImage: selectedQuestionImage,
             option1Image: optionOneSelectedImage,
             option2Image: optionTwoSelectedImage
         )
@@ -337,7 +376,10 @@ class AddQuestionVC: UIViewController {
         APIManager.sharedInstance.addQuestion(requestModel: request, images: images) { result in
             switch result {
             case .success(let response):
+                SessionManager.shared.firstTabNeedsRefresh = true
+                SessionManager.shared.fourthTabNeedsRefresh = true
                 showSuccess(response.message ?? "Question added successfully")
+                self.clearAllFields()
             case .failure(let error):
                 showError(error.localizedDescription)
             }
@@ -434,6 +476,7 @@ extension AddQuestionVC: UIImagePickerControllerDelegate, UINavigationController
         case .none:
             // fallback (your top selector image)
             selectorImage.image = image
+            selectedQuestionImage = image
             hiderImage.isHidden = true
         }
         self.alertTitle = "Replace Image"
@@ -474,28 +517,25 @@ extension AddQuestionVC: UITextViewDelegate {
         }
     }
     
-    func textView(_ textView: UITextView,shouldChangeTextIn range: NSRange,replacementText text: String) -> Bool {
-//        if text == "\n" {
-//            textView.resignFirstResponder()
-//            return false
-//        }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let currentText = textView.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
         let updatedText = currentText.replacingCharacters(in: stringRange, with: text)
+        // Option 1 & 2 limit: 30
         if textView == optionsView.optionOneTextview || textView == optionsView.optionTwoTextview {
-            if textView.text.count == 30 {
-                showError("You are reach the maximum limit of 30 characters")
+            if updatedText.count > 30 {
+                showError("You have reached the maximum limit of 30 characters")
                 textView.resignFirstResponder()
             }
-            return updatedText.count <= 30
         }
+        // Description limit: 200
         if textView == descriptionTextView {
-            if textView.text.count == 200 {
-                showError("You are reach the maximum limit of 200 characters")
+            if updatedText.count > 200 {
+                showError("You have reached the maximum limit of 200 characters")
                 textView.resignFirstResponder()
             }
         }
-        return updatedText.count <= 200
+        return true
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -560,6 +600,9 @@ extension AddQuestionVC {
         // Individual field validations
         if categoryText?.isEmpty ?? true {
             return "Choose Category"
+        }
+        if selectedQuestionImage == nil {
+            return "Please select a question image"
         }
         if descriptionText?.isEmpty ?? true {
             return "Fill Description"

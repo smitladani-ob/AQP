@@ -119,8 +119,8 @@ class RadioButtonsView: NibView {
             imgOptionTwo.tintColor = .white
             
         case .options:
-            imgOptionOne.tintColor = .systemYellow
-            imgOptionTwo.tintColor = .systemYellow
+            imgOptionOne.tintColor = .white
+            imgOptionTwo.tintColor = .white
         }
     }
 }

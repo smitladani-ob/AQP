@@ -204,12 +204,15 @@ class SignUpVC: UIViewController {
             showError("Please fill all required fields")
             return
         }
+        // Strong password validation
+        if let pwError = password.passwordValidationError() {
+            showError(pwError)
+            return
+        }
         //check passwords matches or not
-        if !confirmPassword.isEmpty {
-            if password != confirmPassword {
-                showError("Passwords do not match")
-                return
-            }
+        if password != confirmPassword {
+            showError("Passwords do not match")
+            return
         }
         
         //check gender is selected or not
@@ -284,6 +287,11 @@ extension SignUpVC: UIPickerViewDelegate, UIPickerViewDataSource {
         let country = countries[row]
         print(country)
         return "\(country.name)"
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let selected = countries[row]
+        countryTextField.actualTextField.text = selected.name
     }
 }
 

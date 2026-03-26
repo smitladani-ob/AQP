@@ -12,7 +12,7 @@ enum ScreenState {
     case email
     case setNewPassword
 }
-class OTPScreenVC: UIViewController {
+class OTPScreenVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var setNewPassword: AuthTextFieldView!
     @IBOutlet weak var submitButton: yellowButtonView!
@@ -41,27 +41,55 @@ class OTPScreenVC: UIViewController {
     func setupUI() {
         submitButton.loginButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
         resetFields()
+
+        // Delegate for keyboard handling
+        otpField.actualTextField.delegate = self
+        setNewPassword.actualTextField.delegate = self
+
+        // Reset accessory view by default
+        otpField.actualTextField.inputAccessoryView = nil
+
         switch screenState {
         case .email:
             otpField.configure(labelText: "EMAIL", textFieldPlaceholder: "Enter Email")
             otpField.actualTextField.keyboardType = .emailAddress
             otpField.actualTextField.isSecureTextEntry = false
+            otpField.actualTextField.returnKeyType = .done
             setNewPassword.isHidden = true
             submitButton.config(text: "NEXT", textColor: .white)
         case .otp:
             otpField.configure(labelText: "OTP", textFieldPlaceholder: "Enter OTP")
             otpField.actualTextField.keyboardType = .numberPad
             otpField.actualTextField.isSecureTextEntry = false
+            otpField.actualTextField.returnKeyType = .done
+            addToolbarToOTPField() // Adds 'Done' button for numpad
             setNewPassword.isHidden = true
             submitButton.config(text: "VERIFY", textColor: .white)
         case .setNewPassword:
             otpField.configure(labelText: "NEW PASSWORD", textFieldPlaceholder: "Enter New Password")
+            otpField.actualTextField.keyboardType = .default
             otpField.actualTextField.isSecureTextEntry = true
+            otpField.actualTextField.returnKeyType = .next
             setNewPassword.isHidden = false
             setNewPassword.configure(labelText: "CONFIRM PASSWORD", textFieldPlaceholder: "Confirm Password")
+            setNewPassword.actualTextField.keyboardType = .default
             setNewPassword.actualTextField.isSecureTextEntry = true
+            setNewPassword.actualTextField.returnKeyType = .done
             submitButton.config(text: "SUBMIT", textColor: .white)
         }
+    }
+    
+    private func addToolbarToOTPField() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneBtn = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped))
+        toolbar.items = [flexSpace, doneBtn]
+        otpField.actualTextField.inputAccessoryView = toolbar
+    }
+    
+    @objc private func doneButtonTapped() {
+        view.endEditing(true)
     }
     
     func resetFields() {
@@ -224,9 +252,13 @@ class OTPScreenVC: UIViewController {
             }
             
         case .setNewPassword:
-            let confirmText = setNewPassword.actualTextField.text ?? ""            
+            let confirmText = setNewPassword.actualTextField.text ?? ""
             if text.isEmpty || confirmText.isEmpty {
                 showError("Please fill all fields")
+                return
+            }
+            if let error = text.passwordValidationError() {
+                showError(error)
                 return
             }
             if text != confirmText {
@@ -235,9 +267,18 @@ class OTPScreenVC: UIViewController {
             }
             // Call Set Password API here
             self.setPasswordAPI(password: text)
-            
             navigationController?.popToRootViewController(animated: true)
         }
+    }
+
+    // MARK: - UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if screenState == .setNewPassword && textField == otpField.actualTextField {
+            setNewPassword.actualTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return true
     }
 }
 
