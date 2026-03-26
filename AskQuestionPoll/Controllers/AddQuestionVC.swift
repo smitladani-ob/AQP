@@ -91,6 +91,11 @@ class AddQuestionVC: UIViewController {
         NotificationCenter.default.addObserver(self,selector: #selector(keyboardWillHide),name: UIResponder.keyboardWillHideNotification,object: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
     func setupView() {
         //First Container
         let custFont = UIFont(name: "SFAtarianSystemExtended", size: CGFloat(0.048 * screenWidth))
@@ -348,6 +353,10 @@ class AddQuestionVC: UIViewController {
         vc.option1Image = optionOneSelectedImage ?? UIImage.image1
         vc.option2Image = optionTwoSelectedImage ?? UIImage.image2
         vc.questionImage = selectorImage.image
+        if let errorMessage = validateHomeScreen() {
+            showError(errorMessage)
+            return
+        }
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -574,11 +583,5 @@ extension AddQuestionVC {
             return "Select Gender"
         }
         return nil
-    }
-    
-    func showErrorAlert(_ message: String) {
-        let alert = UIAlertController(title: "Validation", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
     }
 }

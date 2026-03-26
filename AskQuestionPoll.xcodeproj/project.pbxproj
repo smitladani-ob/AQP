@@ -48,7 +48,7 @@
 		07E0EAAA2F6E6C0200C8B531 /* HomeScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E0EAA92F6E6C0200C8B531 /* HomeScreenVC.swift */; };
 		07E9D58E2F727438002C4428 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E9D58D2F727438002C4428 /* OptionsView.swift */; };
 		07E9D5902F727441002C4428 /* OptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07E9D58F2F727441002C4428 /* OptionsView.xib */; };
-		7DADA016FC4185DEE53C2091 /* Pods_AskQuestionPoll.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2CADCA246DA94F065930816 /* Pods_AskQuestionPoll.framework */; };
+		F33B6154A21F7EF45BEFBE4E /* Pods_AskQuestionPoll.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7650A2455BD5AFF5B53EA2D0 /* Pods_AskQuestionPoll.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,9 +95,9 @@
 		07E0EAA92F6E6C0200C8B531 /* HomeScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenVC.swift; sourceTree = "<group>"; };
 		07E9D58D2F727438002C4428 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
 		07E9D58F2F727441002C4428 /* OptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionsView.xib; sourceTree = "<group>"; };
-		134C3412E5BC64137C954DB0 /* Pods-AskQuestionPoll.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AskQuestionPoll.release.xcconfig"; path = "Target Support Files/Pods-AskQuestionPoll/Pods-AskQuestionPoll.release.xcconfig"; sourceTree = "<group>"; };
-		21F084D18D37D41D5C37E3EE /* Pods-AskQuestionPoll.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AskQuestionPoll.debug.xcconfig"; path = "Target Support Files/Pods-AskQuestionPoll/Pods-AskQuestionPoll.debug.xcconfig"; sourceTree = "<group>"; };
-		E2CADCA246DA94F065930816 /* Pods_AskQuestionPoll.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AskQuestionPoll.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7650A2455BD5AFF5B53EA2D0 /* Pods_AskQuestionPoll.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AskQuestionPoll.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E85FEE76BB2374BBF197BC7 /* Pods-AskQuestionPoll.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AskQuestionPoll.debug.xcconfig"; path = "Target Support Files/Pods-AskQuestionPoll/Pods-AskQuestionPoll.debug.xcconfig"; sourceTree = "<group>"; };
+		DD9A8BBB2B2F04FC4CB47617 /* Pods-AskQuestionPoll.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AskQuestionPoll.release.xcconfig"; path = "Target Support Files/Pods-AskQuestionPoll/Pods-AskQuestionPoll.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7DADA016FC4185DEE53C2091 /* Pods_AskQuestionPoll.framework in Frameworks */,
+				F33B6154A21F7EF45BEFBE4E /* Pods_AskQuestionPoll.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,7 +127,7 @@
 				07BEA62F2F6A6928002D3A82 /* AskQuestionPoll */,
 				07BEA60B2F6A658A002D3A82 /* Products */,
 				A22CA6C5BEEBB2B7669529C0 /* Pods */,
-				689CF4963E33EEDE6E420313 /* Frameworks */,
+				24AEC40D9A10C493F859B457 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -315,10 +315,10 @@
 			path = OptionsViewXIB;
 			sourceTree = "<group>";
 		};
-		689CF4963E33EEDE6E420313 /* Frameworks */ = {
+		24AEC40D9A10C493F859B457 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E2CADCA246DA94F065930816 /* Pods_AskQuestionPoll.framework */,
+				7650A2455BD5AFF5B53EA2D0 /* Pods_AskQuestionPoll.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -326,8 +326,8 @@
 		A22CA6C5BEEBB2B7669529C0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				21F084D18D37D41D5C37E3EE /* Pods-AskQuestionPoll.debug.xcconfig */,
-				134C3412E5BC64137C954DB0 /* Pods-AskQuestionPoll.release.xcconfig */,
+				8E85FEE76BB2374BBF197BC7 /* Pods-AskQuestionPoll.debug.xcconfig */,
+				DD9A8BBB2B2F04FC4CB47617 /* Pods-AskQuestionPoll.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -339,12 +339,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 07BEA6202F6A658B002D3A82 /* Build configuration list for PBXNativeTarget "AskQuestionPoll" */;
 			buildPhases = (
-				6AE32642F40B94A7E7D017DE /* [CP] Check Pods Manifest.lock */,
+				F03A2E45C130EBC684E8656F /* [CP] Check Pods Manifest.lock */,
 				07BEA6062F6A658A002D3A82 /* Sources */,
 				07BEA6072F6A658A002D3A82 /* Frameworks */,
 				07BEA6082F6A658A002D3A82 /* Resources */,
 				07BEA6522F6A77D0002D3A82 /* ShellScript */,
-				6EE7BF355C713957ED01F47A /* [CP] Embed Pods Frameworks */,
+				801AAB78F95BC91903EBB769 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -431,7 +431,24 @@
 			shellPath = /bin/sh;
 			shellScript = "sourceFilePath=\"$PROJECT_DIR/AskQuestionPoll/Base.lproj/LaunchScreen.storyboard\"\nplistPath=\"$INFOPLIST_FILE\"\n\necho \"Using plist at: $plistPath\"\n\nversionNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$plistPath\")\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$plistPath\")\n\nsed -i .bak -e \"/userLabel=\\\"APP_VERSION\\\"/s/text=\\\"[^\\\"]*\\\"/text=\\\"v$versionNumber\\\"/\" \"$sourceFilePath\"\n";
 		};
-		6AE32642F40B94A7E7D017DE /* [CP] Check Pods Manifest.lock */ = {
+		801AAB78F95BC91903EBB769 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AskQuestionPoll/Pods-AskQuestionPoll-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AskQuestionPoll/Pods-AskQuestionPoll-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AskQuestionPoll/Pods-AskQuestionPoll-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F03A2E45C130EBC684E8656F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -451,23 +468,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6EE7BF355C713957ED01F47A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AskQuestionPoll/Pods-AskQuestionPoll-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AskQuestionPoll/Pods-AskQuestionPoll-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AskQuestionPoll/Pods-AskQuestionPoll-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -531,7 +531,7 @@
 /* Begin XCBuildConfiguration section */
 		07BEA6212F6A658B002D3A82 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21F084D18D37D41D5C37E3EE /* Pods-AskQuestionPoll.debug.xcconfig */;
+			baseConfigurationReference = 8E85FEE76BB2374BBF197BC7 /* Pods-AskQuestionPoll.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -560,7 +560,7 @@
 		};
 		07BEA6222F6A658B002D3A82 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 134C3412E5BC64137C954DB0 /* Pods-AskQuestionPoll.release.xcconfig */;
+			baseConfigurationReference = DD9A8BBB2B2F04FC4CB47617 /* Pods-AskQuestionPoll.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

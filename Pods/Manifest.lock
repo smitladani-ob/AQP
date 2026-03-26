@@ -2,23 +2,29 @@ PODS:
   - Alamofire (5.11.1)
   - ObjectMapper (4.4.2)
   - SCLAlertView (0.8)
+  - SDWebImage (5.21.7):
+    - SDWebImage/Core (= 5.21.7)
+  - SDWebImage/Core (5.21.7)
 
 DEPENDENCIES:
   - Alamofire
   - ObjectMapper
   - SCLAlertView
+  - SDWebImage
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - ObjectMapper
     - SCLAlertView
+    - SDWebImage
 
 SPEC CHECKSUMS:
   Alamofire: eec6cd8f73b242b59e34153a606a909eb9864b14
   ObjectMapper: e6e4d91ff7f2861df7aecc536c92d8363f4c9677
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
+  SDWebImage: e9fc87c1aab89a8ab1bbd74eba378c6f53be8abf
 
-PODFILE CHECKSUM: cddb0eaf941e295018ca2e1b9d99355bc9075e54
+PODFILE CHECKSUM: ccef328abe89b2ac91962968fb4af1dfe0b954a5
 
 COCOAPODS: 1.16.2

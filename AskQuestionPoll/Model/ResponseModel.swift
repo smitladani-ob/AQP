@@ -250,3 +250,45 @@ struct Question: Codable {
         case questionOriginal = "question_original"
     }
 }
+
+//MARK: View Question Response
+
+class ViewQuestionResponse: BaseResponse {
+    var data: ViewQuestionData?
+    
+    override func mapping(map: Map) {
+        super.mapping(map: map)
+        data <- map["data"]
+    }
+}
+
+class ViewQuestionData: Mappable {
+    var result: [ViewQuestion]?
+    required init?(map: Map) {}
+    func mapping(map: Map) {
+        result <- map["result"]
+    }
+}
+
+class ViewQuestion: Mappable {
+    var user_id: Int?
+    var description: String?
+    var option1: String?
+    var option2: String?
+    var option_type: Int?
+    var question_compress: String?
+    var option1_compress_image: String?
+    var option2_compress_image: String?
+    required init?(map: Map) {}
+    func mapping(map: Map) {
+        user_id <- map["user_id"]
+        description <- map["description"]
+        option1 <- map["option1"]
+        option2 <- map["option2"]
+        option_type <- map["option_type"]
+        question_compress <- map["question_compress"]
+        option1_compress_image <- map["option1_compress_image"]
+        option2_compress_image <- map["option2_compress_image"]
+    }
+}
+

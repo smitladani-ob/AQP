@@ -18,8 +18,12 @@ class AllQuestionVC: UIViewController {
         tableView.dataSource = self
         let nib = UINib(nibName: "QuestionCell", bundle: nil)
         tableView.register(nib,forCellReuseIdentifier: "QuestionCell")
-        
         fetchQuestions()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     func fetchQuestions() {
@@ -51,14 +55,11 @@ extension AllQuestionVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionCell", for: indexPath) as! QuestionCell
+        cell.selectionStyle = .none
         let question = questions[indexPath.row]
         cell.descriptionLabel.text = question.description
         cell.actionButton.tag = indexPath.row
         cell.actionButton.loginButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 12
     }
 }

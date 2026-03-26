@@ -193,7 +193,7 @@ class APIManager {
         }
     }
     
-        func getQuestions(completion: @escaping (Result<QuestionResponse, Error>) -> Void) {
+    func getQuestions(completion: @escaping (Result<QuestionResponse, Error>) -> Void) {
         guard let token = UserDefaults.standard.string(forKey: "token") else {
             print("Token missing")
             return
@@ -210,6 +210,44 @@ class APIManager {
             switch response.result {
             case .success(let data):
                 completion(.success(data))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func viewQuestions(completion: @escaping (Result<ViewQuestionResponse, Error>) -> Void) {
+        guard let token = UserDefaults.standard.string(forKey: "token"), !token.isEmpty else {
+            completion(.failure(NSError(domain: "Token Missing", code: 401)))
+            return
+        }
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(token)",
+            "Accept": "application/json"
+        ]
+        AF.request(viewQuestionsUrl, method: .post, headers: headers)
+        .validate(statusCode: 200..<500)
+        .responseData { response in
+            switch response.result {
+            case .success(let data):
+                let rawString = String(data: data, encoding: .utf8) ?? "nil"
+                print("🚨 Raw response string: \(rawString)")
+                guard !data.isEmpty else {
+                    completion(.failure(NSError(domain: "Empty Response", code: 0)))
+                    return
+                }
+                do {
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                        let mapped = Mapper<ViewQuestionResponse>().map(JSON: json) {
+                        completion(.success(mapped))
+                    } else {
+                        completion(.failure(NSError(domain: "Mapping failed", code: 0)))
+                    }
+                } catch {
+                    print("JSON parsing failed:", error)
+                    completion(.failure(error))
+                }
+                
             case .failure(let error):
                 completion(.failure(error))
             }

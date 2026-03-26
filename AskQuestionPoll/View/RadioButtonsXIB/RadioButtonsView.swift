@@ -12,9 +12,9 @@ enum RadioMode {
     case options
 }
 
-enum OptionType {
-    case text
-    case image
+enum OptionType: Int{
+    case text = 1
+    case image = 2
 }
 
 enum Selection {

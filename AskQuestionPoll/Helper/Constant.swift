@@ -29,7 +29,7 @@ let verifyOtpForUserUrl = serverUrl + "verifyOtpForUser"
 let generateNewPasswordForUser = serverUrl + "generateNewPasswordForUser"
 let addQuestionUrl = serverUrl + "addQuestion"
 let getAllQuestionByUserUrl = serverUrl + "getAllQuestionByUser"
-//let signup = serverUrl + "signup"
+let viewQuestionsUrl = serverUrl + "viewQuestions"
 //let signup = serverUrl + "signup"
 
 //JSON Parser
