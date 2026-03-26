@@ -28,7 +28,7 @@ let forgotPasswordForUserUrl = serverUrl + "forgotPasswordForUser"
 let verifyOtpForUserUrl = serverUrl + "verifyOtpForUser"
 let generateNewPasswordForUser = serverUrl + "generateNewPasswordForUser"
 let addQuestionUrl = serverUrl + "addQuestion"
-//let signup = serverUrl + "signup"
+let getAllQuestionByUserUrl = serverUrl + "getAllQuestionByUser"
 //let signup = serverUrl + "signup"
 //let signup = serverUrl + "signup"
 

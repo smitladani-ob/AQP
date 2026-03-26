@@ -248,3 +248,5 @@ struct AddQuestionImages {
     var option1Image: UIImage?
     var option2Image: UIImage?
 }
+
+//MARK: not make request model for the get all question cause it send empty data on request

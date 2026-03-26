@@ -9,9 +9,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="yellowButtonView" customModule="AskQuestionPoll" customModuleProvider="target">
             <connections>
-                <outlet property="backImage" destination="HfK-nw-hdy" id="aGw-Mi-RQY"/>
-                <outlet property="loginButton" destination="i6Q-d3-CuV" id="EkN-53-Mu1"/>
-                <outlet property="titleLabel" destination="YdH-Zb-4zn" id="PFs-kG-EPs"/>
+                <outlet property="backImage" destination="HfK-nw-hdy" id="jya-x0-lOS"/>
+                <outlet property="loginButton" destination="i6Q-d3-CuV" id="oVC-qD-mpR"/>
+                <outlet property="titleLabel" destination="YdH-Zb-4zn" id="ptU-Hc-S9v"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

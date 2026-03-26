@@ -9,21 +9,56 @@ import UIKit
 
 class AllQuestionVC: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    var questions: [Question] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        tableView.delegate = self
+        tableView.dataSource = self
+        let nib = UINib(nibName: "QuestionCell", bundle: nil)
+        tableView.register(nib,forCellReuseIdentifier: "QuestionCell")
+        
+        fetchQuestions()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func fetchQuestions() {
+        APIManager.sharedInstance.getQuestions { result in
+            switch result {
+            case .success(let response):
+                let nested = response.data?.result ?? []
+                self.questions = nested.flatMap { $0 }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
-    */
+    
+    @objc func buttonTapped(_ sender: UIButton) {
+        let question = questions[sender.tag]
+        print("Tapped:", question.questionId ?? 0)
+    }
+}
 
+extension AllQuestionVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        questions.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionCell", for: indexPath) as! QuestionCell
+        let question = questions[indexPath.row]
+        cell.descriptionLabel.text = question.description
+        cell.actionButton.tag = indexPath.row
+        cell.actionButton.loginButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 12
+    }
 }

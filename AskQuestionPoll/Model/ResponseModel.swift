@@ -193,3 +193,60 @@ class AddQuestionResponse: BaseResponse {
         data <- map["data"]
     }
 }
+
+//MARK: get all Question
+
+struct QuestionResponse: Codable {
+    let code: Int?
+    let message: String?
+    let data: QuestionData?
+}
+
+struct QuestionData: Codable {
+    let result: [[Question]]?
+    enum CodingKeys: String, CodingKey {
+        case result
+    }
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        // Try array of array
+        if let array = try? container.decode([[Question]].self, forKey: .result) {
+            result = array
+        }
+        // Try single array
+        else if let single = try? container.decode([Question].self, forKey: .result) {
+            result = [single]
+        }
+        // Try dictionary (rare bad API case)
+        else if let dict = try? container.decode([String: [Question]].self, forKey: .result) {
+            result = Array(dict.values)
+        }
+        else {
+            result = []
+        }
+    }
+}
+
+struct Question: Codable {
+    let userId: Int?
+    let questionId: Int?
+    let description: String?
+    let option1: String?
+    let option2: String?
+    let optionType: Int?
+
+    // ADD OPTIONAL SAFE FIELDS
+    let questionCompress: String?
+    let questionOriginal: String?
+
+    enum CodingKeys: String, CodingKey {
+        case userId = "user_id"
+        case questionId = "question_id"
+        case description
+        case option1
+        case option2
+        case optionType = "option_type"
+        case questionCompress = "question_compress"
+        case questionOriginal = "question_original"
+    }
+}

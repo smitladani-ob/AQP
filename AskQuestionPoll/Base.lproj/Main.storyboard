@@ -413,7 +413,7 @@
                                         <rect key="frame" x="196.66666666666666" y="0.0" width="97.999999999999972" height="78.666666666666671"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabThird" translatesAutoresizingMaskIntoConstraints="NO" id="mXu-s4-rfA">
-                                                <rect key="frame" x="31.666666666666689" y="10" width="34.333333333333343" height="34.333333333333336"/>
+                                                <rect key="frame" x="31.666666666666689" y="10" width="34.333333333333357" height="34.333333333333336"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1025,7 +1025,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4aw-h5-F2J" customClass="yellowButtonView" customModule="AskQuestionPoll" customModuleProvider="target">
-                                <rect key="frame" x="126.66666666666667" y="94" width="139.66666666666663" height="42"/>
+                                <rect key="frame" x="126.66666666666667" y="109" width="139.66666666666663" height="42"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" secondItem="4aw-h5-F2J" secondAttribute="width" multiplier="0.301" id="WnT-PY-Ne7"/>
@@ -1036,7 +1036,7 @@
                         <viewLayoutGuide key="safeArea" id="5MH-MI-TUF"/>
                         <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="4aw-h5-F2J" firstAttribute="top" secondItem="5MH-MI-TUF" secondAttribute="top" constant="35" id="BEk-1k-Iue"/>
+                            <constraint firstItem="4aw-h5-F2J" firstAttribute="top" secondItem="5MH-MI-TUF" secondAttribute="top" constant="50" id="BEk-1k-Iue"/>
                             <constraint firstItem="dX7-GR-LVg" firstAttribute="leading" secondItem="5MH-MI-TUF" secondAttribute="leading" id="Qhe-Hf-M6E"/>
                             <constraint firstItem="5MH-MI-TUF" firstAttribute="trailing" secondItem="dX7-GR-LVg" secondAttribute="trailing" id="Zzk-93-kFy"/>
                             <constraint firstAttribute="bottom" secondItem="dX7-GR-LVg" secondAttribute="bottom" id="lOy-jA-DV4"/>
@@ -1059,9 +1059,41 @@
                     <view key="view" contentMode="scaleToFill" id="ibs-bU-1xL">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="screenBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="Dwg-6p-GJ9">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tYP-aV-qmQ">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="QuestionCell" id="aQa-1b-Tld" customClass="QuestionCell" customModule="AskQuestionPoll" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aQa-1b-Tld" id="fBj-uD-NLk">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="R2P-sH-uvL"/>
-                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="tYP-aV-qmQ" firstAttribute="top" secondItem="R2P-sH-uvL" secondAttribute="top" id="4fr-Nd-fka"/>
+                            <constraint firstItem="Dwg-6p-GJ9" firstAttribute="leading" secondItem="R2P-sH-uvL" secondAttribute="leading" id="h0D-lz-NWi"/>
+                            <constraint firstItem="R2P-sH-uvL" firstAttribute="trailing" secondItem="Dwg-6p-GJ9" secondAttribute="trailing" id="n9d-JN-yU0"/>
+                            <constraint firstItem="tYP-aV-qmQ" firstAttribute="leading" secondItem="R2P-sH-uvL" secondAttribute="leading" id="ntR-NC-869"/>
+                            <constraint firstAttribute="bottom" secondItem="Dwg-6p-GJ9" secondAttribute="bottom" id="pwP-6J-LZm"/>
+                            <constraint firstItem="Dwg-6p-GJ9" firstAttribute="top" secondItem="ibs-bU-1xL" secondAttribute="top" id="qCn-vR-TzP"/>
+                            <constraint firstItem="R2P-sH-uvL" firstAttribute="bottom" secondItem="tYP-aV-qmQ" secondAttribute="bottom" id="rD1-Wh-5Lg"/>
+                            <constraint firstItem="R2P-sH-uvL" firstAttribute="trailing" secondItem="tYP-aV-qmQ" secondAttribute="trailing" id="tgM-eH-rbY"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="tYP-aV-qmQ" id="rMo-Ua-dMd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ll6-i8-HOy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -15942,13 +15974,16 @@ AA2WIQANliQADZYpAA2WMQAAAAAAAAQBAAAAAAAAAGgAAAAAAAAAAAAAAAAADZY0A
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBrownColor">
-            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiarySystemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

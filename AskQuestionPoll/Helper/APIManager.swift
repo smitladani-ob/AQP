@@ -192,5 +192,28 @@ class APIManager {
             }
         }
     }
+    
+        func getQuestions(completion: @escaping (Result<QuestionResponse, Error>) -> Void) {
+        guard let token = UserDefaults.standard.string(forKey: "token") else {
+            print("Token missing")
+            return
+        }
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(token)","Content-Type": "application/json"
+        ]
+        AF.request(getAllQuestionByUserUrl,
+                   method: .post,
+                   parameters: [:],
+                   encoding: JSONEncoding.default,
+                   headers: headers)
+        .responseDecodable(of: QuestionResponse.self) { response in
+            switch response.result {
+            case .success(let data):
+                completion(.success(data))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }
 

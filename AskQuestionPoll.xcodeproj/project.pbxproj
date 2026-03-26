@@ -40,6 +40,8 @@
 		07BEA66D2F6ABBC5002D3A82 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEA66C2F6ABBBF002D3A82 /* Extensions.swift */; };
 		07BEA6702F6AE8BE002D3A82 /* yellowButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEA66F2F6AE8BE002D3A82 /* yellowButtonView.swift */; };
 		07BEA6742F6AE8E8002D3A82 /* yellowButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07BEA6732F6AE8E8002D3A82 /* yellowButtonView.xib */; };
+		07D667972F741CD200751D00 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D667952F741CD200751D00 /* QuestionCell.swift */; };
+		07D667982F741CD200751D00 /* QuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07D667962F741CD200751D00 /* QuestionCell.xib */; };
 		07E0EAA02F6E5F2800C8B531 /* SelectCatagoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E0EA9F2F6E5F2800C8B531 /* SelectCatagoryView.swift */; };
 		07E0EAA22F6E5F2F00C8B531 /* SelectCatagoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07E0EAA12F6E5F2F00C8B531 /* SelectCatagoryView.xib */; };
 		07E0EAA42F6E688A00C8B531 /* AddQuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E0EAA32F6E688A00C8B531 /* AddQuestionVC.swift */; };
@@ -85,6 +87,8 @@
 		07BEA66C2F6ABBBF002D3A82 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		07BEA66F2F6AE8BE002D3A82 /* yellowButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yellowButtonView.swift; sourceTree = "<group>"; };
 		07BEA6732F6AE8E8002D3A82 /* yellowButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = yellowButtonView.xib; sourceTree = "<group>"; };
+		07D667952F741CD200751D00 /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
+		07D667962F741CD200751D00 /* QuestionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionCell.xib; sourceTree = "<group>"; };
 		07E0EA9F2F6E5F2800C8B531 /* SelectCatagoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCatagoryView.swift; sourceTree = "<group>"; };
 		07E0EAA12F6E5F2F00C8B531 /* SelectCatagoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectCatagoryView.xib; sourceTree = "<group>"; };
 		07E0EAA32F6E688A00C8B531 /* AddQuestionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestionVC.swift; sourceTree = "<group>"; };
@@ -188,12 +192,12 @@
 				07BEA62E2F6A6928002D3A82 /* LoginVC.swift */,
 				079B5E052F6BF14C00DDB99F /* SignUpVC.swift */,
 				0799616C2F6D714A00FA9422 /* OTPScreenVC.swift */,
-				07E0EAA32F6E688A00C8B531 /* AddQuestionVC.swift */,
 				07E0EAA92F6E6C0200C8B531 /* HomeScreenVC.swift */,
 				07AA2F612F73C589007AEE6A /* ViewQuestionVC.swift */,
+				07E0EAA32F6E688A00C8B531 /* AddQuestionVC.swift */,
+				07AA2F672F73E72A007AEE6A /* PreviewScreenVC.swift */,
 				07AA2F632F73C596007AEE6A /* LogOutVC.swift */,
 				07AA2F652F73C5B2007AEE6A /* AllQuestionVC.swift */,
-				07AA2F672F73E72A007AEE6A /* PreviewScreenVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -211,6 +215,7 @@
 		07BEA63E2F6A6973002D3A82 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				07D667992F741CD800751D00 /* QuestionTableViewCell */,
 				07E9D58C2F727421002C4428 /* OptionsViewXIB */,
 				07E0EA9E2F6E5EFA00C8B531 /* SelectCatagoryXIB */,
 				079B5E092F6C229500DDB99F /* RadioButtonsXIB */,
@@ -281,6 +286,15 @@
 				079961682F6D3F9300FA9422 /* CountryModel.swift */,
 			);
 			path = CountryModel;
+			sourceTree = "<group>";
+		};
+		07D667992F741CD800751D00 /* QuestionTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				07D667952F741CD200751D00 /* QuestionCell.swift */,
+				07D667962F741CD200751D00 /* QuestionCell.xib */,
+			);
+			path = QuestionTableViewCell;
 			sourceTree = "<group>";
 		};
 		07E0EA9E2F6E5EFA00C8B531 /* SelectCatagoryXIB */ = {
@@ -381,6 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07BEA6742F6AE8E8002D3A82 /* yellowButtonView.xib in Resources */,
+				07D667982F741CD200751D00 /* QuestionCell.xib in Resources */,
 				07BEA65D2F6A7CD9002D3A82 /* AuthTextFieldView.xib in Resources */,
 				07BEA6472F6A6B02002D3A82 /* countryNames.json in Resources */,
 				07BEA6482F6A6B02002D3A82 /* SF Atarian System Extended.ttf in Resources */,
@@ -468,6 +483,7 @@
 				079961692F6D3F9C00FA9422 /* CountryModel.swift in Sources */,
 				07BEA65B2F6A7CC3002D3A82 /* AuthTextFieldView.swift in Sources */,
 				07E9D58E2F727438002C4428 /* OptionsView.swift in Sources */,
+				07D667972F741CD200751D00 /* QuestionCell.swift in Sources */,
 				07E0EAA02F6E5F2800C8B531 /* SelectCatagoryView.swift in Sources */,
 				07AA557B2F715D7B0073F906 /* NibView.swift in Sources */,
 				07AA557D2F7182360073F906 /* RequestModels.swift in Sources */,
