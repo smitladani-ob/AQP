@@ -40,9 +40,7 @@ class APIManager {
         }
     }
     
-    func signUp(request: SignUpRequestModel,image: UIImage?,urlString: String,completion: @escaping (Result<SignUpResponseModel, Error>) -> Void) {
-        let url = urlString
-        
+    func signUp(request: SignUpRequestModel,image: UIImage?,completion: @escaping (Result<SignUpResponseModel, Error>) -> Void) {
         session.upload(multipartFormData : { multipart in
             if let requestData = request.request_data?.toJSON(),
                let jsonData = try? JSONSerialization.data(withJSONObject: requestData),
@@ -54,7 +52,7 @@ class APIManager {
                let imageData = image.jpegData(compressionQuality: 0.8) {
                 multipart.append(imageData,withName: "profile_img",fileName: "profile.jpg",mimeType: "image/jpeg")
             }
-        },to: url)
+        },to: signupUrl)
         .responseJSON { response in
             switch response.result {
             case .success(let value):

@@ -8,7 +8,7 @@
 import UIKit
 import SCLAlertView
 
-class LoginVC: UIViewController, UITextFieldDelegate {
+class LoginVC: UIViewController {
     
     @IBOutlet weak var lblSignUp: UILabel!
     
@@ -63,7 +63,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     func setupField(){
         emailTextField.imgForTextField.isHidden = true
         emailTextField.configure(labelText: "EMAIL", iconImageName: "email_icon", textFieldPlaceholder: "Enter Email", textFieldImageName: "xyz")
-        passWordTextField.imgForTextField.isHidden = true
         passWordTextField.configure(labelText: "PASSWORD", iconImageName: "password_icon", textFieldPlaceholder: "Enter Password", textFieldImageName: "exya")
         passWordTextField.actualTextField.isSecureTextEntry = true
 
@@ -72,16 +71,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         passWordTextField.actualTextField.delegate = self
         emailTextField.actualTextField.returnKeyType = .next
         passWordTextField.actualTextField.returnKeyType = .done
-    }
-
-    // MARK: - UITextFieldDelegate
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == emailTextField.actualTextField {
-            passWordTextField.actualTextField.becomeFirstResponder()
-        } else {
-            textField.resignFirstResponder()
-        }
-        return true
     }
     
     //For Fields Validation
@@ -160,4 +149,17 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+}
+
+extension LoginVC: UITextFieldDelegate {
+    // MARK: - UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailTextField.actualTextField {
+            passWordTextField.actualTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
+
 }

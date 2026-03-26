@@ -112,6 +112,7 @@ class AddQuestionVC: UIViewController {
         charCounter.text = "0/200"
         charCounter.font = UIFont(name: "SFAtarianSystemExtended", size: CGFloat(0.038 * screenWidth))
         charCounter.textColor = UIColor.white
+        underLineTextView.backgroundColor = .white
         
         //Second Container
         optionsView.optionOneTextview.delegate = self

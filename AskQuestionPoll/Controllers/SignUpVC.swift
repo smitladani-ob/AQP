@@ -227,7 +227,7 @@ class SignUpVC: UIViewController {
         let waitAlert = alert.showWait("Please Wait", subTitle: "",colorStyle: 0xFFEB3B)
         let user = UserData(first_name: nil,last_name: nil,email_id: email,password: password,gender: gender,country: country)
         let request = SignUpRequestModel(request_data: user)
-        APIManager.sharedInstance.signUp(request: request, image: selectedImage, urlString: url) { result in
+        APIManager.sharedInstance.signUp(request: request, image: selectedImage) { result in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 waitAlert.close()
                 switch result {
