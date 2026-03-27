@@ -18,11 +18,9 @@ enum OptionType: Int{
 }
 
 enum Selection {
-    case one
-    case two
+    case one // First option selected
+    case two // Second option selected
 }
-
-
 
 class RadioButtonsView: NibView {
     
@@ -111,7 +109,6 @@ class RadioButtonsView: NibView {
             imgOptionOne.image = UIImage(systemName: "circle")
             imgOptionTwo.image = UIImage(systemName: "largecircle.fill.circle")
         }
-        
         //UI based on mode
         switch mode {
         case .gender:

@@ -21,7 +21,7 @@ class ViewQuestionVC: UIViewController, UIPageViewControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
-        if SessionManager.shared.firstTabNeedsRefresh {
+        if SessionManager.shared.firstTabNeedsRefresh || apiData.isEmpty {
             loadQuestions()
         }
     }
@@ -76,7 +76,11 @@ class ViewQuestionVC: UIViewController, UIPageViewControllerDelegate {
                 case .success(let response):
                     if response.code == 200 {
                         SessionManager.shared.firstTabNeedsRefresh = false
-                        self.apiData = response.data?.result ?? []
+                        let data = response.data?.result ?? []
+                        if data.isEmpty {
+                            showNoDataAlert(on: self)
+                        }
+                        self.apiData = data
                         self.setupPages()
                     } else {
                         print(response.message ?? "Error")

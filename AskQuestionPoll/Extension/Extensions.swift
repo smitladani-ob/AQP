@@ -45,22 +45,6 @@ extension UIView {
     }
 }
 
-//for load image from server
-extension UIImageView {
-    func load(url: String?) {
-        guard let urlString = url,
-              let url = URL(string: urlString) else { return }
-
-        DispatchQueue.global().async {
-            if let data = try? Data(contentsOf: url) {
-                DispatchQueue.main.async {
-                    self.image = UIImage(data: data)
-                }
-            }
-        }
-    }
-}
-
 // MARK: - Password Validation
 extension String {
     /// Returns a user-facing error message if the password fails strong-password rules, or nil if valid.

@@ -238,7 +238,6 @@ class SignUpVC: UIViewController {
                         print("Temp ID:", response.data?.user_reg_temp_id ?? 0)
                         // Navigate next screen if needed
                         self.navigateToOtp(tempId: tempId)
-                        
                     } else {
                         showError(response.message ?? "Signup Failed")
                     }

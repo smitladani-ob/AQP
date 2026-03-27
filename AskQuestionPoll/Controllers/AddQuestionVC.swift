@@ -142,7 +142,6 @@ class AddQuestionVC: UIViewController {
             } else {
                 handleImageOption()
         }
-        
         //Third Container
         prefernceLabel.text = "PREFERENCES"
         prefernceLabel.textColor = UIColor.systemYellow
@@ -151,7 +150,6 @@ class AddQuestionVC: UIViewController {
         chooseGenderField.configure(placeHolder: "select gender", imageName: "dropdown_icon")
         afterLocationLbl.font = smlLabel
         afterGenderLbl.font = smlLabel
-        
         //Buttons
         submitButton.config(text: "SUBMIT",textColor: UIColor.black)
         submitButton.loginButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
@@ -160,11 +158,9 @@ class AddQuestionVC: UIViewController {
         selectCategoryField.onTap = { [weak self] in
             self?.selectCategoryField.textFIeld.becomeFirstResponder()
         }
-
         chooseLocationField.onTap = { [weak self] in
             self?.chooseLocationField.textFIeld.becomeFirstResponder()
         }
-
         chooseGenderField.onTap = { [weak self] in
             self?.chooseGenderField.textFIeld.becomeFirstResponder()
         }
@@ -173,12 +169,10 @@ class AddQuestionVC: UIViewController {
     func setupPicker() {
         pickerView.delegate = self
         pickerView.dataSource = self
-
         // Attach same picker to all fields
         selectCategoryField.textFIeld.inputView = pickerView
         chooseLocationField.textFIeld.inputView = pickerView
         chooseGenderField.textFIeld.inputView = pickerView
-
         // Set delegates to detect active field
         selectCategoryField.textFIeld.delegate = self
         chooseLocationField.textFIeld.delegate = self
@@ -187,30 +181,37 @@ class AddQuestionVC: UIViewController {
         addToolbar()
     }
     
-    
     //When Text Selected
     func handleTextOption() {
+        // Restore previously typed text (preserved in optionOneText/optionTwoText)
         optionsView.optionOneTextview.text = optionOneText ?? ""
         optionsView.optionTwoTextview.text = optionTwoText ?? ""
+        // Reset background images to default button style
         optionsView.optionOneImageBg.image = UIImage.optionButton
         optionsView.optionTwoImageBg.image = UIImage.optionButton
+        // Show text views
         optionsView.optionOneTextview.isHidden = false
         optionsView.optionTwoTextview.isHidden = false
+        // Show placeholder view only if text is empty
         optionsView.optionOneView.isHidden = !(optionOneText?.isEmpty ?? true)
         optionsView.optionTwoView.isHidden = !(optionTwoText?.isEmpty ?? true)
+        // Hide image picker buttons (not needed in text mode)
         optionsView.optionOneBtn.isHidden = true
         optionsView.optionTwoBtn.isHidden = true
     }
 
     //When Image Selected
     func handleImageOption() {
+        // Show selected image or default placeholder
         optionsView.optionOneImageBg.image = optionOneSelectedImage ?? UIImage.image1
         optionsView.optionTwoImageBg.image = optionTwoSelectedImage ?? UIImage.image2
-        
+        // Hide text views (not needed in image mode)
         optionsView.optionOneTextview.isHidden = true
         optionsView.optionTwoTextview.isHidden = true
+        // Hide placeholder views
         optionsView.optionOneView.isHidden = true
         optionsView.optionTwoView.isHidden = true
+        // Show image picker buttons
         optionsView.optionOneBtn.isHidden = false
         optionsView.optionTwoBtn.isHidden = false
     }

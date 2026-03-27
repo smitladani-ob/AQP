@@ -19,7 +19,11 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="screenBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="fDM-FD-ebW">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rsd-6Z-0FZ" customClass="BackGroundView" customModule="AskQuestionPoll" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i6h-s4-tRT" customClass="BackGroundView" customModule="AskQuestionPoll" customModuleProvider="target">
+                                <rect key="frame" x="10" y="257" width="373" height="338"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rsd-6Z-0FZ">
                                 <rect key="frame" x="10" y="257" width="373" height="338"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0tX-vC-HRN" customClass="AuthTextFieldView" customModule="AskQuestionPoll" customModuleProvider="target">
@@ -63,7 +67,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.1485083081570997" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="bWM-ws-nHg" firstAttribute="leading" secondItem="0tX-vC-HRN" secondAttribute="leading" id="3Ci-Db-8Et"/>
                                     <constraint firstItem="0tX-vC-HRN" firstAttribute="top" secondItem="rsd-6Z-0FZ" secondAttribute="top" constant="15" id="9ga-YW-Q5D"/>
@@ -134,6 +138,7 @@
                             <constraint firstItem="Aah-3f-r5Q" firstAttribute="top" secondItem="rsd-6Z-0FZ" secondAttribute="bottom" constant="60" id="MmQ-MM-Xna"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fDM-FD-ebW" secondAttribute="trailing" id="Si6-ud-itI"/>
                             <constraint firstItem="Jyo-ZC-rQ0" firstAttribute="top" secondItem="Lfb-GJ-tDT" secondAttribute="top" id="Tp4-G7-YZ0"/>
+                            <constraint firstItem="i6h-s4-tRT" firstAttribute="width" secondItem="rsd-6Z-0FZ" secondAttribute="width" id="Vci-i0-gvY"/>
                             <constraint firstItem="fDM-FD-ebW" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="W5l-Ea-Ulw"/>
                             <constraint firstItem="rsd-6Z-0FZ" firstAttribute="top" secondItem="Lfb-GJ-tDT" secondAttribute="bottom" constant="45" id="Ymh-Qj-oMb"/>
                             <constraint firstItem="rsd-6Z-0FZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="cd8-rO-Fga"/>
@@ -145,9 +150,11 @@
                             <constraint firstAttribute="bottom" secondItem="fDM-FD-ebW" secondAttribute="bottom" id="oWl-9G-Utg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rsd-6Z-0FZ" secondAttribute="trailing" constant="10" id="qU8-jn-Bgw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Jyo-ZC-rQ0" secondAttribute="trailing" constant="16" id="qsm-Jb-9fJ"/>
+                            <constraint firstItem="i6h-s4-tRT" firstAttribute="leading" secondItem="rsd-6Z-0FZ" secondAttribute="leading" id="rIp-8d-VBz"/>
+                            <constraint firstItem="i6h-s4-tRT" firstAttribute="height" secondItem="rsd-6Z-0FZ" secondAttribute="height" id="res-F3-n9s"/>
+                            <constraint firstItem="i6h-s4-tRT" firstAttribute="top" secondItem="rsd-6Z-0FZ" secondAttribute="top" id="vGw-sT-bsw"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="drI-S8-TuF"/>
                     <connections>
                         <outlet property="emailTextField" destination="0tX-vC-HRN" id="sx6-ot-omS"/>
                         <outlet property="lblForgotPassword" destination="vJv-bA-Mvb" id="ofY-1O-Nn7"/>
@@ -184,7 +191,11 @@
                                                     <constraint firstAttribute="height" constant="84" id="yQ4-vb-H1T"/>
                                                 </constraints>
                                             </imageView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1RE-be-dWr" customClass="BackGroundView" customModule="AskQuestionPoll" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K5G-yj-UDR" customClass="BackGroundView" customModule="AskQuestionPoll" customModuleProvider="target">
+                                                <rect key="frame" x="10" y="114" width="373" height="572"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1RE-be-dWr">
                                                 <rect key="frame" x="10" y="114" width="373" height="572"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yvv-MJ-DsO" customClass="AuthTextFieldView" customModule="AskQuestionPoll" customModuleProvider="target">
@@ -222,7 +233,7 @@
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.15387792673716011" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="JFh-C6-dV4" firstAttribute="height" secondItem="Teu-aw-JIW" secondAttribute="height" id="0Bb-GW-cjz"/>
                                                     <constraint firstItem="Teu-aw-JIW" firstAttribute="height" secondItem="Yvv-MJ-DsO" secondAttribute="height" id="2Tb-iP-X3c"/>
@@ -252,9 +263,13 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="oDA-pO-yN8" firstAttribute="top" secondItem="nia-t0-wjR" secondAttribute="top" id="4oV-f6-g3q"/>
+                                            <constraint firstItem="K5G-yj-UDR" firstAttribute="leading" secondItem="1RE-be-dWr" secondAttribute="leading" id="CcX-04-KsJ"/>
                                             <constraint firstAttribute="bottom" secondItem="1RE-be-dWr" secondAttribute="bottom" constant="30" id="Qcq-bb-bja"/>
                                             <constraint firstItem="oDA-pO-yN8" firstAttribute="centerX" secondItem="nia-t0-wjR" secondAttribute="centerX" id="Uci-Ic-HoU"/>
                                             <constraint firstItem="1RE-be-dWr" firstAttribute="top" secondItem="oDA-pO-yN8" secondAttribute="bottom" constant="30" id="ehd-Aw-S2F"/>
+                                            <constraint firstItem="K5G-yj-UDR" firstAttribute="height" secondItem="1RE-be-dWr" secondAttribute="height" id="fjZ-iG-1v3"/>
+                                            <constraint firstItem="K5G-yj-UDR" firstAttribute="top" secondItem="1RE-be-dWr" secondAttribute="top" id="m8w-zN-DIV"/>
+                                            <constraint firstItem="K5G-yj-UDR" firstAttribute="width" secondItem="1RE-be-dWr" secondAttribute="width" id="nYj-Cs-rqh"/>
                                             <constraint firstItem="1RE-be-dWr" firstAttribute="leading" secondItem="nia-t0-wjR" secondAttribute="leading" constant="10" id="oOv-iK-8IV"/>
                                             <constraint firstAttribute="trailing" secondItem="1RE-be-dWr" secondAttribute="trailing" constant="10" id="zul-i5-Ns0"/>
                                         </constraints>
@@ -310,7 +325,11 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="screenBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="iBM-EY-YWu">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dTj-UM-M4L" customClass="BackGroundView" customModule="AskQuestionPoll" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tyZ-Jp-fhs" customClass="BackGroundView" customModule="AskQuestionPoll" customModuleProvider="target">
+                                <rect key="frame" x="10" y="295" width="373" height="262"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dTj-UM-M4L">
                                 <rect key="frame" x="10" y="295" width="373" height="262"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="SzY-bi-JxL">
@@ -341,7 +360,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.14698593277945618" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="uyg-ms-vR0" secondAttribute="bottom" constant="10" id="3Uo-zi-Lbx"/>
                                     <constraint firstItem="SzY-bi-JxL" firstAttribute="top" secondItem="dTj-UM-M4L" secondAttribute="top" id="3y6-LV-ZuE"/>
@@ -356,11 +375,15 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="iBM-EY-YWu" firstAttribute="leading" secondItem="GYA-op-6hb" secondAttribute="leading" id="4Rt-ce-XdZ"/>
+                            <constraint firstItem="tyZ-Jp-fhs" firstAttribute="top" secondItem="dTj-UM-M4L" secondAttribute="top" id="5TX-gF-h1o"/>
                             <constraint firstItem="iBM-EY-YWu" firstAttribute="top" secondItem="eSp-PX-pLb" secondAttribute="top" id="9Ln-du-XaA"/>
+                            <constraint firstItem="tyZ-Jp-fhs" firstAttribute="leading" secondItem="dTj-UM-M4L" secondAttribute="leading" id="C5P-SY-D8e"/>
                             <constraint firstAttribute="bottom" secondItem="iBM-EY-YWu" secondAttribute="bottom" id="PSu-IA-ufH"/>
                             <constraint firstItem="dTj-UM-M4L" firstAttribute="centerY" secondItem="eSp-PX-pLb" secondAttribute="centerY" id="Wds-RF-fj2"/>
                             <constraint firstItem="iBM-EY-YWu" firstAttribute="trailing" secondItem="GYA-op-6hb" secondAttribute="trailing" id="dDR-l6-wwZ"/>
+                            <constraint firstItem="tyZ-Jp-fhs" firstAttribute="width" secondItem="dTj-UM-M4L" secondAttribute="width" id="gjY-GH-khx"/>
                             <constraint firstItem="dTj-UM-M4L" firstAttribute="leading" secondItem="GYA-op-6hb" secondAttribute="leading" constant="10" id="h8Q-CS-2hR"/>
+                            <constraint firstItem="tyZ-Jp-fhs" firstAttribute="height" secondItem="dTj-UM-M4L" secondAttribute="height" id="kUF-t4-8k8"/>
                             <constraint firstItem="GYA-op-6hb" firstAttribute="trailing" secondItem="dTj-UM-M4L" secondAttribute="trailing" constant="10" id="lR2-Cf-Xbh"/>
                         </constraints>
                     </view>
@@ -650,9 +673,13 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PU4-ax-PYV">
                                                 <rect key="frame" x="8" y="8" width="377" height="800"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rb5-f9-IfR" customClass="BackGroundView" customModule="AskQuestionPoll" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rb5-f9-IfR">
                                                         <rect key="frame" x="0.0" y="0.0" width="377" height="284"/>
                                                         <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YDf-OV-UDj" customClass="BackGroundView" customModule="AskQuestionPoll" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="377" height="284"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdv-BO-Mkn" customClass="SelectCatagoryView" customModule="AskQuestionPoll" customModuleProvider="target">
                                                                 <rect key="frame" x="10" y="5" width="357" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -674,9 +701,6 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqy-Im-ZA2">
                                                                 <rect key="frame" x="10" y="69" width="128.66666666666666" height="25"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="25" id="yuG-Om-2m2"/>
-                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -698,7 +722,7 @@
                                                                         <rect key="frame" x="0.0" y="30" width="357" height="40"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="height" priority="999" constant="40" id="ZtU-ns-qQb"/>
+                                                                            <constraint firstAttribute="height" constant="40" id="ZtU-ns-qQb"/>
                                                                         </constraints>
                                                                         <color key="textColor" systemColor="groupTableViewBackgroundColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -757,19 +781,28 @@
                                                             <constraint firstItem="8B2-ge-4Lt" firstAttribute="top" secondItem="wSg-B5-Ohp" secondAttribute="top" id="Elm-OY-Y9W"/>
                                                             <constraint firstItem="8B2-ge-4Lt" firstAttribute="height" secondItem="wSg-B5-Ohp" secondAttribute="height" id="JjL-kh-rJl"/>
                                                             <constraint firstItem="keX-kl-bcE" firstAttribute="leading" secondItem="cdv-BO-Mkn" secondAttribute="leading" id="KkO-WE-EVK"/>
+                                                            <constraint firstItem="dqy-Im-ZA2" firstAttribute="height" secondItem="BrJ-RX-vCz" secondAttribute="height" multiplier="0.833333" id="Uch-tC-xKs"/>
                                                             <constraint firstItem="8B2-ge-4Lt" firstAttribute="leading" secondItem="wSg-B5-Ohp" secondAttribute="leading" id="Uk4-VW-vq3"/>
                                                             <constraint firstItem="EaX-6C-gng" firstAttribute="width" secondItem="wSg-B5-Ohp" secondAttribute="width" multiplier="0.45" id="V85-sG-Geq"/>
                                                             <constraint firstItem="8B2-ge-4Lt" firstAttribute="width" secondItem="wSg-B5-Ohp" secondAttribute="width" id="ZTq-Ze-lEI"/>
+                                                            <constraint firstItem="YDf-OV-UDj" firstAttribute="centerY" secondItem="rb5-f9-IfR" secondAttribute="centerY" id="bAY-kD-01k"/>
                                                             <constraint firstItem="wSg-B5-Ohp" firstAttribute="leading" secondItem="dqy-Im-ZA2" secondAttribute="trailing" id="bGD-bx-XbB"/>
+                                                            <constraint firstItem="YDf-OV-UDj" firstAttribute="height" secondItem="rb5-f9-IfR" secondAttribute="height" id="cjU-Yi-aJH"/>
                                                             <constraint firstItem="cdv-BO-Mkn" firstAttribute="leading" secondItem="rb5-f9-IfR" secondAttribute="leading" constant="10" id="ejW-TH-xbA"/>
                                                             <constraint firstItem="keX-kl-bcE" firstAttribute="trailing" secondItem="cdv-BO-Mkn" secondAttribute="trailing" id="llP-Ib-to3"/>
                                                             <constraint firstItem="dqy-Im-ZA2" firstAttribute="leading" secondItem="rb5-f9-IfR" secondAttribute="leading" constant="10" id="pIf-Mf-LwR"/>
                                                             <constraint firstItem="EaX-6C-gng" firstAttribute="centerX" secondItem="wSg-B5-Ohp" secondAttribute="centerX" id="uP0-9b-naU"/>
+                                                            <constraint firstItem="YDf-OV-UDj" firstAttribute="centerX" secondItem="rb5-f9-IfR" secondAttribute="centerX" id="uYe-us-I6Y"/>
+                                                            <constraint firstItem="YDf-OV-UDj" firstAttribute="width" secondItem="rb5-f9-IfR" secondAttribute="width" id="zB6-IP-ood"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAa-Fh-rWV" customClass="BackGroundView" customModule="AskQuestionPoll" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAa-Fh-rWV">
                                                         <rect key="frame" x="0.0" y="294" width="377" height="179"/>
                                                         <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OrR-tl-fIQ" customClass="BackGroundView" customModule="AskQuestionPoll" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="377" height="179"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Et-oI-cBg" customClass="RadioButtonsView" customModule="AskQuestionPoll" customModuleProvider="target">
                                                                 <rect key="frame" x="10" y="10" width="357" height="50"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -788,17 +821,25 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="8Et-oI-cBg" firstAttribute="top" secondItem="MAa-Fh-rWV" secondAttribute="top" constant="10" id="45o-GX-2m7"/>
+                                                            <constraint firstItem="OrR-tl-fIQ" firstAttribute="centerY" secondItem="MAa-Fh-rWV" secondAttribute="centerY" id="4xd-b4-4tW"/>
+                                                            <constraint firstItem="OrR-tl-fIQ" firstAttribute="width" secondItem="MAa-Fh-rWV" secondAttribute="width" id="Kyj-P6-1nd"/>
                                                             <constraint firstAttribute="trailing" secondItem="8Et-oI-cBg" secondAttribute="trailing" constant="10" id="b3n-ps-3KF"/>
                                                             <constraint firstItem="AwJ-uw-K0P" firstAttribute="leading" secondItem="8Et-oI-cBg" secondAttribute="leading" id="eq8-Ay-ZE3"/>
                                                             <constraint firstItem="8Et-oI-cBg" firstAttribute="leading" secondItem="MAa-Fh-rWV" secondAttribute="leading" constant="10" id="fv0-0n-Qv2"/>
                                                             <constraint firstItem="AwJ-uw-K0P" firstAttribute="top" secondItem="8Et-oI-cBg" secondAttribute="bottom" constant="5" id="fyN-vV-3nd"/>
+                                                            <constraint firstItem="OrR-tl-fIQ" firstAttribute="height" secondItem="MAa-Fh-rWV" secondAttribute="height" id="oAW-zC-Sj4"/>
                                                             <constraint firstItem="AwJ-uw-K0P" firstAttribute="trailing" secondItem="8Et-oI-cBg" secondAttribute="trailing" id="r6e-nQ-yRc"/>
                                                             <constraint firstAttribute="bottom" secondItem="AwJ-uw-K0P" secondAttribute="bottom" constant="14" id="sNf-a7-9PT"/>
+                                                            <constraint firstItem="OrR-tl-fIQ" firstAttribute="centerX" secondItem="MAa-Fh-rWV" secondAttribute="centerX" id="v5M-Be-mDm"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ktg-0F-wz2" customClass="BackGroundView" customModule="AskQuestionPoll" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ktg-0F-wz2">
                                                         <rect key="frame" x="0.0" y="483" width="377" height="212"/>
                                                         <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jKx-Tm-PXY" customClass="BackGroundView" customModule="AskQuestionPoll" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="377" height="212"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdU-oV-ZA3">
                                                                 <rect key="frame" x="10" y="8" width="41.333333333333336" height="30"/>
                                                                 <constraints>
@@ -908,13 +949,17 @@
                                                             <constraint firstItem="715-lB-1T9" firstAttribute="leading" secondItem="Ktg-0F-wz2" secondAttribute="leading" constant="10" id="0MA-sw-XJo"/>
                                                             <constraint firstAttribute="trailing" secondItem="RES-r2-JuP" secondAttribute="trailing" constant="10" id="3Tb-nR-cyu"/>
                                                             <constraint firstAttribute="bottom" secondItem="RES-r2-JuP" secondAttribute="bottom" id="4PB-Xj-WA1"/>
+                                                            <constraint firstItem="jKx-Tm-PXY" firstAttribute="centerY" secondItem="Ktg-0F-wz2" secondAttribute="centerY" id="HCg-7g-gmv"/>
                                                             <constraint firstItem="gSq-O8-uzg" firstAttribute="height" secondItem="A60-Mt-1Uy" secondAttribute="height" id="NCD-1y-GiN"/>
                                                             <constraint firstItem="715-lB-1T9" firstAttribute="top" secondItem="BdU-oV-ZA3" secondAttribute="bottom" id="Ncp-4r-Ug4"/>
                                                             <constraint firstItem="ecc-gj-1EV" firstAttribute="height" secondItem="VYf-Xc-4Wl" secondAttribute="height" id="P1i-Fs-Jx0"/>
                                                             <constraint firstAttribute="trailing" secondItem="715-lB-1T9" secondAttribute="trailing" constant="10" id="UYr-du-F9r"/>
                                                             <constraint firstItem="RES-r2-JuP" firstAttribute="leading" secondItem="Ktg-0F-wz2" secondAttribute="leading" constant="10" id="bKS-OH-5j2"/>
+                                                            <constraint firstItem="jKx-Tm-PXY" firstAttribute="width" secondItem="Ktg-0F-wz2" secondAttribute="width" id="cxy-ir-bF6"/>
+                                                            <constraint firstItem="jKx-Tm-PXY" firstAttribute="centerX" secondItem="Ktg-0F-wz2" secondAttribute="centerX" id="feT-Xg-HuV"/>
                                                             <constraint firstItem="BdU-oV-ZA3" firstAttribute="top" secondItem="Ktg-0F-wz2" secondAttribute="top" constant="8" id="gGn-Ty-GpE"/>
                                                             <constraint firstItem="RES-r2-JuP" firstAttribute="top" secondItem="715-lB-1T9" secondAttribute="bottom" id="oeL-gl-HVj"/>
+                                                            <constraint firstItem="jKx-Tm-PXY" firstAttribute="height" secondItem="Ktg-0F-wz2" secondAttribute="height" id="oqq-px-eTB"/>
                                                             <constraint firstItem="A60-Mt-1Uy" firstAttribute="width" secondItem="gSq-O8-uzg" secondAttribute="width" id="sOo-we-H3O"/>
                                                         </constraints>
                                                     </view>
@@ -940,10 +985,9 @@
                                                             <constraint firstItem="vEZ-7j-v5e" firstAttribute="top" secondItem="CsH-BD-ShI" secondAttribute="top" constant="5" id="9FP-PS-21f"/>
                                                             <constraint firstItem="vEZ-7j-v5e" firstAttribute="leading" secondItem="CsH-BD-ShI" secondAttribute="leading" constant="35" id="Btf-Fq-Yms"/>
                                                             <constraint firstAttribute="trailing" secondItem="bCQ-vz-9PA" secondAttribute="trailing" constant="35" id="G9I-pc-Ywl"/>
+                                                            <constraint firstItem="bCQ-vz-9PA" firstAttribute="centerY" secondItem="vEZ-7j-v5e" secondAttribute="centerY" id="IaZ-cq-vPF"/>
                                                             <constraint firstItem="bCQ-vz-9PA" firstAttribute="height" secondItem="vEZ-7j-v5e" secondAttribute="height" id="alS-lF-bKe"/>
                                                             <constraint firstItem="bCQ-vz-9PA" firstAttribute="width" secondItem="vEZ-7j-v5e" secondAttribute="width" id="bvQ-or-FRK"/>
-                                                            <constraint firstItem="bCQ-vz-9PA" firstAttribute="bottom" secondItem="vEZ-7j-v5e" secondAttribute="bottom" id="g6g-gs-BVH"/>
-                                                            <constraint firstItem="bCQ-vz-9PA" firstAttribute="top" secondItem="vEZ-7j-v5e" secondAttribute="top" id="rIK-qN-nF1"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -16025,7 +16069,7 @@ AA2WIQANliQADZYpAA2WMQAAAAAAAAQBAAAAAAAAAGgAAAAAAAAAAAAAAAAADZY0A
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

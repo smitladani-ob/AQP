@@ -12,25 +12,23 @@ enum ScreenState {
     case email
     case setNewPassword
 }
-class OTPScreenVC: UIViewController, UITextFieldDelegate {
+
+class OTPScreenVC: UIViewController {
 
     @IBOutlet weak var setNewPassword: AuthTextFieldView!
     @IBOutlet weak var submitButton: yellowButtonView!
     @IBOutlet weak var otpField: AuthTextFieldView!
     
-    var userRegTempID: Int?
-    var isForgotPassword: Bool = false
-    var isEmailState: Bool = false
-    //ScreenState
-    var screenState: ScreenState = .otp
-    var enteredEmail: String?
-    var resetToken: String?
+    var userRegTempID: Int?//passed from SignUpVC, used in signup OTP verification
+    var isForgotPassword: Bool = false //Which Flow Are In
+    var screenState: ScreenState = .otp //Current Active State (Screen State)
+    var enteredEmail: String? //For Save Email Which use type in email state
+    var resetToken: String? //server sends this after OTP verification, needed for password reset API
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         navigationController?.setupGlobalBackButton()
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,14 +39,11 @@ class OTPScreenVC: UIViewController, UITextFieldDelegate {
     func setupUI() {
         submitButton.loginButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
         resetFields()
-
         // Delegate for keyboard handling
         otpField.actualTextField.delegate = self
         setNewPassword.actualTextField.delegate = self
-
         // Reset accessory view by default
         otpField.actualTextField.inputAccessoryView = nil
-
         switch screenState {
         case .email:
             otpField.configure(labelText: "EMAIL", textFieldPlaceholder: "Enter Email")
@@ -97,14 +92,10 @@ class OTPScreenVC: UIViewController, UITextFieldDelegate {
         setNewPassword.actualTextField.text = ""
     }
     
-    //This Calls When User Come from the SignUp
+    //This Calls When User Come from the SignUp (
     func verifyUserAPI(tempID: Int, otp: Int) {
         let device = DeviceInfo()
-        let request = VerifyUserRequest(
-            userId: tempID,
-            token: otp,
-            device: device
-        )
+        let request = VerifyUserRequest(userId: tempID,token: otp,device: device)
         let waitAlert = alert.showWait("Please Wait", subTitle: "",colorStyle: 0xFFEB3B)
         APIManager.sharedInstance.verifyUser(request: request) { result in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -113,11 +104,11 @@ class OTPScreenVC: UIViewController, UITextFieldDelegate {
                 case .success(let response):
                     if response.code == 200 {
                         showSuccess(response.message ?? "Success")
-                        print("JWT Token:", response.data?.token ?? "")
-                        print("User Email:", response.data?.user?.email_id ?? "")
+//                        print("JWT Token:", response.data?.token ?? "")
+//                        print("User Email:", response.data?.user?.email_id ?? "")
                         // Save token if needed
                         let token = response.data?.token
-                        self.navigationController?.popToRootViewController(animated: true)
+                        self.navigationController?.popToRootViewController(animated: true) //Goes to Login screen
                     } else {
                         showError(response.message ?? "Verification Failed")
                     }
@@ -129,7 +120,7 @@ class OTPScreenVC: UIViewController, UITextFieldDelegate {
         }
     }
     
-    //this validates email is in server or not
+    //this validates email is in server or not (From Forgot Password button)
     func forgotPasswordAPI(email: String) {
         let waitAlert = alert.showWait("Please Wait", subTitle: "", colorStyle: 0xFFEB3B)
         let request = ForgotPasswordRequestModel(email_id: email)
@@ -190,17 +181,12 @@ class OTPScreenVC: UIViewController, UITextFieldDelegate {
     
     //API CALL FOR GENERATE PASSWORD
     func setPasswordAPI(password: String) {
-        guard let email = enteredEmail,   // FIXED
-              let token = resetToken else {
+        guard let email = enteredEmail, let token = resetToken else {
             showError("Missing data")
             return
         }
         let waitAlert = alert.showWait("Please Wait", subTitle: "", colorStyle: 0xFFEB3B)
-        let request = GenerateNewPasswordRequest(
-            email: email,
-            password: password,
-            token: token
-        )
+        let request = GenerateNewPasswordRequest(email: email,password: password,token: token)
         APIManager.sharedInstance.setNewPassword(request: request) { result in
             DispatchQueue.main.async {
                 waitAlert.close()
@@ -211,8 +197,6 @@ class OTPScreenVC: UIViewController, UITextFieldDelegate {
                         //  OPTIONAL CLEANUP (recommended)
                         self.resetToken = nil
                         self.enteredEmail = nil
-                        self.screenState = .email
-                        self.setupUI()
                         // Go back to Login
                         self.navigationController?.popToRootViewController(animated: true)
                     } else {
@@ -235,22 +219,18 @@ class OTPScreenVC: UIViewController, UITextFieldDelegate {
             }
             enteredEmail = text
             forgotPasswordAPI(email: text)
-
         case .otp:
             if text.isEmpty {
                 showError("Please Enter OTP")
                 return
             }
             if isForgotPassword {
-                verifyForgotOTPAPI(otp: text)
+                verifyForgotOTPAPI(otp: text) // forgot password path
                 // Move to Set Password
                 screenState = .setNewPassword
             } else {
                 verifyUserAPI(tempID: userRegTempID!, otp: Int(text)!)
-                // Signup flow → go back
-                navigationController?.popToRootViewController(animated: true)
             }
-            
         case .setNewPassword:
             let confirmText = setNewPassword.actualTextField.text ?? ""
             if text.isEmpty || confirmText.isEmpty {
@@ -267,10 +247,11 @@ class OTPScreenVC: UIViewController, UITextFieldDelegate {
             }
             // Call Set Password API here
             self.setPasswordAPI(password: text)
-            navigationController?.popToRootViewController(animated: true)
         }
     }
+}
 
+extension OTPScreenVC: UITextFieldDelegate {
     // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if screenState == .setNewPassword && textField == otpField.actualTextField {
@@ -281,4 +262,3 @@ class OTPScreenVC: UIViewController, UITextFieldDelegate {
         return true
     }
 }
-

@@ -27,13 +27,10 @@ class HomeScreenVC: UIViewController, UITabBarDelegate {
         secondTabVC = storyboardOfMain.instantiateViewController(withIdentifier: "AddQuestionVC") as! AddQuestionVC
         thirdTabVC = storyboardOfMain.instantiateViewController(withIdentifier: "LogOutVC") as! LogOutVC
         fourthTabVC = storyboardOfMain.instantiateViewController(withIdentifier: "AllQuestionVC") as! AllQuestionVC
-        
-        
         setupTab(tabFirst, index: 0)
         setupTab(tabSecond, index: 1)
         setupTab(tabThird, index: 2)
         setupTab(tabFourth, index: 3)
-        
         selectTab(index: 1)
     }
     
@@ -47,22 +44,23 @@ class HomeScreenVC: UIViewController, UITabBarDelegate {
     }
     
     func selectTab(index: Int) {
+        // Update tab UI
         let tabs = [tabFirst, tabSecond, tabThird, tabFourth]
         for (i, tab) in tabs.enumerated() {
-            tab?.backgroundColor = (i == index) ? .white : .systemYellow
+            tab?.backgroundColor = (i == index) ? .white : .systemYellow// selected tab = white, all others = yellow
         }
+        // Switch first (IMPORTANT)
         switchToVC(index: index)
     }
     
     func switchToVC(index: Int) {
-        // Remove old VC
-        children.forEach {
+        // Remove whichever VC is currently showing
+        self.children.forEach {
             $0.view.removeFromSuperview()
             $0.removeFromParent()
         }
-        
+//        Pick which VC to show
         let selectedVC: UIViewController
-        
         switch index {
         case 0:
             selectedVC = firstTabVC
@@ -75,7 +73,6 @@ class HomeScreenVC: UIViewController, UITabBarDelegate {
         default:
             return
         }
-        
         // Add new VC
         addChild(selectedVC)
         selectedVC.view.frame = containerView.bounds

@@ -70,11 +70,7 @@ class APIManager {
     
     func verifyUser(request: VerifyUserRequest,completion: @escaping (Result<VerifyUserResponse, Error>) -> Void) {
          let params = request.toJSON()
-         session.request(verifyUserUrl,
-                    method: .post,
-                    parameters: params,
-                    encoding: JSONEncoding.default)
-         .responseJSON { response in
+         session.request(verifyUserUrl,method: .post,parameters: params,encoding: JSONEncoding.default).responseJSON { response in
              switch response.result {
              case .success(let value):
                  print("VERIFY RESPONSE:", value)
@@ -92,11 +88,7 @@ class APIManager {
     
     func forgotPassword(request: ForgotPasswordRequestModel,completion: @escaping (Result<ForgotPasswordResponse, Error>) -> Void) {
         let params = request.toJSON()
-        session.request(forgotPasswordForUserUrl,
-                   method: .post,
-                   parameters: params,
-                   encoding: JSONEncoding.default)
-        .responseJSON { response in
+        session.request(forgotPasswordForUserUrl,method: .post,parameters: params,encoding: JSONEncoding.default).responseJSON { response in
             switch response.result {
             case .success(let value):
                 print("FORGOT PASSWORD RESPONSE:", value)
@@ -112,15 +104,9 @@ class APIManager {
         }
     }
     
-    func verifyForgotOTP(request: VerifyForgotOTPRequest,
-                         completion: @escaping (Result<VerifyForgotOTPResponse, Error>) -> Void) {
+    func verifyForgotOTP(request: VerifyForgotOTPRequest,completion: @escaping (Result<VerifyForgotOTPResponse, Error>) -> Void) {
         let params = request.toJSON()
-        session.request(verifyOtpForUserUrl,
-                   method: .post,
-                   parameters: params,
-                   encoding: JSONEncoding.default)
-        .validate(statusCode: 200..<500)
-        .responseJSON { response in
+        session.request(verifyOtpForUserUrl,method: .post,parameters: params,encoding: JSONEncoding.default).responseJSON { response in
             switch response.result {
             case .success(let value):
                 print(value)
@@ -139,12 +125,7 @@ class APIManager {
     func setNewPassword(request: GenerateNewPasswordRequest,
                         completion: @escaping (Result<GenerateNewPasswordResponse, Error>) -> Void) {
         let params = request.toJSON()
-        session.request(generateNewPasswordForUser,
-                   method: .post,
-                   parameters: params,
-                   encoding: JSONEncoding.default)
-        .validate(statusCode: 200..<500)
-        .responseJSON { response in
+        session.request(generateNewPasswordForUser,method: .post,parameters: params,encoding: JSONEncoding.default).responseJSON { response in
             switch response.result {
             case .success(let value):
                 if let json = value as? [String: Any],
@@ -183,13 +164,11 @@ class APIManager {
                let imgData = option2Img.jpegData(compressionQuality: 0.8) {
                 multipart.append(imgData, withName: "option2", fileName: "option_2.jpg", mimeType: "image/jpeg")
             }
-        }, to: addQuestionUrl, headers: headers)
-        .responseData { response in
+        }, to: addQuestionUrl, headers: headers).responseData { response in
             // Try to extract raw string for debugging
-            if let data = response.data, let rawString = String(data: data, encoding: .utf8) {
-                print("🚨 ADD QUESTION RAW RESPONSE: \(rawString)")
-            }
-            
+//            if let data = response.data, let rawString = String(data: data, encoding: .utf8) {
+//                print("🚨 ADD QUESTION RAW RESPONSE: \(rawString)")
+//            }
             switch response.result {
             case .success(let data):
                 do {
@@ -216,12 +195,7 @@ class APIManager {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(token)","Content-Type": "application/json"
         ]
-        session.request(getAllQuestionByUserUrl,
-                   method: .post,
-                   parameters: [:],
-                   encoding: JSONEncoding.default,
-                   headers: headers)
-        .responseDecodable(of: QuestionResponse.self) { response in
+        session.request(getAllQuestionByUserUrl,method: .post,parameters: [:],encoding: JSONEncoding.default,headers: headers).responseDecodable(of: QuestionResponse.self) { response in
             switch response.result {
             case .success(let data):
                 completion(.success(data))
@@ -236,13 +210,8 @@ class APIManager {
             completion(.failure(NSError(domain: "Token Missing", code: 401)))
             return
         }
-        let headers: HTTPHeaders = [
-            "Authorization": "Bearer \(token)",
-            "Accept": "application/json"
-        ]
-        session.request(viewQuestionsUrl, method: .post, headers: headers)
-        .validate(statusCode: 200..<500)
-        .responseData { response in
+        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)","Accept": "application/json"]
+        session.request(viewQuestionsUrl, method: .post, headers: headers).responseData { response in
             switch response.result {
             case .success(let data):
                 let rawString = String(data: data, encoding: .utf8) ?? "nil"
@@ -261,7 +230,6 @@ class APIManager {
                     print("JSON parsing failed:", error)
                     completion(.failure(error))
                 }
-                
             case .failure(let error):
                 completion(.failure(error))
             }

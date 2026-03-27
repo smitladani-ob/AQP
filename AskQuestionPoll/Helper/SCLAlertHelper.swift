@@ -23,3 +23,21 @@ let appearance = SCLAlertView.SCLAppearance(
 )
 
 let alert = SCLAlertView(appearance: appearance)
+
+func showNoDataAlert(on viewController: UIViewController,
+                     title: String = "No Questions",
+                     message: String = "Please add question first") {
+    
+    guard let homeVC = viewController.parent as? HomeScreenVC else { return }
+
+    let alert = SCLAlertView(appearance: appearance)
+    
+    alert.addButton("OK") {
+        // Go back to AddQuestion tab (index 1)
+        homeVC.selectTab(index: 1)
+        alert.hideView()
+    }
+    
+    alert.showInfo(title, subTitle: message, closeButtonTitle: nil, colorStyle: 0x007BFF)
+}
+

@@ -30,28 +30,5 @@ let generateNewPasswordForUser = serverUrl + "generateNewPasswordForUser"
 let addQuestionUrl = serverUrl + "addQuestion"
 let getAllQuestionByUserUrl = serverUrl + "getAllQuestionByUser"
 let viewQuestionsUrl = serverUrl + "viewQuestions"
-//let signup = serverUrl + "signup"
 
-//JSON Parser
-class JSONLoader {
-    static func load<T: Decodable>(_ fileName: String) -> T? {
-        guard let url = Bundle.main.url(forResource: fileName, withExtension: "json") else {
-            print("File not found: \(fileName)")
-            return nil
-        }
-        
-        do {
-            let data = try Data(contentsOf: url)
-            let decodedData = try JSONDecoder().decode(T.self, from: data)
-            return decodedData
-        } catch {
-            print("Error decoding \(fileName):", error)
-            return nil
-        }
-    }
-}
-
-
-
-//For left nav bar button
 

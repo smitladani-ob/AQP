@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 class OptionsView: NibView {
     
     enum OptionsDisplayMode {
@@ -39,12 +37,7 @@ class OptionsView: NibView {
         super.awakeFromNib()
     }
     
-    func configureForPreview(optionType: OptionType,
-                             option1Text: String?,
-                             option2Text: String?,
-                             option1Image: UIImage?,
-                             option2Image: UIImage?) {
-        
+    func configureForPreview(optionType: OptionType,option1Text: String?,option2Text: String?,option1Image: UIImage?,option2Image: UIImage?) {
 //        displayMode = .preview
         // Disable editing
         optionOneTextview.isEditable = false

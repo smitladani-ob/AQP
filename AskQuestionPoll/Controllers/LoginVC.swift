@@ -53,7 +53,7 @@ class LoginVC: UIViewController {
                 .underlineStyle: NSUnderlineStyle.thick.rawValue,
                 .foregroundColor: color,
                 //                .font: UIFont.systemFont(ofSize: screenWidth * CGFloat(size), weight: .bold)
-                .font: UIFont(name: "SFAtarianSystemExtended",size: screenWidth * CGFloat(size))!
+                .font: UIFont(name: "SFAtarianSystemExtended", size: screenWidth * CGFloat(size)) ?? UIFont.systemFont(ofSize: screenWidth * CGFloat(size))
             ]
         )
         label.attributedText = attributedString
@@ -111,7 +111,7 @@ class LoginVC: UIViewController {
                         if let token = response.data?.token {
                             UserDefaults.standard.set(token, forKey: "token")
                             UserDefaults.standard.synchronize()
-                            print(token)
+//                            print(token)
                         }
                         SessionManager.shared.isLoggedIn = true
                         showSuccess(response.message ?? "Login Successfully")
@@ -129,10 +129,7 @@ class LoginVC: UIViewController {
     
     @IBAction func btnSignUp(_ sender: Any) {
         let vc = storyboardOfMain.instantiateViewController(withIdentifier: "SignUpVC") as! SignUpVC
-        vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .crossDissolve
-        vc.navigationController?.setupGlobalBackButton()
-        vc.navigationController?.navigationBar.isHidden = false
         self.navigationItem.backButtonTitle = ""
         self.navigationController?.pushViewController(vc, animated: true)
     }
