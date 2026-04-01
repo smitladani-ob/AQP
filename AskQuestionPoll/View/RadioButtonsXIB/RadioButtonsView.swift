@@ -77,7 +77,7 @@ class RadioButtonsView: NibView {
     
     func textColorAndFont(label: UILabel,text: String,textColor: UIColor) {
         label.text = text
-        let font = UIFont(name: "SFAtarianSystemExtended", size: CGFloat(0.048 * screenWidth))
+        let font = UIFont(name: "SFAtarianSystemExtended", size: CGFloat(0.048 * screenWidth), type: .DEFAULT)
         if label == categoryLabel {
             label.textColor = UIColor.systemYellow
         } else {
@@ -109,6 +109,7 @@ class RadioButtonsView: NibView {
             imgOptionOne.image = UIImage(systemName: "circle")
             imgOptionTwo.image = UIImage(systemName: "largecircle.fill.circle")
         }
+        
         //UI based on mode
         switch mode {
         case .gender:

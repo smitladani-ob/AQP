@@ -17,9 +17,9 @@ class yellowButtonView: NibView {
         super.awakeFromNib()
     }
     
-    func config(text: String,textColor: UIColor){
+    func config(text: String,textColor: UIColor, size: CGFloat){
         titleLabel.text = text
-        titleLabel.font = UIFont(name: "SFAtarianSystemExtended", size: CGFloat(0.048 * screenWidth))
+        titleLabel.font = UIFont(name: "SFAtarianSystemExtended", size: CGFloat(size * screenWidth),type: .DEFAULT)
         titleLabel.textColor = textColor
     }
     

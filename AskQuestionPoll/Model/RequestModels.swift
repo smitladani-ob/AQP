@@ -210,7 +210,7 @@ class GenerateNewPasswordRequest: Mappable {
     }
 }
 
-// For Add Question it is in the HomeScreen
+//MARK: For Add Question it is in the HomeScreen
 class AddQuestionRequest: Mappable {
     var category_id: Int?
     var country: String?
@@ -243,10 +243,10 @@ class AddQuestionRequest: Mappable {
     }
 }
 
+//here is separete model and that not connect in the request model cause the Api is multipart
 struct AddQuestionImages {
     var questionImage: UIImage?
     var option1Image: UIImage?
     var option2Image: UIImage?
 }
 
-//MARK: not make request model for the get all question cause it send empty data on request

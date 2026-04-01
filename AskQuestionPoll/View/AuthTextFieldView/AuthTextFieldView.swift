@@ -25,13 +25,13 @@ class AuthTextFieldView: NibView {
     override func layoutSubviews() {
         super.layoutSubviews()
         heightOfIconImage.constant = labelofView.font.pointSize
-        widthOfTextFieldImage.constant = actualTextField.font!.pointSize
+        widthOfTextFieldImage.constant = actualTextField.font!.pointSize + 8
     }
 
     func setupUI(){
         textfieldContainer.backgroundColor = .systemGray3
-        textfieldContainer.setCornerRadius(cornerRadius: 4)
-        textfieldContainer.setBorder(color: UIColor.white.cgColor, width: 2)
+        setCornerRadius(view: textfieldContainer,cornerRadius: 4)
+        setBorder(view: textfieldContainer, color: UIColor.white.cgColor, width: 2)
         textfieldContainer.clipsToBounds = true
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: actualTextField.frame.height))
         actualTextField.leftView = paddingView
@@ -50,7 +50,7 @@ class AuthTextFieldView: NibView {
         }
         labelofView.text = labelText
         labelofView.textColor = UIColor.systemYellow
-        labelofView.font = UIFont(name: "SFAtarianSystemExtended", size: CGFloat(0.048 * screenWidth))
+        labelofView.font = UIFont(name: "SFAtarianSystemExtended", size: CGFloat(0.048 * screenWidth), type: .DEFAULT)
         iconImage.image = UIImage(named: iconImageName)
         actualTextField.placeholder = textFieldPlaceholder
         imgForTextField.image = UIImage(named: textFieldImageName)

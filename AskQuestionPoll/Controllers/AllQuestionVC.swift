@@ -16,31 +16,28 @@ class AllQuestionVC: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        let nib = UINib(nibName: "QuestionCell", bundle: nil)
-        tableView.register(nib,forCellReuseIdentifier: "QuestionCell")
+        tableView.showsVerticalScrollIndicator = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
-        if SessionManager.shared.fourthTabNeedsRefresh {
+        if fourthTabNeedsRefresh {
             fetchQuestions()
         }
     }
     
     func fetchQuestions() {
-        APIManager.sharedInstance.getQuestions { result in
-            switch result {
-            case .success(let response):
-                SessionManager.shared.fourthTabNeedsRefresh = false
-                let nested = response.data?.result ?? []
+        APIManager.sharedInstance.getQuestions { response, error, isSuccess in
+            if isSuccess {
+                fourthTabNeedsRefresh = false
+                let nested = response?.data?.result ?? []
                 self.questions = nested.flatMap { $0 }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-                
-            case .failure(let error):
-                print(error)
+            } else {
+                print(error ?? "")
             }
         }
     }

@@ -18,11 +18,9 @@
 		07AA2F642F73C596007AEE6A /* LogOutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AA2F632F73C596007AEE6A /* LogOutVC.swift */; };
 		07AA2F662F73C5B2007AEE6A /* AllQuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AA2F652F73C5B2007AEE6A /* AllQuestionVC.swift */; };
 		07AA2F682F73E72A007AEE6A /* PreviewScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AA2F672F73E72A007AEE6A /* PreviewScreenVC.swift */; };
-		07AA2F6A2F74106D007AEE6A /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AA2F692F74106D007AEE6A /* SessionManager.swift */; };
 		07AA557B2F715D7B0073F906 /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AA557A2F715D7B0073F906 /* NibView.swift */; };
 		07AA557D2F7182360073F906 /* RequestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AA557C2F7182360073F906 /* RequestModels.swift */; };
 		07AA557F2F7183C00073F906 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AA557E2F7183C00073F906 /* ResponseModel.swift */; };
-		07AB8E6E2F76669B0000161C /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AB8E6D2F7666960000161C /* Helper.swift */; };
 		07BEA6312F6A6928002D3A82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEA6252F6A6928002D3A82 /* AppDelegate.swift */; };
 		07BEA6322F6A6928002D3A82 /* AskQuestionPoll.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07BEA6262F6A6928002D3A82 /* AskQuestionPoll.xcdatamodeld */; };
 		07BEA6342F6A6928002D3A82 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEA62E2F6A6928002D3A82 /* LoginVC.swift */; };
@@ -41,15 +39,15 @@
 		07BEA66D2F6ABBC5002D3A82 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEA66C2F6ABBBF002D3A82 /* Extensions.swift */; };
 		07BEA6702F6AE8BE002D3A82 /* yellowButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEA66F2F6AE8BE002D3A82 /* yellowButtonView.swift */; };
 		07BEA6742F6AE8E8002D3A82 /* yellowButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07BEA6732F6AE8E8002D3A82 /* yellowButtonView.xib */; };
+		07CD81592F7BE8DE0002C658 /* globalFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CD81582F7BE8D60002C658 /* globalFunction.swift */; };
 		07D667972F741CD200751D00 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D667952F741CD200751D00 /* QuestionCell.swift */; };
-		07D667982F741CD200751D00 /* QuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07D667962F741CD200751D00 /* QuestionCell.xib */; };
 		07E0EAA02F6E5F2800C8B531 /* SelectCatagoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E0EA9F2F6E5F2800C8B531 /* SelectCatagoryView.swift */; };
 		07E0EAA22F6E5F2F00C8B531 /* SelectCatagoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07E0EAA12F6E5F2F00C8B531 /* SelectCatagoryView.xib */; };
 		07E0EAA42F6E688A00C8B531 /* AddQuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E0EAA32F6E688A00C8B531 /* AddQuestionVC.swift */; };
 		07E0EAAA2F6E6C0200C8B531 /* HomeScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E0EAA92F6E6C0200C8B531 /* HomeScreenVC.swift */; };
 		07E9D58E2F727438002C4428 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E9D58D2F727438002C4428 /* OptionsView.swift */; };
 		07E9D5902F727441002C4428 /* OptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07E9D58F2F727441002C4428 /* OptionsView.xib */; };
-		F33B6154A21F7EF45BEFBE4E /* Pods_AskQuestionPoll.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7650A2455BD5AFF5B53EA2D0 /* Pods_AskQuestionPoll.framework */; };
+		6C917CC2F971D52C5800EF3D /* Pods_AskQuestionPoll.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F38B21A573F54A3C39FFCD /* Pods_AskQuestionPoll.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,11 +62,9 @@
 		07AA2F632F73C596007AEE6A /* LogOutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutVC.swift; sourceTree = "<group>"; };
 		07AA2F652F73C5B2007AEE6A /* AllQuestionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllQuestionVC.swift; sourceTree = "<group>"; };
 		07AA2F672F73E72A007AEE6A /* PreviewScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenVC.swift; sourceTree = "<group>"; };
-		07AA2F692F74106D007AEE6A /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		07AA557A2F715D7B0073F906 /* NibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
 		07AA557C2F7182360073F906 /* RequestModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestModels.swift; sourceTree = "<group>"; };
 		07AA557E2F7183C00073F906 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
-		07AB8E6D2F7666960000161C /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		07BEA60A2F6A658A002D3A82 /* AskQuestionPoll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AskQuestionPoll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BEA6252F6A6928002D3A82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07BEA6272F6A6928002D3A82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -89,17 +85,17 @@
 		07BEA66C2F6ABBBF002D3A82 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		07BEA66F2F6AE8BE002D3A82 /* yellowButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yellowButtonView.swift; sourceTree = "<group>"; };
 		07BEA6732F6AE8E8002D3A82 /* yellowButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = yellowButtonView.xib; sourceTree = "<group>"; };
+		07CD81582F7BE8D60002C658 /* globalFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = globalFunction.swift; sourceTree = "<group>"; };
 		07D667952F741CD200751D00 /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
-		07D667962F741CD200751D00 /* QuestionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionCell.xib; sourceTree = "<group>"; };
 		07E0EA9F2F6E5F2800C8B531 /* SelectCatagoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCatagoryView.swift; sourceTree = "<group>"; };
 		07E0EAA12F6E5F2F00C8B531 /* SelectCatagoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectCatagoryView.xib; sourceTree = "<group>"; };
 		07E0EAA32F6E688A00C8B531 /* AddQuestionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestionVC.swift; sourceTree = "<group>"; };
 		07E0EAA92F6E6C0200C8B531 /* HomeScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenVC.swift; sourceTree = "<group>"; };
 		07E9D58D2F727438002C4428 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
 		07E9D58F2F727441002C4428 /* OptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionsView.xib; sourceTree = "<group>"; };
-		7650A2455BD5AFF5B53EA2D0 /* Pods_AskQuestionPoll.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AskQuestionPoll.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8E85FEE76BB2374BBF197BC7 /* Pods-AskQuestionPoll.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AskQuestionPoll.debug.xcconfig"; path = "Target Support Files/Pods-AskQuestionPoll/Pods-AskQuestionPoll.debug.xcconfig"; sourceTree = "<group>"; };
-		DD9A8BBB2B2F04FC4CB47617 /* Pods-AskQuestionPoll.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AskQuestionPoll.release.xcconfig"; path = "Target Support Files/Pods-AskQuestionPoll/Pods-AskQuestionPoll.release.xcconfig"; sourceTree = "<group>"; };
+		44F3E48E93A88CC9AD534F93 /* Pods-AskQuestionPoll.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AskQuestionPoll.release.xcconfig"; path = "Target Support Files/Pods-AskQuestionPoll/Pods-AskQuestionPoll.release.xcconfig"; sourceTree = "<group>"; };
+		8D6830101ED4E48C30AF5721 /* Pods-AskQuestionPoll.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AskQuestionPoll.debug.xcconfig"; path = "Target Support Files/Pods-AskQuestionPoll/Pods-AskQuestionPoll.debug.xcconfig"; sourceTree = "<group>"; };
+		F1F38B21A573F54A3C39FFCD /* Pods_AskQuestionPoll.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AskQuestionPoll.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F33B6154A21F7EF45BEFBE4E /* Pods_AskQuestionPoll.framework in Frameworks */,
+				6C917CC2F971D52C5800EF3D /* Pods_AskQuestionPoll.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,7 +125,7 @@
 				07BEA62F2F6A6928002D3A82 /* AskQuestionPoll */,
 				07BEA60B2F6A658A002D3A82 /* Products */,
 				A22CA6C5BEEBB2B7669529C0 /* Pods */,
-				24AEC40D9A10C493F859B457 /* Frameworks */,
+				9168BB0F91F9044C9DDC05A5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -171,11 +167,10 @@
 		07BEA63A2F6A6951002D3A82 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				07CD81582F7BE8D60002C658 /* globalFunction.swift */,
 				07BEA66A2F6ABB69002D3A82 /* Constant.swift */,
 				079B5DFF2F6BC8ED00DDB99F /* APIManager.swift */,
 				0799616A2F6D55FE00FA9422 /* SCLAlertHelper.swift */,
-				07AB8E6D2F7666960000161C /* Helper.swift */,
-				07AA2F692F74106D007AEE6A /* SessionManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -295,7 +290,6 @@
 			isa = PBXGroup;
 			children = (
 				07D667952F741CD200751D00 /* QuestionCell.swift */,
-				07D667962F741CD200751D00 /* QuestionCell.xib */,
 			);
 			path = QuestionTableViewCell;
 			sourceTree = "<group>";
@@ -318,10 +312,10 @@
 			path = OptionsViewXIB;
 			sourceTree = "<group>";
 		};
-		24AEC40D9A10C493F859B457 /* Frameworks */ = {
+		9168BB0F91F9044C9DDC05A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7650A2455BD5AFF5B53EA2D0 /* Pods_AskQuestionPoll.framework */,
+				F1F38B21A573F54A3C39FFCD /* Pods_AskQuestionPoll.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -329,8 +323,8 @@
 		A22CA6C5BEEBB2B7669529C0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8E85FEE76BB2374BBF197BC7 /* Pods-AskQuestionPoll.debug.xcconfig */,
-				DD9A8BBB2B2F04FC4CB47617 /* Pods-AskQuestionPoll.release.xcconfig */,
+				8D6830101ED4E48C30AF5721 /* Pods-AskQuestionPoll.debug.xcconfig */,
+				44F3E48E93A88CC9AD534F93 /* Pods-AskQuestionPoll.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -342,12 +336,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 07BEA6202F6A658B002D3A82 /* Build configuration list for PBXNativeTarget "AskQuestionPoll" */;
 			buildPhases = (
-				F03A2E45C130EBC684E8656F /* [CP] Check Pods Manifest.lock */,
+				FA2E5D0862607ECBCAB4550D /* [CP] Check Pods Manifest.lock */,
 				07BEA6062F6A658A002D3A82 /* Sources */,
 				07BEA6072F6A658A002D3A82 /* Frameworks */,
 				07BEA6082F6A658A002D3A82 /* Resources */,
 				07BEA6522F6A77D0002D3A82 /* ShellScript */,
-				801AAB78F95BC91903EBB769 /* [CP] Embed Pods Frameworks */,
+				CE56F6C415724CCDBD9425FA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -398,7 +392,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				07BEA6742F6AE8E8002D3A82 /* yellowButtonView.xib in Resources */,
-				07D667982F741CD200751D00 /* QuestionCell.xib in Resources */,
 				07BEA65D2F6A7CD9002D3A82 /* AuthTextFieldView.xib in Resources */,
 				07BEA6472F6A6B02002D3A82 /* countryNames.json in Resources */,
 				07BEA6482F6A6B02002D3A82 /* SF Atarian System Extended.ttf in Resources */,
@@ -432,9 +425,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "sourceFilePath=\"$PROJECT_DIR/AskQuestionPoll/Base.lproj/LaunchScreen.storyboard\"\nplistPath=\"$INFOPLIST_FILE\"\n\necho \"Using plist at: $plistPath\"\n\nversionNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$plistPath\")\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$plistPath\")\n\nsed -i .bak -e \"/userLabel=\\\"APP_VERSION\\\"/s/text=\\\"[^\\\"]*\\\"/text=\\\"v$versionNumber\\\"/\" \"$sourceFilePath\"\n";
+			shellScript = "sourceFilePath=\"$PROJECT_DIR/AskQuestionPoll/Base.lproj/LaunchScreen.storyboard\"\nplistPath=\"$INFOPLIST_FILE\"\n\necho \"Using plist at: $plistPath\"\n\nversionNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$plistPath\")\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$plistPath\")\n\nfullVersion=\"$versionNumber.$buildNumber\"\n\nsed -i .bak -e \"/userLabel=\\\"APP_VERSION\\\"/s/text=\\\"[^\\\"]*\\\"/text=\\\"$fullVersion\\\"/\" \"$sourceFilePath\"\n";
 		};
-		801AAB78F95BC91903EBB769 /* [CP] Embed Pods Frameworks */ = {
+		CE56F6C415724CCDBD9425FA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -451,7 +444,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AskQuestionPoll/Pods-AskQuestionPoll-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F03A2E45C130EBC684E8656F /* [CP] Check Pods Manifest.lock */ = {
+		FA2E5D0862607ECBCAB4550D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -493,14 +486,13 @@
 				07BEA6322F6A6928002D3A82 /* AskQuestionPoll.xcdatamodeld in Sources */,
 				079B5E002F6BC8ED00DDB99F /* APIManager.swift in Sources */,
 				07BEA6542F6A7892002D3A82 /* BackGroundView.swift in Sources */,
-				07AA2F6A2F74106D007AEE6A /* SessionManager.swift in Sources */,
 				07BEA6702F6AE8BE002D3A82 /* yellowButtonView.swift in Sources */,
-				07AB8E6E2F76669B0000161C /* Helper.swift in Sources */,
 				07E0EAAA2F6E6C0200C8B531 /* HomeScreenVC.swift in Sources */,
 				07E0EAA42F6E688A00C8B531 /* AddQuestionVC.swift in Sources */,
 				0799616B2F6D55FE00FA9422 /* SCLAlertHelper.swift in Sources */,
 				07AA557F2F7183C00073F906 /* ResponseModel.swift in Sources */,
 				079B5E062F6BF14C00DDB99F /* SignUpVC.swift in Sources */,
+				07CD81592F7BE8DE0002C658 /* globalFunction.swift in Sources */,
 				07BEA6342F6A6928002D3A82 /* LoginVC.swift in Sources */,
 				079B5E0F2F6C231E00DDB99F /* RadioButtonsView.swift in Sources */,
 				0799616D2F6D714A00FA9422 /* OTPScreenVC.swift in Sources */,
@@ -535,7 +527,7 @@
 /* Begin XCBuildConfiguration section */
 		07BEA6212F6A658B002D3A82 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E85FEE76BB2374BBF197BC7 /* Pods-AskQuestionPoll.debug.xcconfig */;
+			baseConfigurationReference = 8D6830101ED4E48C30AF5721 /* Pods-AskQuestionPoll.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -564,7 +556,7 @@
 		};
 		07BEA6222F6A658B002D3A82 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DD9A8BBB2B2F04FC4CB47617 /* Pods-AskQuestionPoll.release.xcconfig */;
+			baseConfigurationReference = 44F3E48E93A88CC9AD534F93 /* Pods-AskQuestionPoll.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

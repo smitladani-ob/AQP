@@ -22,12 +22,12 @@ class LogOutVC: UIViewController {
     }
     
     func setupUI() {
-        logOutButton.config(text: "LOGOUT", textColor: UIColor.black)
+        logOutButton.config(text: "LOGOUT", textColor: UIColor.black, size: 0.048)
         logOutButton.loginButton.addTarget(self, action: #selector(logOutButtonTapped), for: .touchUpInside)
     }
     
     @objc func logOutButtonTapped() {
-        SessionManager.shared.isLoggedIn = false
+        isLoggedIn = false
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let loginVC = storyboardOfMain.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
         let nav = UINavigationController(rootViewController: loginVC)

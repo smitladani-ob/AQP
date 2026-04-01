@@ -24,6 +24,17 @@ let appearance = SCLAlertView.SCLAppearance(
 
 let alert = SCLAlertView(appearance: appearance)
 
+private var waitAlert: SCLAlertViewResponder?
+
+func showWait() {
+    waitAlert = alert.showWait("Please Wait", subTitle: "", colorStyle: 0xFFEB3B)
+}
+
+func hideWait() {
+    waitAlert?.close()
+    waitAlert = nil
+}
+
 func showNoDataAlert(on viewController: UIViewController,
                      title: String = "No Questions",
                      message: String = "Please add question first") {

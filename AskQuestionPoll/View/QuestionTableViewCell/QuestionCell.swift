@@ -8,9 +8,9 @@
 import UIKit
 
 class QuestionCell: UITableViewCell {
-
-    @IBOutlet weak var actionButton: yellowButtonView!
+    
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var actionButton: yellowButtonView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,6 +19,6 @@ class QuestionCell: UITableViewCell {
     }
     
     func setupCellUI() {
-        actionButton.config(text: "VIEW ANALYSIS", textColor: .black)
+        actionButton.config(text: "VIEW ANALYSIS", textColor: .black, size: 0.048)
     }
 }

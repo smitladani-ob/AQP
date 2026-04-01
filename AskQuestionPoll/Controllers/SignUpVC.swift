@@ -18,7 +18,6 @@ class SignUpVC: UIViewController {
     @IBOutlet weak var radioButtonsField: RadioButtonsView!
     @IBOutlet weak var countryTextField: AuthTextFieldView!
     @IBOutlet weak var signUpbtn: yellowButtonView!
-    @IBOutlet weak var heightOfField: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
     
     var countries: [Country] = []
@@ -30,28 +29,16 @@ class SignUpVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        picker.delegate = self
-        picker.allowsEditing = true
-        
+        self.picker.delegate = self
+        self.picker.allowsEditing = true
         //observer
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillShow),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
-        )
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillHide),
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil
-        )
+        NotificationCenter.default.addObserver(self,selector: #selector(keyboardWillShow),name: UIResponder.keyboardWillShowNotification,object: nil)
+        NotificationCenter.default.addObserver(self,selector: #selector(keyboardWillHide),name: UIResponder.keyboardWillHideNotification,object: nil)
         navigationController?.setupGlobalBackButton()
         self.setupUI()
         self.setupFields()
         self.setupButtonsOfScreen()
-        if let response: CountryResponse = JSONLoader.load("countryNames") {
+        if let response: CountryResponse = JSONloader("countryNames") {
             countries = response.countryJSON
         }
         self.setupCountryPicker()
@@ -64,23 +51,16 @@ class SignUpVC: UIViewController {
         navigationController?.navigationBar.isHidden = false
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-//        if isSmallScreen {
-//            heightOfField.constant = screenWidth * 0.240
-//        }
-    }
-    
     func setupUI(){
-        profileImageVIew.setCornerRadius(cornerRadius: profileImageVIew.frame.height/2)
-        profileImageVIew.isUserInteractionEnabled = true
+        setCornerRadius(view: profileImageVIew,cornerRadius: profileImageVIew.frame.height/2)
+        self.profileImageVIew.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(profileImageTapped))
-        profileImageVIew.image = UIImage.profileAvtar
-        profileImageVIew.addGestureRecognizer(tap)
+        self.profileImageVIew.image = UIImage.profileAvtar
+        self.profileImageVIew.addGestureRecognizer(tap)
     }
     
     @objc func profileImageTapped() {
-        openImagePicker()
+        self.openImagePicker()
     }
     
     func openImagePicker() {
@@ -97,10 +77,7 @@ class SignUpVC: UIViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         if let popover = alert.popoverPresentationController {
             popover.sourceView = self.view
-            popover.sourceRect = CGRect(x: self.view.bounds.midX,
-                                        y: self.view.bounds.midY,
-                                        width: 0,
-                                        height: 0)
+            popover.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
             popover.permittedArrowDirections = []
         }
         present(alert, animated: true)
@@ -111,8 +88,8 @@ class SignUpVC: UIViewController {
             showCameraNotAvailableAlert()
             return
         }
-        picker.sourceType = .camera
-        present(picker, animated: true)
+        self.picker.sourceType = .camera
+        present(self.picker, animated: true)
     }
     
     func showCameraNotAvailableAlert() {
@@ -126,66 +103,61 @@ class SignUpVC: UIViewController {
     }
     
     func openGallery() {
-        picker.sourceType = .photoLibrary
-        present(picker, animated: true)
+        self.picker.sourceType = .photoLibrary
+        present(self.picker, animated: true)
     }
     
     func setupFields(){
-        emailTextField.actualTextField.delegate = self
-        passwordTextField.actualTextField.delegate = self
-        confirmPasswordTextField.actualTextField.delegate = self
-        countryTextField.actualTextField.delegate = self
-        
-        emailTextField.configure(labelText: "EMAIL",textFieldPlaceholder: "Enter Email")
-        
-        passwordTextField.configure(labelText: "PASSWORD", textFieldPlaceholder: "Enter Password")
-        passwordTextField.actualTextField.isSecureTextEntry = true
-        
-        confirmPasswordTextField.configure(labelText: "CONFIRM PASSWORD", textFieldPlaceholder: "Enter Confirm Password")
-        confirmPasswordTextField.actualTextField.isSecureTextEntry = true
-        
-        countryTextField.configure(labelText: "COUNTRY",textFieldPlaceholder: "Select Country", textFieldImageName: "dropdown_icon")
-        countryTextField.actualTextField.isUserInteractionEnabled = true
-    
-        radioButtonsField.config(categoryName: "GENDER",itemOne: "MALE",itemTwo: "FEMALE",textcolor: UIColor.systemYellow,mode: .gender)
+        self.emailTextField.actualTextField.delegate = self
+        self.passwordTextField.actualTextField.delegate = self
+        self.confirmPasswordTextField.actualTextField.delegate = self
+        self.countryTextField.actualTextField.delegate = self
+        self.emailTextField.configure(labelText: "EMAIL",textFieldPlaceholder: "Enter Email")
+        self.passwordTextField.configure(labelText: "PASSWORD", textFieldPlaceholder: "Enter Password")
+        self.passwordTextField.actualTextField.isSecureTextEntry = true
+        self.confirmPasswordTextField.configure(labelText: "CONFIRM PASSWORD", textFieldPlaceholder: "Enter Confirm Password")
+        self.confirmPasswordTextField.actualTextField.isSecureTextEntry = true
+        self.countryTextField.configure(labelText: "COUNTRY",textFieldPlaceholder: "Select Country", textFieldImageName: "dropdown_icon")
+        self.countryTextField.actualTextField.isUserInteractionEnabled = true
+        self.radioButtonsField.config(categoryName: "GENDER",itemOne: "MALE",itemTwo: "FEMALE",textcolor: UIColor.systemYellow,mode: .gender)
     }
     
     func setupCountryPicker() {
-        countryPicker.delegate = self
-        countryPicker.dataSource = self
+        self.countryPicker.delegate = self
+        self.countryPicker.dataSource = self
         // Attach picker to textfield
-        countryTextField.actualTextField.inputView = countryPicker
+        self.countryTextField.actualTextField.inputView = countryPicker
         // Toolbar with Done button
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         let done = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneTapped))
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolbar.setItems([space, done], animated: true)
-        countryTextField.actualTextField.inputAccessoryView = toolbar
+        self.countryTextField.actualTextField.inputAccessoryView = toolbar
         // Optional: disable typing
-        countryTextField.actualTextField.tintColor = .clear
-        countryTextField.imgForTextField.isUserInteractionEnabled = true
+        self.countryTextField.actualTextField.tintColor = .clear
+        self.countryTextField.imgForTextField.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(countryIconTapped))
-        countryTextField.imgForTextField.addGestureRecognizer(tap)
+        self.countryTextField.imgForTextField.addGestureRecognizer(tap)
     }
     
     @objc func countryIconTapped() {
         print("tapped")
-        countryTextField.actualTextField.becomeFirstResponder()
+        self.countryTextField.actualTextField.becomeFirstResponder()
     }
     
     @objc func doneTapped() {
-        let row = countryPicker.selectedRow(inComponent: 0)
-        if countries.indices.contains(row) {
+        let row = self.countryPicker.selectedRow(inComponent: 0)
+        if self.countries.indices.contains(row) {
             let country = countries[row]
-            countryTextField.actualTextField.text = "\(country.name)"
+            self.countryTextField.actualTextField.text = "\(country.name)"
         }
         view.endEditing(true)
     }
     
     func setupButtonsOfScreen() {
-        signUpbtn.config(text: "SIGN UP",textColor: UIColor.white)
-        signUpbtn.loginButton.addTarget(self, action: #selector(signUpTapped), for: .touchUpInside)
+        self.signUpbtn.config(text: "SIGNUP",textColor: UIColor.white, size: 0.048)
+        self.signUpbtn.loginButton.addTarget(self, action: #selector(signUpTapped), for: .touchUpInside)
     }
     
     @objc func signUpTapped() {
@@ -193,15 +165,22 @@ class SignUpVC: UIViewController {
     }
     
     func signUpValidation() {
-        let email = emailTextField.actualTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        let password = passwordTextField.actualTextField.text ?? ""
-        let confirmPassword = confirmPasswordTextField.actualTextField.text ?? ""
-        selectedGender = radioButtonsField.selectedGender
-        let country = countryTextField.actualTextField.text ?? ""
-        
+        let email = self.emailTextField.actualTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        let password = self.passwordTextField.actualTextField.text ?? ""
+        let confirmPassword = self.confirmPasswordTextField.actualTextField.text ?? ""
+        self.selectedGender = radioButtonsField.selectedGender
+        let country = self.countryTextField.actualTextField.text ?? ""
         //check email,password,Confirm PassWord,country
         if email.isEmpty || password.isEmpty || confirmPassword.isEmpty || country.isEmpty {
             showError("Please fill all required fields")
+            return
+        }
+        if selectedImage == nil {
+            showError("Please select a profile image")
+            return
+        }
+        if let emailError = email.emailValidationError() {
+            showError(emailError)
             return
         }
         // Strong password validation
@@ -214,9 +193,8 @@ class SignUpVC: UIViewController {
             showError("Passwords do not match")
             return
         }
-        
         //check gender is selected or not
-        if selectedGender == nil {
+        if self.selectedGender == nil {
             showError("Please select gender")
             return
         }
@@ -224,26 +202,21 @@ class SignUpVC: UIViewController {
     }
     
     func signUpAPI(email: String,password: String,gender: Gender,country: String,url: String) {
-        let waitAlert = alert.showWait("Please Wait", subTitle: "",colorStyle: 0xFFEB3B)
+        showWait()
         let user = UserData(first_name: nil,last_name: nil,email_id: email,password: password,gender: gender,country: country)
         let request = SignUpRequestModel(request_data: user)
-        APIManager.sharedInstance.signUp(request: request, image: selectedImage) { result in
+        APIManager.sharedInstance.signUp(request: request, image: selectedImage) { response, error, isSuccess in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                waitAlert.close()
-                switch result {
-                case .success(let response):
-                    if response.code == 200 {
-                        let tempId = response.data?.user_reg_temp_id ?? 0
-                        showSuccess(response.message ?? "Success")
-                        print("Temp ID:", response.data?.user_reg_temp_id ?? 0)
-                        // Navigate next screen if needed
-                        self.navigateToOtp(tempId: tempId)
-                    } else {
-                        showError(response.message ?? "Signup Failed")
-                    }
-                case .failure(let error):
-                    print(error)
-                    showError("Something went wrong")
+                hideWait()
+                if isSuccess {
+                    let tempId = response?.data?.user_reg_temp_id ?? 0
+                    showSuccess(response?.message ?? "Success")
+                    print("Temp ID:", tempId)
+                    // Navigate next screen if needed
+                    self.navigateToOtp(tempId: tempId)
+                } else {
+                    print(error ?? "")
+                    showError(error ?? "Something went wrong")
                 }
             }
         }
@@ -258,6 +231,10 @@ class SignUpVC: UIViewController {
         self.navigationItem.backButtonTitle = ""
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 extension SignUpVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -265,9 +242,9 @@ extension SignUpVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
-            profileImageVIew.image = image
+            self.profileImageVIew.image = image
             self.alertTitle = "Replace Image"
-            selectedImage = image
+            self.selectedImage = image
         }
         dismiss(animated: true)
     }
@@ -279,7 +256,7 @@ extension SignUpVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        countries.count
+        self.countries.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -289,8 +266,8 @@ extension SignUpVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selected = countries[row]
-        countryTextField.actualTextField.text = selected.name
+        let selected = self.countries[row]
+        self.countryTextField.actualTextField.text = selected.name
     }
 }
 

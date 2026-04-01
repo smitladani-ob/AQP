@@ -39,7 +39,6 @@ class PreviewScreenVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         descriptionLabel.lineBreakMode = .byTruncatingTail
         descriptionLabel.text = descriptionText
         setupOptionsView()
@@ -48,10 +47,6 @@ class PreviewScreenVC: UIViewController {
     }
     
     // MARK: - Setup
-    
-    /// Configures text/image display mode and sets local/picker images as the baseline.
-    /// - addQuestion flow: option1Image/option2Image come from the image picker → shown immediately.
-    /// - firstTab flow: option1Image/option2Image are nil → loadServerImages() fills via SDWebImage.
     private func setupOptionsView() {
         selectorImage.image = questionImage
         optionsView.configureForPreview(
@@ -63,8 +58,6 @@ class PreviewScreenVC: UIViewController {
         )
     }
     
-    /// Loads server images via SDWebImage (firstTab flow only).
-    /// Only overrides a view when a URL is provided; locally-set images are left untouched.
     private func loadServerImages() {
         if let urlStr = questionImageURL, let url = URL(string: urlStr) {
             selectorImage.sd_setImage(with: url, placeholderImage: questionImage)
@@ -81,7 +74,7 @@ class PreviewScreenVC: UIViewController {
         switch mode {
         case .addQuestion:
             closeButton.isHidden = false
-            closeButton.config(text: "CLOSE", textColor: UIColor.black)
+            closeButton.config(text: "CLOSE", textColor: UIColor.black, size: 0.048)
             closeButton.loginButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
         case .firstTab:
             reportImage.isHidden = true

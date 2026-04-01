@@ -34,17 +34,6 @@ extension UINavigationController {
     }
 }
 
-extension UIView {
-    func setBorder(color: CGColor, width: CGFloat = 1) {
-        self.layer.borderColor = color
-        self.layer.borderWidth = width
-    }
-    
-    func setCornerRadius(cornerRadius: CGFloat) {
-        self.layer.cornerRadius = cornerRadius
-    }
-}
-
 // MARK: - Password Validation
 extension String {
     /// Returns a user-facing error message if the password fails strong-password rules, or nil if valid.
@@ -73,4 +62,41 @@ extension String {
         }
         return nil
     }
+    
+    /// Returns a user-facing error message if the email format is invalid, or nil if valid.
+    func emailValidationError() -> String? {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        if emailPred.evaluate(with: self) {
+            return nil
+        }
+        return "Please enter a valid email address"
+    }
+}
+
+
+enum fontType {
+    case BUTTON
+    case DEFAULT
+}
+
+extension UIFont {
+    convenience init(name: String, size: CGFloat, type: fontType) {
+        switch type {
+        case .BUTTON:
+            if name.contains("SFAtarianBold") || name.contains("Atarian Bold") {
+                self.init(name: "SFAtarianSystemExtended-Bold", size: size)!
+            }else {
+                self.init(name: "SFAtarianSystemExtended", size: size)!
+            }
+            break
+        case .DEFAULT:
+            if name.contains("SFAtarianBold") || name.contains("Atarian Bold") {
+                self.init(name: "SFAtarianSystemExtended-Bold", size: size)!
+            }else {
+                self.init(name: "SFAtarianSystemExtended", size: size)!
+            }
+        }
+    }
+    
 }

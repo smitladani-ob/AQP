@@ -73,7 +73,7 @@
                                 <constraint firstItem="TUt-CE-wbh" firstAttribute="top" secondItem="aPe-lZ-eCH" secondAttribute="top" id="p3f-8j-AbG"/>
                             </constraints>
                         </view>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GMB-TJ-767">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GMB-TJ-767">
                             <rect key="frame" x="10" y="35.666666666666671" width="144" height="30"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -148,7 +148,7 @@
                                 <constraint firstItem="E9B-HG-z7H" firstAttribute="leading" secondItem="Y5O-Bp-vlM" secondAttribute="leading" id="vBJ-aF-cAs"/>
                             </constraints>
                         </view>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zLl-ne-94y">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zLl-ne-94y">
                             <rect key="frame" x="20" y="35.666666666666671" width="144" height="30"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>

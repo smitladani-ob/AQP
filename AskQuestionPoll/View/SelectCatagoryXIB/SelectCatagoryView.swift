@@ -12,8 +12,8 @@ class SelectCatagoryView: NibView {
     @IBOutlet weak var underLineView: UIView!
     @IBOutlet weak var imageOfTextFIeld: UIImageView!
     @IBOutlet weak var textFIeld: UITextField!
-    
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    
     var onTap: (() -> Void)?
     
     override func awakeFromNib() {
@@ -27,9 +27,8 @@ class SelectCatagoryView: NibView {
     }
     
     func setupUI() {
-        underLineView.setCornerRadius(cornerRadius: 2.5)
+        setCornerRadius(view: underLineView,cornerRadius: 2.5)
         self.imageOfTextFIeld.isUserInteractionEnabled = true
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         imageOfTextFIeld.addGestureRecognizer(tap)
     }
@@ -38,23 +37,15 @@ class SelectCatagoryView: NibView {
         onTap?()
     }
     
-    func configure(placeHolder: String,imageName: String = ""){
-        let fontSize = CGFloat(0.048 * screenWidth)
+    func configure(placeHolder: String,imageName: String = "", fontsize: CGFloat){
+        let fontSize = CGFloat(fontsize * screenWidth)
         guard let font = UIFont(name: "SFAtarianSystemExtended", size: fontSize) else {
             print("Font not found")
             return
         }
         textFIeld.font = font
         let paragraphStyle = NSMutableParagraphStyle()
-        textFIeld.attributedPlaceholder = NSAttributedString(
-            string: placeHolder,
-            attributes: [
-                .foregroundColor: UIColor.white,
-                .font: font,
-                .paragraphStyle: paragraphStyle
-            ]
-        )
+        textFIeld.attributedPlaceholder = NSAttributedString(string: placeHolder,attributes: [.foregroundColor: UIColor.white,.font: font,.paragraphStyle: paragraphStyle])
         imageOfTextFIeld.image = UIImage(named: imageName)
-        
     }
 }

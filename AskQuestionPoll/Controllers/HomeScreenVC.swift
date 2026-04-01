@@ -23,34 +23,34 @@ class HomeScreenVC: UIViewController, UITabBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         //Instantiate Once
-        firstTabVC = storyboardOfMain.instantiateViewController(withIdentifier: "ViewQuestionVC") as! ViewQuestionVC
-        secondTabVC = storyboardOfMain.instantiateViewController(withIdentifier: "AddQuestionVC") as! AddQuestionVC
-        thirdTabVC = storyboardOfMain.instantiateViewController(withIdentifier: "LogOutVC") as! LogOutVC
-        fourthTabVC = storyboardOfMain.instantiateViewController(withIdentifier: "AllQuestionVC") as! AllQuestionVC
-        setupTab(tabFirst, index: 0)
-        setupTab(tabSecond, index: 1)
-        setupTab(tabThird, index: 2)
-        setupTab(tabFourth, index: 3)
-        selectTab(index: 1)
+        self.firstTabVC = storyboardOfMain.instantiateViewController(withIdentifier: "ViewQuestionVC") as! ViewQuestionVC
+        self.secondTabVC = storyboardOfMain.instantiateViewController(withIdentifier: "AddQuestionVC") as! AddQuestionVC
+        self.thirdTabVC = storyboardOfMain.instantiateViewController(withIdentifier: "LogOutVC") as! LogOutVC
+        self.fourthTabVC = storyboardOfMain.instantiateViewController(withIdentifier: "AllQuestionVC") as! AllQuestionVC
+        self.setupTab(tabFirst, index: 0)
+        self.setupTab(tabSecond, index: 1)
+        self.setupTab(tabThird, index: 2)
+        self.setupTab(tabFourth, index: 3)
+        self.selectTab(index: 1)
     }
     
     func setupTab(_ tab: UIControl, index: Int) {
         tab.tag = index
-        tab.addTarget(self, action: #selector(tabTapped(_:)), for: .touchUpInside)
+        tab.addTarget(self, action: #selector(self.tabTapped(_:)), for: .touchUpInside)
     }
     
     @objc func tabTapped(_ sender: UIControl) {
-        selectTab(index: sender.tag)
+        self.selectTab(index: sender.tag)
     }
     
     func selectTab(index: Int) {
         // Update tab UI
-        let tabs = [tabFirst, tabSecond, tabThird, tabFourth]
+        let tabs = [self.tabFirst, self.tabSecond, self.tabThird, self.tabFourth]
         for (i, tab) in tabs.enumerated() {
             tab?.backgroundColor = (i == index) ? .white : .systemYellow// selected tab = white, all others = yellow
         }
         // Switch first (IMPORTANT)
-        switchToVC(index: index)
+        self.switchToVC(index: index)
     }
     
     func switchToVC(index: Int) {
@@ -63,20 +63,20 @@ class HomeScreenVC: UIViewController, UITabBarDelegate {
         let selectedVC: UIViewController
         switch index {
         case 0:
-            selectedVC = firstTabVC
+            selectedVC = self.firstTabVC
         case 1:
-            selectedVC = secondTabVC
+            selectedVC = self.secondTabVC
         case 2:
-            selectedVC = thirdTabVC
+            selectedVC = self.thirdTabVC
         case 3:
-            selectedVC = fourthTabVC
+            selectedVC = self.fourthTabVC
         default:
             return
         }
         // Add new VC
         addChild(selectedVC)
-        selectedVC.view.frame = containerView.bounds
-        containerView.addSubview(selectedVC.view)
+        selectedVC.view.frame = self.containerView.bounds
+        self.containerView.addSubview(selectedVC.view)
         selectedVC.didMove(toParent: self)
     }
 }

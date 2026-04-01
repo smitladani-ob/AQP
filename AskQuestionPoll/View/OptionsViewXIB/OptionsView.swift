@@ -51,10 +51,12 @@ class OptionsView: NibView {
         
         // TEXT MODE
         if optionType == .text {
+            // Text mode — show the text
             optionOneTextview.text = option1Text
             optionTwoTextview.text = option2Text
             optionOneTextview.isHidden = false
             optionTwoTextview.isHidden = false
+            // All backgrounds get the standard button image
             optionOneBg.image = UIImage.optionButton
             optionTwoBg.image = UIImage.optionButton
             optionOneImageBg.image = UIImage.optionButton
@@ -62,6 +64,7 @@ class OptionsView: NibView {
         }
         // IMAGE MODE
         else {
+            // Image mode — show the images
             optionOneImageBg.image = option1Image
             optionTwoImageBg.image = option2Image
             optionOneTextview.isHidden = true
@@ -70,8 +73,6 @@ class OptionsView: NibView {
         // Limit text size (no scroll)
         optionOneTextview.isScrollEnabled = false
         optionTwoTextview.isScrollEnabled = false
-        optionOneTextview.textContainer.maximumNumberOfLines = 3
-        optionTwoTextview.textContainer.maximumNumberOfLines = 3
     }
     
 }

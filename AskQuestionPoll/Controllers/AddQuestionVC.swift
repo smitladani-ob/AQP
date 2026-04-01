@@ -31,38 +31,28 @@ class AddQuestionVC: UIViewController {
     @IBOutlet weak var hiderImage: UIImageView!
     @IBOutlet weak var selectCategoryField: SelectCatagoryView!
     @IBOutlet weak var descriptionHeight: NSLayoutConstraint!
-    
     //second Container
     @IBOutlet weak var chooseOption: RadioButtonsView!
     @IBOutlet weak var optionsView: OptionsView!
-    
     //Third Container
     @IBOutlet weak var prefernceLabel: UILabel!
     @IBOutlet weak var chooseLocationField: SelectCatagoryView!
     @IBOutlet weak var afterLocationLbl: UILabel!
     @IBOutlet weak var chooseGenderField: SelectCatagoryView!
     @IBOutlet weak var afterGenderLbl: UILabel!
-    
     //Fourth Container
     @IBOutlet weak var submitButton: yellowButtonView!
     @IBOutlet weak var previewButton: yellowButtonView!
-    
     @IBOutlet weak var scrollView: UIScrollView!
     
-    let categories: [(name: String, id: Int)] = [
-        ("World Affairs", 3),
-        ("Entertainment", 4),
-        ("Geography", 5),
-        ("History", 6),
-        ("Wildlife", 2),
-        ("Trending News", 1)
-    ]
+    let categories: [(name: String, id: Int)] = [("World Affairs", 3),("Entertainment", 4),("Geography", 5),("History", 6),("Wildlife", 2),("Trending News", 1)]
     var countries: [Country] = []
-    let pickerView = UIPickerView()
-    let picker = UIImagePickerController()
-    var selectedCategoryId: Int?
-    
-    var currentImageSelection: ImageSelectionType?
+    var pickerView = UIPickerView()
+    var toolbarTitleLabel = UILabel()
+    let imagePicker = UIImagePickerController()
+    var currentImageSelection: ImageSelectionType?// Which Image Select OptionOne And OptionTwo for imagePicker
+    var currentPickerType: PickerType? // Which picker is Use for Picker
+    var selectedCategoryId: Int? //selected Category
     //To Save Image
     var selectedQuestionImage: UIImage?
     var optionOneSelectedImage: UIImage?
@@ -70,26 +60,26 @@ class AddQuestionVC: UIViewController {
     //To Save Text
     var optionOneText: String?
     var optionTwoText: String?
-    
     var alertTitle = "Select Image"
-    var currentPickerType: PickerType?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        descriptionTextView.delegate = self
-        setupView()
-        setupPicker()
-        if let response: CountryResponse = JSONLoader.load("countryNames") {
-            countries = response.countryJSON
+        self.descriptionTextView.delegate = self
+        self.setupView()
+        self.setupPicker()
+        if let response: CountryResponse = JSONloader("countryNames") {
+            self.countries = response.countryJSON
         }
-        let tap = UITapGestureRecognizer(target: self, action: #selector(topImageTapped))
-        selectorImage.isUserInteractionEnabled = true
-        selectorImage.addGestureRecognizer(tap)
-        picker.delegate = self
-        picker.allowsEditing = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.topImageTapped))
+        self.selectorImage.isUserInteractionEnabled = true
+        self.selectorImage.addGestureRecognizer(tap)
+        self.imagePicker.delegate = self
+        self.imagePicker.allowsEditing = true
+        self.scrollView.keyboardDismissMode = .onDrag
         //observer
-        NotificationCenter.default.addObserver(self,selector: #selector(keyboardWillShow),name: UIResponder.keyboardWillShowNotification,object: nil)
-        NotificationCenter.default.addObserver(self,selector: #selector(keyboardWillHide),name: UIResponder.keyboardWillHideNotification,object: nil)
+        NotificationCenter.default.addObserver(self,selector: #selector(self.keyboardWillShow),name: UIResponder.keyboardWillShowNotification,object: nil)
+        NotificationCenter.default.addObserver(self,selector: #selector(self.keyboardWillHide),name: UIResponder.keyboardWillHideNotification,object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -99,36 +89,35 @@ class AddQuestionVC: UIViewController {
     
     func setupView() {
         //First Container
-        let custFont = UIFont(name: "SFAtarianSystemExtended", size: CGFloat(0.048 * screenWidth))
-        selectCategoryField.configure(placeHolder: "select category", imageName: "dropdown_icon")
-        questionLabel.text = "QUESTIONS"
-        questionLabel.textColor = UIColor.systemYellow
-        questionLabel.font = custFont
-        descriptionLabel.text = "DESCRIPTION"
-        descriptionLabel.textColor = UIColor.white
-        descriptionLabel.font = custFont
-        selectorImage.setBorder(color: UIColor.white.cgColor, width: 2)
-        selectorImage.image = UIImage(named: "selector_image")
-        charCounter.text = "0/200"
-        charCounter.font = UIFont(name: "SFAtarianSystemExtended", size: CGFloat(0.038 * screenWidth))
-        charCounter.textColor = UIColor.white
-        underLineTextView.backgroundColor = .white
+        let custFont = UIFont(name: "SFAtarianSystemExtended", size: CGFloat(0.048 * screenWidth),type: .DEFAULT)
+        self.selectCategoryField.configure(placeHolder: "select category", imageName: "dropdown_icon", fontsize: 0.048)
+        self.questionLabel.text = "QUESTIONS"
+        self.questionLabel.textColor = UIColor.systemYellow
+        self.questionLabel.font = custFont
+        self.descriptionLabel.text = "DESCRIPTION"
+        self.descriptionLabel.textColor = UIColor.white
+        self.descriptionLabel.font = custFont
+        self.selectorImage.image = UIImage(named: "selector_image")
+        self.charCounter.text = "0/200"
+        self.charCounter.font = UIFont(name: "SFAtarianSystemExtended", size: CGFloat(0.038 * screenWidth), type: .DEFAULT)
+        self.charCounter.textColor = UIColor.white
+        self.underLineTextView.backgroundColor = .white
         
         //Second Container
-        optionsView.optionOneTextview.delegate = self
-        optionsView.optionTwoTextview.delegate = self
-        chooseOption.config(categoryName: "OPTIONS",itemOne: "TEXT",itemTwo: "IMAGE",textcolor: UIColor.white,mode: .options)
-        let bigLabel = UIFont(name: "SFAtarianSystemExtended", size: CGFloat(0.052 * screenWidth))
-        let smlLabel = UIFont(name: "SFAtarianSystemExtended", size: CGFloat(0.042 * screenWidth))
-        chooseOption.imgOptionOne.tintColor = UIColor.white
-        chooseOption.imgOptionTwo.tintColor = UIColor.white
-        optionsView.optionOneLOne.font = bigLabel
-        optionsView.optionOneLTwo.font = smlLabel
-        optionsView.optionTwoLOne.font = bigLabel
-        optionsView.optionTwoLTwo.font = smlLabel
-        optionsView.optionOneBtn.addTarget(self, action: #selector(optionOneTapped), for: .touchUpInside)
-        optionsView.optionTwoBtn.addTarget(self, action: #selector(optionTwoTapped), for: .touchUpInside)
-        chooseOption.onSelectionChanged = { [weak self] in
+        self.optionsView.optionOneTextview.delegate = self
+        self.optionsView.optionTwoTextview.delegate = self
+        self.chooseOption.config(categoryName: "OPTIONS",itemOne: "TEXT",itemTwo: "IMAGE",textcolor: UIColor.white,mode: .options)
+        let bigLabel = UIFont(name: "SFAtarianSystemExtended", size: CGFloat(0.052 * screenWidth), type: .DEFAULT)
+        let smlLabel = UIFont(name: "SFAtarianSystemExtended", size: CGFloat(0.042 * screenWidth), type: .DEFAULT)
+        self.chooseOption.imgOptionOne.tintColor = UIColor.white
+        self.chooseOption.imgOptionTwo.tintColor = UIColor.white
+        self.optionsView.optionOneLOne.font = bigLabel
+        self.optionsView.optionOneLTwo.font = smlLabel
+        self.optionsView.optionTwoLOne.font = bigLabel
+        self.optionsView.optionTwoLTwo.font = smlLabel
+        self.optionsView.optionOneBtn.addTarget(self, action: #selector(optionOneTapped), for: .touchUpInside)
+        self.optionsView.optionTwoBtn.addTarget(self, action: #selector(optionTwoTapped), for: .touchUpInside)
+        self.chooseOption.onSelectionChanged = { [weak self] in
             guard let self = self else { return }
             switch self.chooseOption.selectedOptionType {
             case .text:
@@ -137,23 +126,23 @@ class AddQuestionVC: UIViewController {
                 self.handleImageOption()
             }
         }
-        if chooseOption.selectedOptionType == .text {
-                handleTextOption()
+        if self.chooseOption.selectedOptionType == .text {
+                self.handleTextOption()
             } else {
-                handleImageOption()
+                self.handleImageOption()
         }
         //Third Container
         prefernceLabel.text = "PREFERENCES"
         prefernceLabel.textColor = UIColor.systemYellow
         prefernceLabel.font = custFont
-        chooseLocationField.configure(placeHolder: "select location", imageName: "dropdown_icon")
-        chooseGenderField.configure(placeHolder: "select gender", imageName: "dropdown_icon")
+        chooseLocationField.configure(placeHolder: "select location", imageName: "dropdown_icon", fontsize: 0.048)
+        chooseGenderField.configure(placeHolder: "select gender", imageName: "dropdown_icon", fontsize: 0.048)
         afterLocationLbl.font = smlLabel
         afterGenderLbl.font = smlLabel
         //Buttons
-        submitButton.config(text: "SUBMIT",textColor: UIColor.black)
+        submitButton.config(text: "SUBMIT",textColor: UIColor.black, size: 0.048)
         submitButton.loginButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
-        previewButton.config(text: "PREVIEW",textColor: UIColor.black)
+        previewButton.config(text: "PREVIEW",textColor: UIColor.black, size: 0.048)
         previewButton.loginButton.addTarget(self, action: #selector(previewButtonTapped), for: .touchUpInside)
         selectCategoryField.onTap = { [weak self] in
             self?.selectCategoryField.textFIeld.becomeFirstResponder()
@@ -169,15 +158,12 @@ class AddQuestionVC: UIViewController {
     func setupPicker() {
         pickerView.delegate = self
         pickerView.dataSource = self
-        // Attach same picker to all fields
-        selectCategoryField.textFIeld.inputView = pickerView
-        chooseLocationField.textFIeld.inputView = pickerView
-        chooseGenderField.textFIeld.inputView = pickerView
-        // Set delegates to detect active field
-        selectCategoryField.textFIeld.delegate = self
-        chooseLocationField.textFIeld.delegate = self
-        chooseGenderField.textFIeld.delegate = self
-
+        var fields = [selectCategoryField,chooseLocationField,chooseGenderField]
+        for field in fields {
+            field!.textFIeld.inputView = pickerView
+            field!.textFIeld.delegate = self
+            field!.textFIeld.tintColor = .clear
+        }
         addToolbar()
     }
     
@@ -223,8 +209,13 @@ class AddQuestionVC: UIViewController {
     func addToolbar() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
+        toolbarTitleLabel.font = .systemFont(ofSize: 14, weight: .light)
+        toolbarTitleLabel.textColor = .systemGray
+        toolbarTitleLabel.textAlignment = .center
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let titleItem = UIBarButtonItem(customView: toolbarTitleLabel)
         let done = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneTapped))
-        toolbar.setItems([done], animated: true)
+        toolbar.items = [space, titleItem, space, done]
         selectCategoryField.textFIeld.inputAccessoryView = toolbar
         chooseLocationField.textFIeld.inputAccessoryView = toolbar
         chooseGenderField.textFIeld.inputAccessoryView = toolbar
@@ -235,16 +226,16 @@ class AddQuestionVC: UIViewController {
         switch currentPickerType {
         case .category:
             let selected = categories[row]
-            selectCategoryField.textFIeld.text = selected.name
+            selectCategoryField.textFIeld.text = selected.name.lowercased()
             selectedCategoryId = selected.id
         case .location:
             if countries.indices.contains(row) {
                 let selected = countries[row]
-                chooseLocationField.textFIeld.text = selected.name
+                chooseLocationField.textFIeld.text = selected.name.lowercased()
             }
         case .gender:
             let genders = ["Male", "Female"]
-            chooseGenderField.textFIeld.text = genders[row]
+            chooseGenderField.textFIeld.text = genders[row].lowercased()
         case .none:
             break
         }
@@ -295,8 +286,8 @@ class AddQuestionVC: UIViewController {
             showCameraNotAvailableAlert()
             return
         }
-        picker.sourceType = .camera
-        present(picker, animated: true)
+        imagePicker.sourceType = .camera
+        present(imagePicker, animated: true)
     }
 
     func showCameraNotAvailableAlert() {
@@ -310,8 +301,8 @@ class AddQuestionVC: UIViewController {
             showGalleryNotAvailableAlert()
             return
         }
-        picker.sourceType = .photoLibrary
-        present(picker, animated: true)
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true)
     }
     
     func showGalleryNotAvailableAlert() {
@@ -325,10 +316,10 @@ class AddQuestionVC: UIViewController {
     func clearAllFields() {
         // 1. Clear text fields
         descriptionTextView.text = ""
+        descriptionHeight.constant = 35
         chooseLocationField.textFIeld.text = ""
         chooseGenderField.textFIeld.text = ""
         selectCategoryField.textFIeld.text = ""
-        
         // 2. Clear state variables
         selectedCategoryId = nil
         optionOneText = nil
@@ -336,19 +327,16 @@ class AddQuestionVC: UIViewController {
         optionOneSelectedImage = nil
         optionTwoSelectedImage = nil
         selectedQuestionImage = nil
-        
         // 3. Reset main question image
         selectorImage.image = UIImage(named: "selector_image")
         hiderImage.isHidden = false
         charCounter.text = "0/200"
-        
         // 4. Reset options views using existing helpers (this fixes the image backgrounds!)
         if chooseOption.selectedOptionType == .text {
             handleTextOption()
         } else {
             handleImageOption()
         }
-        
         // Dismiss keyboard
         view.endEditing(true)
     }
@@ -369,21 +357,16 @@ class AddQuestionVC: UIViewController {
             option2: optionsView.optionTwoTextview.isHidden ? nil : optionsView.optionTwoTextview.text
         )
         // Prepare images — send only the user-selected question image, not the placeholder
-        let images = AddQuestionImages(
-            questionImage: selectedQuestionImage,
-            option1Image: optionOneSelectedImage,
-            option2Image: optionTwoSelectedImage
-        )
+        let images = AddQuestionImages(questionImage: selectedQuestionImage,option1Image: optionOneSelectedImage,option2Image: optionTwoSelectedImage)
         // Call API
-        APIManager.sharedInstance.addQuestion(requestModel: request, images: images) { result in
-            switch result {
-            case .success(let response):
-                SessionManager.shared.firstTabNeedsRefresh = true
-                SessionManager.shared.fourthTabNeedsRefresh = true
-                showSuccess(response.message ?? "Question added successfully")
+        APIManager.sharedInstance.addQuestion(requestModel: request, images: images) { response, error, isSuccess in
+            if isSuccess {
+                firstTabNeedsRefresh = true
+                fourthTabNeedsRefresh = true
+                showSuccess(response?.message ?? "Question added successfully")
                 self.clearAllFields()
-            case .failure(let error):
-                showError(error.localizedDescription)
+            } else {
+                showError(error ?? "Something went wrong")
             }
         }
     }
@@ -402,6 +385,10 @@ class AddQuestionVC: UIViewController {
             return
         }
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
 }
@@ -441,16 +428,16 @@ extension AddQuestionVC: UIPickerViewDelegate, UIPickerViewDataSource {
         switch currentPickerType {
         case .category:
             let selected = categories[row]
-            selectCategoryField.textFIeld.text = selected.name
+            selectCategoryField.textFIeld.text = selected.name.lowercased()
             selectedCategoryId = selected.id
         case .location:
             if countries.indices.contains(row) {
                 let selected = countries[row]
-                chooseLocationField.textFIeld.text = selected.name
+                chooseLocationField.textFIeld.text = selected.name.lowercased()
             }
         case .gender:
             let genders = ["Male", "Female"]
-            chooseGenderField.textFIeld.text = genders[row]
+            chooseGenderField.textFIeld.text = genders[row].lowercased()
             
         case .none:
             break
@@ -459,11 +446,8 @@ extension AddQuestionVC: UIPickerViewDelegate, UIPickerViewDataSource {
 }
 
 extension AddQuestionVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
+    func imagePickerController(_ picker: UIImagePickerController,didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let selectedImage = (info[.editedImage] as? UIImage) ?? (info[.originalImage] as? UIImage)
-        
         guard let image = selectedImage else {
             picker.dismiss(animated: true)
             return
@@ -494,12 +478,19 @@ extension AddQuestionVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == selectCategoryField.textFIeld {
             currentPickerType = .category
+            toolbarTitleLabel.text = "Choose Category"
         } else if textField == chooseLocationField.textFIeld {
             currentPickerType = .location
+            toolbarTitleLabel.text = "Choose Location"
         } else if textField == chooseGenderField.textFIeld {
             currentPickerType = .gender
+            toolbarTitleLabel.text = "Choose Gender"
         }
         pickerView.reloadAllComponents()
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return false
     }
 }
 

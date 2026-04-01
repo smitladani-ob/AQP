@@ -11,7 +11,6 @@ import SCLAlertView
 class LoginVC: UIViewController {
     
     @IBOutlet weak var lblSignUp: UILabel!
-    
     @IBOutlet weak var lblForgotPassword: UILabel!
     @IBOutlet weak var passWordTextField: AuthTextFieldView!
     @IBOutlet weak var emailTextField: AuthTextFieldView!
@@ -20,8 +19,8 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //        btnSignUp.titleLabel?.text = "Signup"
-        setupButtonsOfScreens()
-        setupField()
+        self.setupButtonsOfScreens()
+        self.setupField()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,17 +30,17 @@ class LoginVC: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        emailTextField.widthOfTextFieldImage.constant = 0
-        passWordTextField.widthOfTextFieldImage.constant = 0
+        self.emailTextField.widthOfTextFieldImage.constant = 0
+        self.passWordTextField.widthOfTextFieldImage.constant = 0
 
     }
     
     //Function to Set the buttons
     func setupButtonsOfScreens(){
-        makeUnderLineLabel(label: lblSignUp,text: "SIGNUP", size: 0.048, color: UIColor.white)
-        makeUnderLineLabel(label: lblForgotPassword,text: "FORGOT PASSWORD ?", size: 0.048, color: UIColor.white)
-        loginButtonView.config(text: "LOGIN",textColor: UIColor.white)
-        loginButtonView.loginButton.addTarget(self, action: #selector(btnLogin(_ :)), for: .touchUpInside)
+        self.makeUnderLineLabel(label: self.lblSignUp,text: "SIGNUP", size: 0.048, color: UIColor.white)
+        self.makeUnderLineLabel(label: self.lblForgotPassword,text: "FORGOT PASSWORD ?", size: 0.048, color: UIColor.white)
+        self.loginButtonView.config(text: "LOGIN",textColor: UIColor.white, size: 0.048)
+        self.loginButtonView.loginButton.addTarget(self, action: #selector(self.btnLogin(_ :)), for: .touchUpInside)
     }
     
     //Fucntion to give attributed text which give underline to label's text
@@ -53,7 +52,7 @@ class LoginVC: UIViewController {
                 .underlineStyle: NSUnderlineStyle.thick.rawValue,
                 .foregroundColor: color,
                 //                .font: UIFont.systemFont(ofSize: screenWidth * CGFloat(size), weight: .bold)
-                .font: UIFont(name: "SFAtarianSystemExtended", size: screenWidth * CGFloat(size)) ?? UIFont.systemFont(ofSize: screenWidth * CGFloat(size))
+                .font: UIFont(name: "SFAtarianSystemExtended", size: screenWidth * CGFloat(size), type: .DEFAULT) ?? UIFont.systemFont(ofSize: screenWidth * CGFloat(size))
             ]
         )
         label.attributedText = attributedString
@@ -61,22 +60,22 @@ class LoginVC: UIViewController {
     
     //For setups the Textfields in the LoginBox
     func setupField(){
-        emailTextField.imgForTextField.isHidden = true
-        emailTextField.configure(labelText: "EMAIL", iconImageName: "email_icon", textFieldPlaceholder: "Enter Email", textFieldImageName: "xyz")
-        passWordTextField.configure(labelText: "PASSWORD", iconImageName: "password_icon", textFieldPlaceholder: "Enter Password", textFieldImageName: "exya")
-        passWordTextField.actualTextField.isSecureTextEntry = true
+        self.emailTextField.imgForTextField.isHidden = true
+        self.emailTextField.configure(labelText: "EMAIL", iconImageName: "email_icon", textFieldPlaceholder: "Enter Email", textFieldImageName: "xyz")
+        self.passWordTextField.configure(labelText: "PASSWORD", iconImageName: "password_icon", textFieldPlaceholder: "Enter Password", textFieldImageName: "exya")
+        self.passWordTextField.actualTextField.isSecureTextEntry = true
 
         // Delegate & return key types
-        emailTextField.actualTextField.delegate = self
-        passWordTextField.actualTextField.delegate = self
-        emailTextField.actualTextField.returnKeyType = .next
-        passWordTextField.actualTextField.returnKeyType = .done
+        self.emailTextField.actualTextField.delegate = self
+        self.passWordTextField.actualTextField.delegate = self
+        self.emailTextField.actualTextField.returnKeyType = .next
+        self.passWordTextField.actualTextField.returnKeyType = .done
     }
     
     //For Fields Validation
     func fieldsValidation () {
-        let email = emailTextField.actualTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        let password = passWordTextField.actualTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        let email = self.emailTextField.actualTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        let password = self.passWordTextField.actualTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         
         //Incase Both Field Empty
         if email.isEmpty && password.isEmpty {
@@ -96,35 +95,37 @@ class LoginVC: UIViewController {
             return
         }
         
-        loginAPI(email: email, password: password)
+        if let emailError = email.emailValidationError() {
+            showError(emailError)
+            return
+        }
+        
+        self.loginAPI(email: email, password: password)
     }
     
     //API Call
     func loginAPI(email: String, password: String) {
-        let waitAlert = alert.showWait("Please Wait", subTitle: "",colorStyle: 0xFFEB3B)
-        APIManager.sharedInstance.login(email: email, password: password) { response in
+        showWait()
+        APIManager.sharedInstance.login(email: email, password: password) { [weak self] response, error, isSuccess in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                waitAlert.close()
-                switch response {
-                case .success(let response):
-                    if response.code == 200 {
-                        if let token = response.data?.token {
-                            UserDefaults.standard.set(token, forKey: "token")
-                            UserDefaults.standard.synchronize()
-//                            print(token)
-                        }
-                        SessionManager.shared.isLoggedIn = true
-                        showSuccess(response.message ?? "Login Successfully")
-                        let vc = storyboardOfMain.instantiateViewController(withIdentifier: "HomeScreenVC") as! HomeScreenVC
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    } else {
-                        showError(response.message ?? "Something went wrong")
+                hideWait()
+                if isSuccess {
+                    if let token = response?.data?.token {
+                        UserDefaults.standard.set(token, forKey: "token")
                     }
-                case .failure(let error):
-                    showError("Something went wrong")
+                    isLoggedIn = true
+                    showSuccess(response?.message ?? "Login Successfully")
+                    self?.navigateToHome()
+                } else {
+                    showError(error ?? "Something went wrong")
                 }
             }
         }
+    }
+    
+    func navigateToHome(){
+        let vc = storyboardOfMain.instantiateViewController(withIdentifier: "HomeScreenVC") as! HomeScreenVC
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func btnSignUp(_ sender: Any) {
@@ -135,13 +136,16 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func btnLogin(_ sender: Any) {
-        fieldsValidation()
+        self.fieldsValidation()
     }
     
     @IBAction func btnForgotPassword(_ sender: Any) {
         let vc = storyboardOfMain.instantiateViewController(withIdentifier: "OTPScreenVC") as! OTPScreenVC
         vc.screenState = .email
         vc.isForgotPassword = true
+        if let emailText = emailTextField.actualTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !emailText.isEmpty {
+            vc.enteredEmail = emailText
+        }
         self.navigationItem.backButtonTitle = ""
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -151,8 +155,8 @@ class LoginVC: UIViewController {
 extension LoginVC: UITextFieldDelegate {
     // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == emailTextField.actualTextField {
-            passWordTextField.actualTextField.becomeFirstResponder()
+        if textField == self.emailTextField.actualTextField {
+            self.passWordTextField.actualTextField.becomeFirstResponder()
         } else {
             textField.resignFirstResponder()
         }
