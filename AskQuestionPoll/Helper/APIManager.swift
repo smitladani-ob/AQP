@@ -30,30 +30,21 @@ class APIManager {
 
         session.request(loginForUserUrl, method: .post, parameters: param, encoding: JSONEncoding.default, headers: nil)
             .responseJSON { response in
-
             switch response.result {
-
             case .success(let value):
-
                 if let json = value as? [String: Any],
                    let responseValue = Mapper<LoginResponse>().map(JSON: json) {
-
                     switch responseValue.code {
-
                     case 200:
                         completion(responseValue, nil, true)
-
                     case 201:
                         completion(nil, responseValue.message, false)
-
                     default:
                         completion(nil, responseValue.message, false)
                     }
-
                 } else {
                     completion(nil, "Parsing Error", false)
                 }
-
             case .failure(let error):
                 completion(nil, error.localizedDescription, false)
             }
